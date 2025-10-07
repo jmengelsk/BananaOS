@@ -123,6 +123,11 @@ LOG_STEP_IN "- Add A73 vintf manifest"
 ADD_TO_WORK_DIR "a73xqxx" "system" "system/etc/vintf/manifest.xml" 0 0 644 "u:object_r:system_file:s0"
 LOG_STEP_OUT
 
+LOG_STEP_IN "- Fixing vintf manifest"
+sed -i 's/manifest version="8\.0"/manifest version="9.0"/' "$WORK_DIR/system/system/etc/vintf/manifest.xml"
+sed -i 's/manifest version="8\.0"/manifest version="9.0"/' "$WORK_DIR/system_ext/etc/vintf/manifest.xml"
+LOG_STEP_OUT
+
 LOG_STEP_IN "- Adding stock system features"
 DELETE_FROM_WORK_DIR "system" "system/etc/permissions/com.samsung.feature.audio_fast_listenback.xml"
 DELETE_FROM_WORK_DIR "system" "system/etc/permissions/com.samsung.feature.audio_listenback.xml"
