@@ -1,31 +1,25 @@
-From ad47ca800730c92fb3d1cad80569586e4c9f7080 Mon Sep 17 00:00:00 2001
+From 1c33058e3aa916c6e8d54485bea409fcde6db56f Mon Sep 17 00:00:00 2001
 From: BlackMesa123 <giangrecosalvo9@gmail.com>
-Date: Sat, 8 Jun 2024 14:16:18 +0200
+Date: Wed, 8 Oct 2025 21:41:02 +0800
 Subject: [PATCH] Disable StrongBox in DevRootKeyATCmd
 
 ---
-diff --git a/smali_classes5/com/android/server/DevRootKeyATCmd.smali b/smali_classes5/com/android/server/DevRootKeyATCmd.smali
-index b6d18db7..75a6c1e3 100644
---- a/smali_classes5/com/android/server/DevRootKeyATCmd.smali
-+++ b/smali_classes5/com/android/server/DevRootKeyATCmd.smali
-@@ -3972,7 +3972,7 @@
+ smali_classes6/com/android/server/DevRootKeyATCmd.smali | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/smali_classes6/com/android/server/DevRootKeyATCmd.smali b/smali_classes6/com/android/server/DevRootKeyATCmd.smali
+index 57c5a5da..42d6c68b 100644
+--- a/smali_classes6/com/android/server/DevRootKeyATCmd.smali
++++ b/smali_classes6/com/android/server/DevRootKeyATCmd.smali
+@@ -2945,7 +2945,7 @@
  
-     if-ne v2, v9, :cond_5
+     const/4 v8, 0x0
  
 -    const/4 v10, 0x1
 +    const/4 v10, 0x0
  
-     invoke-virtual {v15, v10}, Landroid/security/keystore/KeyGenParameterSpec$Builder;->setIsStrongBoxBacked(Z)Landroid/security/keystore/KeyGenParameterSpec$Builder;
- 
-@@ -4279,7 +4279,7 @@
- 
-     if-ne v2, v4, :cond_d
- 
--    const/4 v4, 0x1
-+    const/4 v4, 0x0
- 
-     invoke-virtual {v6, v4}, Landroid/security/keystore/KeyGenParameterSpec$Builder;->setIsStrongBoxBacked(Z)Landroid/security/keystore/KeyGenParameterSpec$Builder;
+     if-eqz p2, :cond_4
  
 -- 
-2.46.0
+2.50.1
 
