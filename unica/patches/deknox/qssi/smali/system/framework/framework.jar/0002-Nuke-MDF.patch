@@ -1275,7 +1275,7 @@ index 93c961ac..937897ac 100644
 -    :cond_6
 -    :goto_3
 -    return v0
-+    return-object v0
++    return v0
  .end method
  
  .method public static blacklist isHostnameAllowed(Ljava/lang/String;Ljava/lang/String;)Z
@@ -1559,7 +1559,7 @@ index 93c961ac..937897ac 100644
  
 -    :cond_0
 -    return-void
-+    return v0
++    return-object v0
  .end method
  
 -.method public static blacklist logMdf(ZLjava/lang/String;ZILjava/lang/String;)V
