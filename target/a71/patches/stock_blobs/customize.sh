@@ -148,12 +148,6 @@ ADD_TO_WORK_DIR "a52qnsxx" "system" "system/etc/sysconfig/preinstalled-packages-
 ADD_TO_WORK_DIR "a52qnsxx" "system_ext" "app/com.qualcomm.qti.services.secureui/com.qualcomm.qti.services.secureui.apk" 0 0 644 "u:object_r:system_file:s0"
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Removing NFC"
-DELETE_FROM_WORK_DIR "vendor" "etc/init/nxp.android.hardware.nfc@1.1-service.rc"
-DELETE_FROM_WORK_DIR "odm" "etc/vintf"
-DELETE_FROM_WORK_DIR "odm" "etc/permissions"
-LOG_STEP_OUT
-
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system_ext" "lib/libqcc_file_agent_sys.so" 0 0 644 "u:object_r:system_file:s0"
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system_ext" "lib64/libqcc_file_agent_sys.so" 0 0 644 "u:object_r:system_file:s0"
 
