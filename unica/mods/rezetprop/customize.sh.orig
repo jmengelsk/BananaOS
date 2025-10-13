@@ -1,7 +1,5 @@
 LOG "- Applying prop spoofer"
 
-SECURITY_PATCH="$(GET_PROP "ro.build.version.security_patch")"
-
 {
     echo "on property:service.bootanim.exit=1"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.flash.locked 1"
@@ -10,7 +8,6 @@ SECURITY_PATCH="$(GET_PROP "ro.build.version.security_patch")"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.veritymode enforcing"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.warranty_bit 0"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n sys.oem_unlock_allowed 0"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.build.security_patch "$SECURITY_PATCH
     echo ""
 } >> "$WORK_DIR/system/system/etc/init/hw/init.rc"
 
