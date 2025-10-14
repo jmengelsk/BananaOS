@@ -28,10 +28,10 @@ TMP_DIR="$OUT_DIR/zip"
 
 ZIP_FILE_SUFFIX=".zip"
 
-ZIP_FILE_NAME="ProjectNERV_${ROM_VERSION}_$(date +%Y%m%d)_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
+ZIP_FILE_NAME="MintOS_${ROM_VERSION}_$(date +%Y%m%d)_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
 while [ -f "$OUT_DIR/$ZIP_FILE_NAME" ]; do
     INCREMENTAL=$((INCREMENTAL + 1))
-    ZIP_FILE_NAME="ProjectNERV_${ROM_VERSION}_$(date +%Y%m%d)-${INCREMENTAL}_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
+    ZIP_FILE_NAME="MintOS_${ROM_VERSION}_$(date +%Y%m%d)-${INCREMENTAL}_${TARGET_CODENAME}${ZIP_FILE_SUFFIX}"
 done
 
 trap 'rm -rf "$TMP_DIR"' EXIT INT
@@ -454,7 +454,7 @@ PRINT_HEADER()
     local MINOR
     local PATCH
 
-    VERSION_INFO="$ROM_VERSION for $TARGET_NAME"
+    VERSION_INFO="for $TARGET_NAME"
     SIDE_PADDING="$(bc -l <<< "scale=0; (49 - ${#VERSION_INFO}) / 2")"
     [ "$SIDE_PADDING" -lt 1 ] && SIDE_PADDING=1
 
@@ -468,14 +468,13 @@ PRINT_HEADER()
         ONEUI_VERSION="$MAJOR.$MINOR"
     fi
 
-    echo    'ui_print(" ");'
-    echo    'ui_print("************************************************");'
-    echo    'ui_print(" ");'
-    echo    'ui_print("              _  __ ____ ___  _   __");'
-    echo    'ui_print("             / |/ // __// _ \| | / /");'
-    echo    'ui_print("            /    // _/ / , _/| |/ / ");'
-    echo    'ui_print("           /_/|_//___//_/|_| |___/  ");'
-    echo    'ui_print(" ");'
+    echo    'ui_print("                                                            ");'
+    echo    'ui_print("                                          ");'
+    echo    'ui_print(" m    m   i             m     mmmm   mmmm ");'
+    echo    'ui_print(" ##  ## mmm    m mm   mm#mm  m    m #    ");'
+    echo    'ui_print(" # ## #   #    #   #    #    #    #  #mmm ");'
+    echo    'ui_print(" #    #   #    #   #    #    #    #      #");'
+    echo    'ui_print(" #    # mm#mm  #   #     mm   #mm#   mmm# ");'
     echo -n 'ui_print("'
     for i in $(seq 1 "$SIDE_PADDING"); do
         echo -n ' '
@@ -484,6 +483,9 @@ PRINT_HEADER()
     echo    '");'
     echo    'ui_print(" ");'
     echo    'ui_print("************************************************");'
+    echo -n 'ui_print("'
+    echo -n "ROM version: $ROM_VERSION"
+    echo    '");'
     echo -n 'ui_print("'
     echo -n "One UI version: $ONEUI_VERSION"
     echo    '");'
