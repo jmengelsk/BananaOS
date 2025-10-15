@@ -1,43 +1,25 @@
-From e44b7be0cdb4495093200d653c9c1bc0e49f3c77 Mon Sep 17 00:00:00 2001
+From 5337eba4ed770e82ae9a0b0c8f341cd9dbad187d Mon Sep 17 00:00:00 2001
 From: BlackMesa123 <giangrecosalvo9@gmail.com>
-Date: Sat, 11 Oct 2025 10:44:10 +0800
+Date: Wed, 15 Oct 2025 22:38:53 +0800
 Subject: [PATCH] Set auto confirm PIN min digits to 4
 
 Signed-off-by: Samuel Pascua <pascua.samuel.14@gmail.com>
 ---
- .../ChooseLockPassword$ChooseLockPasswordFragment.smali     | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../ChooseLockPassword$ChooseLockPasswordFragment.smali         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/smali/com/android/settings/password/ChooseLockPassword$ChooseLockPasswordFragment.smali b/smali/com/android/settings/password/ChooseLockPassword$ChooseLockPasswordFragment.smali
-index 44ad651e..9e51ea95 100644
+index 44ad651e..445a878b 100644
 --- a/smali/com/android/settings/password/ChooseLockPassword$ChooseLockPasswordFragment.smali
 +++ b/smali/com/android/settings/password/ChooseLockPassword$ChooseLockPasswordFragment.smali
-@@ -298,7 +298,7 @@
-     move v1, v0
+@@ -6307,7 +6307,7 @@
  
-     :goto_0
--    const/4 v2, 0x6
-+    const/4 v2, 0x4
+     if-nez p2, :cond_4
  
-     const/4 v3, 0x1
+-    const/4 p2, 0x6
++    const/4 p2, 0x4
  
-@@ -1392,7 +1392,7 @@
-     :cond_0
-     iget v0, p0, Lcom/android/settings/password/ChooseLockPassword$ChooseLockPasswordFragment;->mPasswordMinLength:I
- 
--    const/4 v1, 0x6
-+    const/4 v1, 0x4
- 
-     if-lt v0, v1, :cond_1
- 
-@@ -2309,7 +2309,7 @@
- 
-     move-result v2
- 
--    const/4 v4, 0x6
-+    const/4 v4, 0x4
- 
-     if-lt v2, v4, :cond_13
+     if-lt p1, p2, :cond_2
  
 -- 
 2.50.1
