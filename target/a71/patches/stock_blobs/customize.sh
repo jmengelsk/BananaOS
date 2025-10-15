@@ -56,6 +56,11 @@ LOG_STEP_IN "- Adding a73xqxx wpa_supplicant"
 ADD_TO_WORK_DIR "a73xqxx" "vendor" "bin/hw/wpa_supplicant"
 LOG_STEP_OUT
 
+LOG_STEP_IN "- Adding a73xqxx libhwui"
+ADD_TO_WORK_DIR "a73xqxx" "system" "system/lib/libhwui.so"
+ADD_TO_WORK_DIR "a73xqxx" "system" "system/lib64/libhwui.so"
+LOG_STEP_OUT
+
 LOG_STEP_IN "- Adding a52qnsxx SoundBooster libs"
 DELETE_FROM_WORK_DIR "system" "system/lib/lib_SoundBooster_ver1100.so"
 DELETE_FROM_WORK_DIR "system" "system/lib64/lib_SoundBooster_ver1100.so"
