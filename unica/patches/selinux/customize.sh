@@ -5,8 +5,14 @@
 # - DO NOT add add any parenthesis or statements (eg. "fabriccrypto" and NOT "expanttypeattribute ... (fabriccrypto)")
 # - DO NOT add unnecessary types or remove the existing ones unless they aren't necessary anymore for all devices
 
-# One UI 7.0 additions
+# One UI 8.0 additions
 ENTRIES="
+heatmap_default
+heatmap_default_exec
+"
+
+# One UI 7.0 additions
+ENTRIES+="
 attiqi_app
 attiqi_app_data_file
 ker_app
