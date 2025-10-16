@@ -181,3 +181,9 @@ if [[ "$TARGET_API_LEVEL" -lt 34 ]]; then
     system/priv-app/KmxService
     "
 fi
+
+# heatmap
+SYSTEM_DEBLOAT+="
+system/bin/heatmap
+system/etc/init/init.sec-heatmap.rc
+"
