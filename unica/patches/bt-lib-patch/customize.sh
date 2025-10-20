@@ -37,5 +37,5 @@ elif [ "$SOURCE_API_LEVEL" -eq 35 ]; then
         "480500352800805228" "530100142800805228"
 elif [ "$SOURCE_API_LEVEL" -eq 36 ]; then
     HEX_PATCH "$WORK_DIR/system/system/lib64/libbluetooth_jni.so" \
-        "40f706f921ccffb021103691f5a304a9" "1f2003d521ccffb021103691f5a304a9"
+        "00122a0140395f01086b00020054" "00122a0140395f01086bde030014"
 fi
