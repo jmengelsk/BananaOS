@@ -77,3 +77,7 @@ for e in $ENTRIES; do
         fi
     fi
 done
+
+LOG_STEP_IN "- Fixing selinux entry"
+sed -i '/init\.svc\.vendor\.wvkprov_server_hal/d' "$WORK_DIR/vendor/etc/selinux/vendor_property_contexts"
+LOG_STEP_OUT

@@ -151,10 +151,6 @@ LOG_STEP_OUT
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system_ext" "lib/libqcc_file_agent_sys.so" 0 0 644 "u:object_r:system_file:s0"
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system_ext" "lib64/libqcc_file_agent_sys.so" 0 0 644 "u:object_r:system_file:s0"
 
-LOG_STEP_IN "- Fixing selinux entry"
-sed -i '/init\.svc\.vendor\.wvkprov_server_hal/d' "$WORK_DIR/vendor/etc/selinux/vendor_property_contexts"
-LOG_STEP_OUT
-
 LOG_STEP_IN "- Adding tlc dependencies"
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib/vendor.qti.hardware.trustedui@1.0.so" 0 0 644 "u:object_r:vendor_file:s0"
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib/vendor.qti.hardware.trustedui@1.1.so" 0 0 644 "u:object_r:vendor_file:s0"
