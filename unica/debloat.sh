@@ -147,9 +147,7 @@ if [[ "$TARGET_SINGLE_SYSTEM_IMAGE" = "qssi" ]]; then
     system/app/DictDiotekForSec
     system/app/SamsungCalendar
     system/app/SmartReminder
-    system/etc/permissions/privapp-permissions-com.samsung.android.game.gamehome.xml
-    system/priv-app/GameHome
-    " 
+    "
 fi
 
 # eSIM
