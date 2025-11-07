@@ -1,22 +1,21 @@
-From 23a26571d8eda954a8762a3253c48a07b1706d56 Mon Sep 17 00:00:00 2001
+From c5187c86e0431c0b6db5719f45d7a07f71bb5f5c Mon Sep 17 00:00:00 2001
 From: ExtremeXT <75576145+ExtremeXT@users.noreply.github.com>
 Date: Sun, 27 Apr 2025 20:22:50 +0300
-Subject: [PATCH] Disable Wi-Fi 7 support
+Subject: [PATCH 1/4] Disable Wi-Fi 7 support
 
+Signed-off-by: Samuel Pascua <pascua.samuel.14@gmail.com>
 ---
- .../driver/WifiDriverFeatureProvider.smali    | 21 +------------------
- 1 file changed, 1 insertion(+), 20 deletions(-)
+ .../driver/WifiDriverFeatureProvider.smali     | 18 ------------------
+ 1 file changed, 18 deletions(-)
 
 diff --git a/smali/com/samsung/android/server/wifi/driver/WifiDriverFeatureProvider.smali b/smali/com/samsung/android/server/wifi/driver/WifiDriverFeatureProvider.smali
-index 2eafc5a3..5e09925e 100644
+index 52a7e2e..4ba20c1 100644
 --- a/smali/com/samsung/android/server/wifi/driver/WifiDriverFeatureProvider.smali
 +++ b/smali/com/samsung/android/server/wifi/driver/WifiDriverFeatureProvider.smali
-@@ -1358,29 +1358,10 @@
- .end method
- 
+@@ -1350,24 +1350,6 @@
  .method public isWifi7Supported()Z
--    .locals 1
--
+     .locals 1
+ 
 -    iget-boolean v0, p0, Lcom/samsung/android/server/wifi/driver/WifiDriverFeatureProvider;->DBG:Z
 -
 -    if-eqz v0, :cond_0
@@ -25,23 +24,19 @@ index 2eafc5a3..5e09925e 100644
 -
 -    :cond_0
 -    iget p0, p0, Lcom/samsung/android/server/wifi/driver/WifiDriverFeatureProvider;->mWifiStandard:I
-+    .locals 0
- 
+-
 -    const/4 v0, 0x4
 -
 -    if-lt p0, v0, :cond_1
 -
 -    const/4 p0, 0x1
 -
--    goto :goto_0
+-    return p0
 -
 -    :cond_1
      const/4 p0, 0x0
  
--    :goto_0
      return p0
- .end method
- 
 -- 
-2.45.2
+2.50.1
 
