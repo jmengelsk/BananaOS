@@ -1,0 +1,123 @@
+From 4951a8a45de93f723571eb248c0b9ab5dca735af Mon Sep 17 00:00:00 2001
+From: Samuel Pascua <pascua.samuel.14@gmail.com>
+Date: Sun, 9 Nov 2025 18:46:08 +0800
+Subject: Add hide developer settings
+
+Signed-off-by: Samuel Pascua <pascua.samuel.14@gmail.com>
+---
+ .../android/provider/Settings$Global.smali    |  9 +++
+ .../io/mesalabs/unica/SamsungPropsHooks.smali | 78 +++++++++++++++++++
+ 2 files changed, 87 insertions(+)
+
+diff --git a/smali_classes3/android/provider/Settings$Global.smali b/smali_classes3/android/provider/Settings$Global.smali
+index 25bf82f9..046d4d55 100644
+--- a/smali_classes3/android/provider/Settings$Global.smali
++++ b/smali_classes3/android/provider/Settings$Global.smali
+@@ -4539,6 +4539,15 @@
+     return-object p0
+ 
+     :cond_1
++    invoke-static {p0, p1}, Lio/mesalabs/unica/SamsungPropsHooks;->onSGGetStringHook(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v0
++
++    if-eqz v0, :cond_2
++
++    return-object v0
++
++    :cond_2
+     sget-object v0, Landroid/provider/Settings$Global;->sNameValueCache:Landroid/provider/Settings$NameValueCache;
+ 
+     invoke-virtual {v0, p0, p1, p2}, Landroid/provider/Settings$NameValueCache;->getStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;I)Ljava/lang/String;
+diff --git a/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali b/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
+index ee546812..021954e8 100644
+--- a/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
++++ b/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
+@@ -325,6 +325,84 @@
+     return v0
+ .end method
+ 
++.method public static onSGGetStringHook(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
++   .locals 2
++
++    const-string v0, "adb_enabled"
++
++    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v0
++
++    if-nez v0, :cond_0
++
++    const-string v0, "adb_wifi_enabled"
++
++    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v0
++
++    if-nez v0, :cond_0
++
++    const-string v0, "development_settings_enabled"
++
++    invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_1
++
++    :cond_0
++    sget-boolean v0, Lio/mesalabs/unica/SamsungPropsHooks;->sIsUserApp:Z
++
++    if-eqz v0, :cond_1
++
++    const-string p0, "0"
++
++    goto :goto_0
++
++    :cond_1
++    const/4 p0, 0x0
++
++    :goto_0
++    if-eqz p0, :cond_2
++
++    new-instance v0, Ljava/lang/StringBuilder;
++
++    const-string v1, "Spoofing \""
++
++    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
++
++    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object p1
++
++    const-string v0, "\" to \""
++
++    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object p1
++
++    invoke-virtual {p1, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object p1
++
++    const-string v0, "\""
++
++    invoke-virtual {p1, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
++
++    move-result-object p1
++
++    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
++
++    move-result-object p1
++
++    invoke-static {p1}, Lio/mesalabs/unica/SamsungPropsHooks;->dlog(Ljava/lang/String;)V
++
++    :cond_2
++    return-object p0
++.end method
++
+ .method public static onSPGetHook(Ljava/lang/String;)Ljava/lang/String;
+     .locals 3
+ 
+-- 
+2.50.1
+
