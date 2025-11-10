@@ -1,0 +1,45 @@
+From f8eb8dcd123aa34db34c759764c3e4146dea8ba5 Mon Sep 17 00:00:00 2001
+From: ExtremeXT <75576145+ExtremeXT@users.noreply.github.com>
+Date: Mon, 28 Apr 2025 00:40:22 +0300
+Subject: [PATCH 2/2] Disable Hotspot Wi-Fi 6
+
+---
+ ...ifiApConfigureSupportWifi6Controller.smali | 21 +------------------
+ 1 file changed, 1 insertion(+), 20 deletions(-)
+
+diff --git a/smali_classes3/com/samsung/android/settings/wifi/mobileap/configure/WifiApConfigureSupportWifi6Controller.smali b/smali_classes3/com/samsung/android/settings/wifi/mobileap/configure/WifiApConfigureSupportWifi6Controller.smali
+index 944a89d7..0a691545 100644
+--- a/smali_classes3/com/samsung/android/settings/wifi/mobileap/configure/WifiApConfigureSupportWifi6Controller.smali
++++ b/smali_classes3/com/samsung/android/settings/wifi/mobileap/configure/WifiApConfigureSupportWifi6Controller.smali
+@@ -107,27 +107,8 @@
+ .end method
+ 
+ .method public getAvailabilityStatus()I
+-    .locals 1
+-
+-    iget-object p0, p0, Lcom/samsung/android/settings/wifi/mobileap/configure/WifiApConfigureSupportWifi6Controller;->mContext:Landroid/content/Context;
+-
+-    invoke-static {p0}, Lcom/samsung/android/settings/wifi/mobileap/utils/WifiApFrameworkUtils;->getSemWifiManager(Landroid/content/Context;)Lcom/samsung/android/wifi/SemWifiManager;
+-
+-    move-result-object p0
+-
+-    const/4 v0, 0x1
+-
+-    invoke-virtual {p0, v0}, Lcom/samsung/android/wifi/SemWifiManager;->isThisSoftApFeatureSupported(I)Z
+-
+-    move-result p0
+-
+-    if-eqz p0, :cond_0
+-
+-    const/4 p0, 0x0
+-
+-    return p0
++    .locals 0
+ 
+-    :cond_0
+     const/4 p0, 0x3
+ 
+     return p0
+-- 
+2.50.1
+
