@@ -1,15 +1,15 @@
-From 20cf4b126d90f4b040d0335e60c709357b101f26 Mon Sep 17 00:00:00 2001
+From a2430000c32d5d5623fc19a697beec77ad2b1764 Mon Sep 17 00:00:00 2001
 From: Samuel Pascua <pascua.samuel.14@gmail.com>
 Date: Sat, 8 Nov 2025 23:06:34 +0800
 Subject: Add Google Photos unlimited backup
 
 Signed-off-by: Samuel Pascua <pascua.samuel.14@gmail.com>
 ---
- .../io/mesalabs/unica/SamsungPropsHooks.smali | 54 +++++++++++++++++++
- 1 file changed, 54 insertions(+)
+ .../io/mesalabs/unica/SamsungPropsHooks.smali | 57 ++++++++++++++++++-
+ 1 file changed, 56 insertions(+), 1 deletion(-)
 
 diff --git a/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali b/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
-index c344ebbc..e2f9c8f3 100644
+index c344ebbc..a738f018 100644
 --- a/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
 +++ b/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
 @@ -26,6 +26,8 @@
@@ -21,33 +21,36 @@ index c344ebbc..e2f9c8f3 100644
  .field private static final TAG:Ljava/lang/String; = "SamsungPropsHooks"
  
  .field private static volatile sIsUserApp:Z
-@@ -159,6 +161,14 @@
+@@ -232,7 +234,7 @@
  
-     if-nez v3, :cond_7
+     move-result v1
  
-+    const-string v3, "com.google.android.apps.photos"
-+
-+    invoke-virtual {v0, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-+
-+    move-result v3
-+
-+    if-nez v3, :cond_8
-+
-     const-string v3, "com.samsung.android.rampart"
+-    if-eqz v1, :cond_5
++    if-eqz v1, :cond_4a
  
-     invoke-virtual {v0, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-@@ -283,6 +293,10 @@
+     const-string v1, "TYPE"
  
-     :cond_7
-     invoke-static {}, Lio/mesalabs/unica/SamsungPropsHooks;->spoofAsS25()V
-+    return-void
+@@ -242,6 +244,19 @@
+ 
+     goto :goto_4
+ 
++    :cond_4a
++    const-string v1, "com.google.android.apps.photos"
 +
-+    :cond_8
++    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v1
++
++    if-eqz v1, :cond_5
++
 +    invoke-static {}, Lio/mesalabs/unica/SamsungPropsHooks;->spoofAsPixel()V
++
++    goto :goto_4
++
+     :cond_5
+     sget-boolean v1, Lio/mesalabs/unica/SamsungPropsHooks;->sIsUserApp:Z
  
-     return-void
- .end method
-@@ -551,3 +565,43 @@
+@@ -551,3 +566,43 @@
  
      return-void
  .end method
