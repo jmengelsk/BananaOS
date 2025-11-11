@@ -1,13 +1,13 @@
-From a63967589a1f1841b28c22d68df1428edadd7bfb Mon Sep 17 00:00:00 2001
+From cda7c44e8e77f4a7a7abb78b9d82ac2c70f435a9 Mon Sep 17 00:00:00 2001
 From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Thu, 9 Oct 2025 14:36:18 +0800
-Subject: [PATCH] Introduce SamsungPropsHooks
+Subject: Introduce SamsungPropsHooks
 
 ---
  smali/android/app/Instrumentation.smali       |   4 +
- .../android/os/SystemProperties.smali         |  18 +-
+ .../android/os/SystemProperties.smali         |  26 +-
  .../io/mesalabs/unica/SamsungPropsHooks.smali | 494 ++++++++++++++++++
- 3 files changed, 514 insertions(+), 2 deletions(-)
+ 3 files changed, 518 insertions(+), 6 deletions(-)
  create mode 100644 smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
 
 diff --git a/smali/android/app/Instrumentation.smali b/smali/android/app/Instrumentation.smali
@@ -33,10 +33,10 @@ index 82c86f26..7d00408e 100644
  .end method
  
 diff --git a/smali_classes3/android/os/SystemProperties.smali b/smali_classes3/android/os/SystemProperties.smali
-index 3af84b7b..6a9da926 100644
+index 3af84b7b..7c0fbfd4 100644
 --- a/smali_classes3/android/os/SystemProperties.smali
 +++ b/smali_classes3/android/os/SystemProperties.smali
-@@ -373,26 +373,40 @@
+@@ -373,27 +373,41 @@
  .end method
  
  .method public static whitelist get(Ljava/lang/String;)Ljava/lang/String;
@@ -53,10 +53,12 @@ index 3af84b7b..6a9da926 100644
 +
      invoke-static {p0}, Landroid/os/SystemProperties;->native_get(Ljava/lang/String;)Ljava/lang/String;
  
-     move-result-object p0
+-    move-result-object p0
++    move-result-object v0
  
+-    return-object p0
 +    :cond_0
-     return-object p0
++    return-object v0
  .end method
  
  .method public static whitelist get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
@@ -73,12 +75,15 @@ index 3af84b7b..6a9da926 100644
 +
      invoke-static {p0, p1}, Landroid/os/SystemProperties;->native_get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
  
-     move-result-object p0
+-    move-result-object p0
++    move-result-object v0
  
+-    return-object p0
 +    :cond_0
-     return-object p0
++    return-object v0
  .end method
  
+ .method public static whitelist getBoolean(Ljava/lang/String;Z)Z
 diff --git a/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali b/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
 new file mode 100644
 index 00000000..9703a41a
