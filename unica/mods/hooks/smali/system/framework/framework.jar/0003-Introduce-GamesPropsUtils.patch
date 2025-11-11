@@ -1,7 +1,7 @@
-From d39ab93f9319a633e37a15d27ce48eb0a2d7c1ef Mon Sep 17 00:00:00 2001
+From aea7b85b6fae3c640dce8c798780496a5ae507a6 Mon Sep 17 00:00:00 2001
 From: BlackMesa123 <giangrecosalvo9@gmail.com>
 Date: Thu, 9 Oct 2025 14:48:31 +0800
-Subject: [PATCH] Introduce GamesPropsUtils
+Subject: Introduce GamesPropsUtils
 
 ---
  smali/android/app/Instrumentation.smali       |    4 +

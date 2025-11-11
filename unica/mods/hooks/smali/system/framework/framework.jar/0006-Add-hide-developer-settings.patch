@@ -1,4 +1,4 @@
-From 4951a8a45de93f723571eb248c0b9ab5dca735af Mon Sep 17 00:00:00 2001
+From ae0a767fdebd5079307ff861f9ef6631675ba594 Mon Sep 17 00:00:00 2001
 From: Samuel Pascua <pascua.samuel.14@gmail.com>
 Date: Sun, 9 Nov 2025 18:46:08 +0800
 Subject: Add hide developer settings
@@ -30,10 +30,10 @@ index 25bf82f9..046d4d55 100644
  
      invoke-virtual {v0, p0, p1, p2}, Landroid/provider/Settings$NameValueCache;->getStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;I)Ljava/lang/String;
 diff --git a/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali b/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
-index ee546812..021954e8 100644
+index e2f9c8f3..3ace7167 100644
 --- a/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
 +++ b/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
-@@ -325,6 +325,84 @@
+@@ -326,6 +326,84 @@
      return v0
  .end method
  

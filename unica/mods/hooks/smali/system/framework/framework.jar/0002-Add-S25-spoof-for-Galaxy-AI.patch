@@ -1,7 +1,7 @@
-From defb232aef2308b283b365c84ecb1fba735e4a1c Mon Sep 17 00:00:00 2001
+From b8eb753895933054f72177e4f1f3f1b3e07c4fb9 Mon Sep 17 00:00:00 2001
 From: utkustnr <utkuustuner@proton.me>
 Date: Sun, 27 Apr 2025 18:52:07 +0300
-Subject: [PATCH] Add S25 spoof for Galaxy AI
+Subject: Add S25 spoof for Galaxy AI
 
 Signed-off-by: utkustnr <utkuustuner@proton.me>
 ---
@@ -9,7 +9,7 @@ Signed-off-by: utkustnr <utkuustuner@proton.me>
  1 file changed, 60 insertions(+), 1 deletion(-)
 
 diff --git a/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali b/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
-index 9703a41a..cbf8744d 100644
+index 9703a41a..c344ebbc 100644
 --- a/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
 +++ b/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
 @@ -20,6 +20,10 @@

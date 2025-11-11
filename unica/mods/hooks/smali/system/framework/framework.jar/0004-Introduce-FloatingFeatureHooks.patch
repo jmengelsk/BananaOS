@@ -1,7 +1,7 @@
-From 9cef32226e19c577341d0bc05a9282814233b187 Mon Sep 17 00:00:00 2001
+From e1ea046bd430ba94668908c94b65d124b070394b Mon Sep 17 00:00:00 2001
 From: BlackMesa123 <giangrecosalvo9@gmail.com>
 Date: Tue, 14 Oct 2025 22:12:33 +0800
-Subject: [PATCH] Introduce FloatingFeatureHooks
+Subject: Introduce FloatingFeatureHooks
 
 Signed-off-by: Samuel Pascua <pascua.samuel.14@gmail.com>
 ---
