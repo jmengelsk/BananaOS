@@ -1,15 +1,15 @@
-From b2ebe2c6c84dd3a84c74e533723868a00012a2dd Mon Sep 17 00:00:00 2001
+From 20cf4b126d90f4b040d0335e60c709357b101f26 Mon Sep 17 00:00:00 2001
 From: Samuel Pascua <pascua.samuel.14@gmail.com>
 Date: Sat, 8 Nov 2025 23:06:34 +0800
 Subject: Add Google Photos unlimited backup
 
 Signed-off-by: Samuel Pascua <pascua.samuel.14@gmail.com>
 ---
- .../io/mesalabs/unica/SamsungPropsHooks.smali | 53 +++++++++++++++++++
- 1 file changed, 53 insertions(+)
+ .../io/mesalabs/unica/SamsungPropsHooks.smali | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
 
 diff --git a/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali b/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
-index c344ebbc..ee546812 100644
+index c344ebbc..e2f9c8f3 100644
 --- a/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
 +++ b/smali_classes6/io/mesalabs/unica/SamsungPropsHooks.smali
 @@ -26,6 +26,8 @@
@@ -36,17 +36,18 @@ index c344ebbc..ee546812 100644
      const-string v3, "com.samsung.android.rampart"
  
      invoke-virtual {v0, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-@@ -284,6 +294,9 @@
+@@ -283,6 +293,10 @@
+ 
      :cond_7
      invoke-static {}, Lio/mesalabs/unica/SamsungPropsHooks;->spoofAsS25()V
- 
++    return-void
++
 +    :cond_8
 +    invoke-static {}, Lio/mesalabs/unica/SamsungPropsHooks;->spoofAsPixel()V
-+
+ 
      return-void
  .end method
- 
-@@ -551,3 +564,43 @@
+@@ -551,3 +565,43 @@
  
      return-void
  .end method
