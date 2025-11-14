@@ -1,0 +1,4 @@
+/product u:object_r:system_file:s0
+/product/etc u:object_r:system_file:s0
+/product/etc/sysconfig u:object_r:system_file:s0
+/product/etc/sysconfig/pixel_2016_exclusive\.xml u:object_r:system_file:s0

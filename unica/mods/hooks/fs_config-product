@@ -1,0 +1,4 @@
+product 0 0 755 capabilities=0x0
+product/etc 0 0 755 capabilities=0x0
+product/etc/sysconfig 0 0 755 capabilities=0x0
+product/etc/sysconfig/pixel_2016_exclusive.xml 0 0 644 capabilities=0x0
