@@ -2,6 +2,11 @@ if [ "$TARGET_SINGLE_SYSTEM_IMAGE" == "self" ]; then
     return 0
 fi
 
+LOG_STEP_IN "- Adding Target Firmware services.jar smali_classes2"
+DECODE_APK "system" "system/framework/services.jar"
+cp -a --preserve=all "$SRC_DIR/unica/patches/product_feature/smali_classes2/" "$APKTOOL_DIR/system/framework/services.jar"
+LOG_STEP_OUT
+
 # [
 GET_FP_SENSOR_TYPE()
 {

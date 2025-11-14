@@ -1,0 +1,40 @@
+.class public final synthetic Lcom/android/server/utils/AlarmQueue$AlarmPriorityQueue$$ExternalSyntheticLambda0;
+.super Ljava/lang/Object;
+.source "qb/101018360 7b7946797bfd479541f742ead1798f62b8a16d6041b65e4a51e8631f09d3d327"
+
+# interfaces
+.implements Ljava/util/Comparator;
+
+
+# virtual methods
+.method public final compare(Ljava/lang/Object;Ljava/lang/Object;)I
+    .locals 2
+
+    check-cast p1, Landroid/util/Pair;
+
+    check-cast p2, Landroid/util/Pair;
+
+    sget-object p0, Lcom/android/server/utils/AlarmQueue$AlarmPriorityQueue;->sTimeComparator:Lcom/android/server/utils/AlarmQueue$AlarmPriorityQueue$$ExternalSyntheticLambda0;
+
+    iget-object p0, p1, Landroid/util/Pair;->second:Ljava/lang/Object;
+
+    check-cast p0, Ljava/lang/Long;
+
+    invoke-virtual {p0}, Ljava/lang/Long;->longValue()J
+
+    move-result-wide p0
+
+    iget-object p2, p2, Landroid/util/Pair;->second:Ljava/lang/Object;
+
+    check-cast p2, Ljava/lang/Long;
+
+    invoke-virtual {p2}, Ljava/lang/Long;->longValue()J
+
+    move-result-wide v0
+
+    invoke-static {p0, p1, v0, v1}, Ljava/lang/Long;->compare(JJ)I
+
+    move-result p0
+
+    return p0
+.end method
