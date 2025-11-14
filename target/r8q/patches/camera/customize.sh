@@ -80,7 +80,6 @@ system/lib64/libImageTagger.camera.samsung.so
 system/lib64/libMultiFrameProcessing30.camera.samsung.so
 system/lib64/libMultiFrameProcessing30.snapwrapper.camera.samsung.so
 system/lib64/libMultiFrameProcessing30Tuning.camera.samsung.so
-system/lib64/libMyFilter.camera.samsung.so
 system/lib64/libPortraitDistortionCorrection.arcsoft.so
 system/lib64/libPortraitDistortionCorrectionCali.arcsoft.so
 system/lib64/libUltraWideDistortionCorrection.camera.samsung.so
@@ -103,6 +102,11 @@ done
 {
     echo "libLttEngine.camera.samsung.so"
 } >> "$WORK_DIR/system/system/etc/public.libraries-camera.samsung.txt"
+
+LOG_STEP_IN "- Fixing Studio Video Editor"
+ADD_TO_WORK_DIR "a36xqnaxx" "system" "system/lib64/libMyFilter.camera.samsung.so" 0 0 644 "u:object_r:system_file:s0"
+ADD_TO_WORK_DIR "a36xqnaxx" "system" "system/lib64/libtflite2.myfilters.camera.samsung.so" 0 0 644 "u:object_r:system_file:s0"
+LOG_STEP_OUT
 
 echo "Fix AI Photo Editor"
 cp -a --preserve=all \
