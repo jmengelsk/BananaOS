@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (C) 2025 Salvo Giangreco
+# Copyright (C) 2023 Salvo Giangreco
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,191 +16,80 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# [
-source "$SRC_DIR/scripts/utils/firmware_utils.sh" || exit 1
-source "$TOOLS_DIR/venv/bin/activate" || exit 1
+# shellcheck disable=SC2162
+set -e
 
-FORCE=false
-
-FIRMWARES=()
-MODEL=""
-CSC=""
-IMEI=""
-SERIAL_NO=""
-LATEST_FIRMWARE=""
-ZIP_FILE=""
-
-PREPARE_SCRIPT()
-{
-    local EXTRA_FIRMWARES=()
-    local IGNORE_SOURCE=false
-    local IGNORE_TARGET=false
-
-    while [ "$#" != 0 ]; do
-        if [[ "$1" == "--force" ]] || [[ "$1" == "-f" ]]; then
-            FORCE=true
-        elif [[ "$1" == "--ignore-source" ]]; then
-            IGNORE_SOURCE=true
-        elif [[ "$1" == "--ignore-target" ]]; then
-            IGNORE_TARGET=true
-        elif [[ "$1" == "-"* ]]; then
-            LOGE "Unknown option: $1"
-            PRINT_USAGE
-            exit 1
-        else
-            EXTRA_FIRMWARES+=("$1")
+DOWNLOAD_FIRMWARE() {
+    local max_attempts=10
+    local attempt=1
+    
+    while [ $attempt -le $max_attempts ]; do
+        echo "- Processing attempt $attempt of $max_attempts..."
+        
+        local target_dir="$ODIN_DIR/${MODEL}_${CSC}"
+        local zip_file="$target_dir/firmware.zip"
+        
+        # Create and clean target directory
+        mkdir -p "$target_dir"
+        rm -f "$zip_file" 2>/dev/null || true
+        
+        # Determine URL
+        local download_url
+        if [ "$i" == "$SOURCE_FIRMWARE" ]; then
+            download_url=""
+        elif [ "$i" == "$TARGET_FIRMWARE" ]; then
+            download_url=""
         fi
-
-        shift
+        
+        # Change to target directory and download there
+        cd "$target_dir"
+        
+        echo "- Downloading..."
+        if aria2c --auto-file-renaming=false --max-tries=5 --retry-wait=10 --check-certificate=false -o "firmware.zip" "$download_url"; then
+            echo "- Extracting..."
+            if unzip -q "firmware.zip" -d "."; then
+                rm -f "firmware.zip"
+                touch ".downloaded"
+                cd - > /dev/null
+                return 0
+            else
+                echo "- Extraction failed"
+                # Debug: check if file exists and its integrity
+                if [ -f "firmware.zip" ]; then
+                    echo "- File exists, size: $(ls -lh "firmware.zip" | awk '{print $5}')"
+                    echo "- Checking file integrity..."
+                    if unzip -tq "firmware.zip"; then
+                        echo "- File integrity check passed but extraction failed"
+                    else
+                        echo "- File is corrupted"
+                    fi
+                else
+                    echo "- File does not exist in: $(pwd)"
+                fi
+            fi
+        fi
+        
+        # Clean up and retry
+        cd - > /dev/null
+        rm -rf "$target_dir"
+        sleep 5
+        ((attempt++))
     done
-
-    if ! $IGNORE_SOURCE; then
-        _CHECK_NON_EMPTY_PARAM "SOURCE_FIRMWARE" "$SOURCE_FIRMWARE" || exit 1
-        FIRMWARES+=("$SOURCE_FIRMWARE")
-        IFS=':' read -r -a SOURCE_EXTRA_FIRMWARES <<< "$SOURCE_EXTRA_FIRMWARES"
-        if [ "${#SOURCE_EXTRA_FIRMWARES[@]}" -ge 1 ]; then
-            FIRMWARES+=("${SOURCE_EXTRA_FIRMWARES[@]}")
-        fi
-    fi
-
-    if ! $IGNORE_TARGET; then
-        _CHECK_NON_EMPTY_PARAM "TARGET_FIRMWARE" "$TARGET_FIRMWARE" || exit 1
-        FIRMWARES+=("$TARGET_FIRMWARE")
-        IFS=':' read -r -a TARGET_EXTRA_FIRMWARES <<< "$TARGET_EXTRA_FIRMWARES"
-        if [ "${#TARGET_EXTRA_FIRMWARES[@]}" -ge 1 ]; then
-            FIRMWARES+=("${TARGET_EXTRA_FIRMWARES[@]}")
-        fi
-    fi
-
-    if [ "${#EXTRA_FIRMWARES[@]}" -ge 1 ]; then
-        FIRMWARES+=("${EXTRA_FIRMWARES[@]}")
-    fi
+    
+    echo "- All attempts failed for $MODEL with $CSC CSC"
+    exit 1
 }
 
-PRINT_USAGE()
-{
-    echo "Usage: download_fw [options] <firmware>" >&2
-    echo " --ignore-source : Skip parsing source firmware flags" >&2
-    echo " --ignore-target : Skip parsing target firmware flags" >&2
-    echo " -f, --force : Force firmware download" >&2
-}
+FIRMWARES=("$SOURCE_FIRMWARE" "$TARGET_FIRMWARE")
 
-VERIFY_ODIN_PACKAGES()
-{
-    local FILE_NAME
-    local LENGTH
-    local STORED_HASH
-    local CALCULATED_HASH
-
-    while IFS= read -r f; do
-        FILE_NAME="$(basename "$f")"
-        LOG_STEP_IN "- Verifying $FILE_NAME..."
-
-        FILE_NAME="${FILE_NAME%.md5}"
-
-        # Samsung stores the output of `md5sum` at the very end of the file
-        LENGTH="32" # Length of MD5 hash
-        LENGTH="$((LENGTH + 2))" # 2 whitespace chars
-        LENGTH="$((LENGTH + ${#FILE_NAME}))" # File name without .md5 extension
-        LENGTH="$((LENGTH + 1))" # 1 newline char
-
-        STORED_HASH="$(tail -c "$LENGTH" "$f" | cut -d " " -f 1 -s)"
-        if [ ! "$STORED_HASH" ] || [[ "${#STORED_HASH}" != "32" ]]; then
-            LOG "\033[0;31m! Expected hash could not be parsed\033[0m"
-            exit 1
-        fi
-
-        CALCULATED_HASH="$(head -c-$LENGTH "$f" | md5sum | cut -d " " -f 1 -s)"
-
-        if [[ "$STORED_HASH" != "$CALCULATED_HASH" ]]; then
-            LOG "\033[0;31m! File is damaged\033[0m"
-            exit 1
-        fi
-
-        LOG_STEP_OUT
-    done < <(find "$ODIN_DIR/${MODEL}_${CSC}" -type f -name "*.md5")
-}
-# ]
-
-PREPARE_SCRIPT "$@"
+mkdir -p "$ODIN_DIR"
 
 for i in "${FIRMWARES[@]}"; do
-    PARSE_FIRMWARE_STRING "$i" || exit 1
-
-    LATEST_FIRMWARE="$(GET_LATEST_FIRMWARE "$MODEL" "$CSC")"
-    if [ ! "$LATEST_FIRMWARE" ]; then
-        LOGE "Latest available firmware could not be fetched"
-        exit 1
-    fi
-
-    LOG_STEP_IN "- Processing $MODEL firmware with $CSC CSC"
-    LOG "- Downloaded firmware: $(cat "$ODIN_DIR/${MODEL}_${CSC}/.downloaded" 2> /dev/null)"
-    LOG "- Extracted firmware: $(cat "$FW_DIR/${MODEL}_${CSC}/.extracted" 2> /dev/null)"
-    LOG "- Latest available firmware: $LATEST_FIRMWARE"
-
-    LOG_STEP_IN
-
-    if ! $FORCE; then
-        # Skip if firmware has been extracted and equal/newer than the one in FUS
-        if [ -f "$FW_DIR/${MODEL}_${CSC}/.extracted" ]; then
-            if COMPARE_SEC_BUILD_VERSION "$(cat "$FW_DIR/${MODEL}_${CSC}/.extracted")" "$LATEST_FIRMWARE"; then
-                LOG "\033[0;33m! This firmware has already been extracted, skipping\033[0m"
-                LOG_STEP_OUT; LOG_STEP_OUT
-                continue
-            fi
-        fi
-
-        # Skip if firmware has already been downloaded
-        if [ -f "$ODIN_DIR/${MODEL}_${CSC}/.downloaded" ]; then
-            if ! COMPARE_SEC_BUILD_VERSION "$(cat "$ODIN_DIR/${MODEL}_${CSC}/.downloaded")" "$LATEST_FIRMWARE"; then
-                LOG "\033[0;33m! A newer firmware is available for download, use --force flag if you want to overwrite it\033[0m"
-            else
-                LOG "\033[0;33m! This firmware has already been downloaded\033[0m"
-            fi
-            LOG_STEP_OUT; LOG_STEP_OUT
-            continue
-        fi
-    fi
-
-    LOG "- Downloading firmware..."
-    [ -f "$ODIN_DIR/${MODEL}_${CSC}/.downloaded" ] && rm -rf "$ODIN_DIR/${MODEL}_${CSC}"
-    mkdir -p "$ODIN_DIR/${MODEL}_${CSC}"
-
-    COUNT=1
-    # Loop infinetely until download succeeds
-    while true; do
-        # shellcheck disable=SC2164
-        # Anan's samloader stores its logs in the current working directory, let's move into OUT_DIR just for this time
-        (
-        cd "$OUT_DIR"
-        samloader -m "$MODEL" -r "$CSC" -i "$IMEI" -s "$SERIAL_NO" download -O "$ODIN_DIR/${MODEL}_${CSC}" 1> /dev/null || exit 1
-        )
-
-        ZIP_FILE="$(find "$ODIN_DIR/${MODEL}_${CSC}" -name "*.zip" | sort -r | head -n 1)"
-        if [ ! "$ZIP_FILE" ] || [ ! -f "$ZIP_FILE" ]; then
-            if [ $COUNT -gt 10 ]; then
-                LOGW "\033[0;31m! Download failed, check your network connection or device IMEI!\033[0m"
-                exit 1
-            fi
-
-            LOGW "\033[0;31m! [Attempt: $COUNT] Download failed, retrying in 5 seconds...\033[0m"
-            sleep 5
-            ((COUNT++))
-        else
-            break
-        fi
-    done
-
-    LOG "- Extracting $(basename "$ZIP_FILE")..."
-    EVAL "unzip -o \"$ZIP_FILE\" -d \"$ODIN_DIR/${MODEL}_${CSC}\" && rm -rf \"$ZIP_FILE\"" || exit 1
-
-    VERIFY_ODIN_PACKAGES
-
-    echo -n "$LATEST_FIRMWARE" > "$ODIN_DIR/${MODEL}_${CSC}/.downloaded"
-
-    LOG_STEP_OUT; LOG_STEP_OUT
+    MODEL=$(echo -n "$i" | cut -d "/" -f 1)
+    CSC=$(echo -n "$i" | cut -d "/" -f 2)
+    echo "- Processing $MODEL with $CSC CSC..."
+    DOWNLOAD_FIRMWARE
 done
 
-deactivate
-
+echo "- All downloads completed successfully"
 exit 0

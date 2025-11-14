@@ -1,11 +1,11 @@
-name: Build ProjectNERV
+name: Build MintOS
 
 on:
   workflow_dispatch:
   pull_request:
   push:
     branches:
-      - 'paradigm'
+      - 'sixteen'
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [a51, a52sxq, a71, a73xq, m52xq, r9q, r9q2]
+        target: [m51]
 
     steps:
       - name: Checkout repo
@@ -42,7 +42,7 @@ jobs:
         run: |
           sudo apt update
           DEBIAN_FRONTEND=noninteractive sudo apt install -yq \
-            p7zip-full jq attr ccache clang ffmpeg golang \
+            p7zip-full aria2 jq attr ccache clang ffmpeg golang \
             libbrotli-dev libgtest-dev libprotobuf-dev libunwind-dev libpcre2-dev \
             libzstd-dev linux-modules-extra-$(uname -r) lld jq protobuf-compiler pcre2-utils webp \
             curl xxd patchelf flex bison libarchive-tools build-essential python3.12-venv device-tree-compiler
@@ -63,36 +63,23 @@ jobs:
         run: |
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/build_dependencies.sh
-
-      - name: Download source firmware
+          source ./scripts/utils/firmware_utils.sh
+          source ./out/tools/venv/bin/activate
+          
+      - name: Download stcok firmwares
         run: |
           source ./buildenv.sh ${{ matrix.target }}
-          ./scripts/download_fw.sh --ignore-target
+          ./scripts/download_fw.sh
 
-      - name: Extract source firmware
+      - name: Extract stock firmware
         run: |
           source ./buildenv.sh ${{ matrix.target }}
-          ./scripts/extract_fw.sh --ignore-target
-
-      - name: Download target firmware
-        run: |
-          source ./buildenv.sh ${{ matrix.target }}
-          ./scripts/download_fw.sh --ignore-source
-
-      - name: Extract target firmware
-        run: |
-          source ./buildenv.sh ${{ matrix.target }}
-          ./scripts/extract_fw.sh --ignore-source
+          ./scripts/extract_fw.sh
 
       - name: Build ROM
         run: |
           source ./buildenv.sh ${{ matrix.target }}
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]] && \
-              [[ "${{ github.ref }}" == "refs/heads/paradigm" ]]; then
-              ./scripts/make_rom.sh
-          else
-              ./scripts/make_rom.sh --no-rom-zip
-          fi
+          ./scripts/make_rom.sh
 
       - name: Upload to GoFile
         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/paradigm'

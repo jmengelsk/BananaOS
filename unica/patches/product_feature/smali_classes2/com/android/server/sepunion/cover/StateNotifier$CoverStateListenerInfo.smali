@@ -1,0 +1,266 @@
+.class public final Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;
+.super Ljava/lang/Object;
+.source "qb/101018360 7b7946797bfd479541f742ead1798f62b8a16d6041b65e4a51e8631f09d3d327"
+
+# interfaces
+.implements Landroid/os/IBinder$DeathRecipient;
+
+
+# instance fields
+.field public final component:Landroid/content/ComponentName;
+
+.field public final pid:I
+
+.field public final synthetic this$0:Lcom/android/server/sepunion/cover/StateNotifier;
+
+.field public final token:Landroid/os/IBinder;
+
+.field public final type:I
+
+.field public final uid:I
+
+
+# direct methods
+.method public constructor <init>(Lcom/android/server/sepunion/cover/StateNotifier;Landroid/os/IBinder;Landroid/content/ComponentName;III)V
+    .registers 7
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    iput-object p1, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->this$0:Lcom/android/server/sepunion/cover/StateNotifier;
+
+    iput-object p2, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->token:Landroid/os/IBinder;
+
+    iput-object p3, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->component:Landroid/content/ComponentName;
+
+    iput p4, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->pid:I
+
+    iput p5, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->uid:I
+
+    iput p6, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->type:I
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final binderDied()V
+    .registers 4
+
+    const-string v0, "CoverManager_StateNotifier"
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    const-string/jumbo v2, "binderDied : binder = "
+
+    invoke-direct {v1, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-object v2, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->token:Landroid/os/IBinder;
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/samsung/android/sepunion/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
+
+    iget-object v0, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->this$0:Lcom/android/server/sepunion/cover/StateNotifier;
+
+    iget-object v0, v0, Lcom/android/server/sepunion/cover/StateNotifier;->mListeners:Ljava/util/ArrayList;
+
+    monitor-enter v0
+
+    :try_start_1b
+    iget-object v1, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->this$0:Lcom/android/server/sepunion/cover/StateNotifier;
+
+    iget-object v1, v1, Lcom/android/server/sepunion/cover/StateNotifier;->mListeners:Ljava/util/ArrayList;
+
+    invoke-virtual {v1, p0}, Ljava/util/ArrayList;->remove(Ljava/lang/Object;)Z
+
+    monitor-exit v0
+    :try_end_23
+    .catchall {:try_start_1b .. :try_end_23} :catchall_3a
+
+    iget-object v0, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->this$0:Lcom/android/server/sepunion/cover/StateNotifier;
+
+    iget-object v1, v0, Lcom/android/server/sepunion/cover/StateNotifier;->mHighPriorityListeners:Ljava/util/ArrayList;
+
+    monitor-enter v1
+
+    :try_start_28
+    iget-object v0, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->this$0:Lcom/android/server/sepunion/cover/StateNotifier;
+
+    iget-object v0, v0, Lcom/android/server/sepunion/cover/StateNotifier;->mHighPriorityListeners:Ljava/util/ArrayList;
+
+    invoke-virtual {v0, p0}, Ljava/util/ArrayList;->remove(Ljava/lang/Object;)Z
+
+    monitor-exit v1
+    :try_end_30
+    .catchall {:try_start_28 .. :try_end_30} :catchall_37
+
+    iget-object v0, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->token:Landroid/os/IBinder;
+
+    const/4 v1, 0x0
+
+    invoke-interface {v0, p0, v1}, Landroid/os/IBinder;->unlinkToDeath(Landroid/os/IBinder$DeathRecipient;I)Z
+
+    return-void
+
+    :catchall_37
+    move-exception p0
+
+    :try_start_38
+    monitor-exit v1
+    :try_end_39
+    .catchall {:try_start_38 .. :try_end_39} :catchall_37
+
+    throw p0
+
+    :catchall_3a
+    move-exception p0
+
+    :try_start_3b
+    monitor-exit v0
+    :try_end_3c
+    .catchall {:try_start_3b .. :try_end_3c} :catchall_3a
+
+    throw p0
+.end method
+
+.method public final onCoverAttachStateChanged(Z)V
+    .registers 4
+
+    iget-object v0, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->token:Landroid/os/IBinder;
+
+    const-string v1, "CoverManager_StateNotifier"
+
+    if-nez v0, :cond_d
+
+    const-string/jumbo p0, "onCoverAttachStateChanged : token is null"
+
+    invoke-static {v1, p0}, Lcom/samsung/android/sepunion/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+
+    :cond_d
+    iget p0, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->type:I
+
+    and-int/lit8 p0, p0, 0x2
+
+    if-eqz p0, :cond_23
+
+    :try_start_13
+    invoke-static {v0}, Lcom/samsung/android/cover/ICoverStateListenerCallback$Stub;->asInterface(Landroid/os/IBinder;)Lcom/samsung/android/cover/ICoverStateListenerCallback;
+
+    move-result-object p0
+
+    if-eqz p0, :cond_23
+
+    invoke-interface {p0, p1}, Lcom/samsung/android/cover/ICoverStateListenerCallback;->onCoverAttachStateChanged(Z)V
+    :try_end_1c
+    .catch Landroid/os/RemoteException; {:try_start_13 .. :try_end_1c} :catch_1d
+
+    return-void
+
+    :catch_1d
+    move-exception p0
+
+    const-string p1, "Failed onCoverAttachStateChanged callback"
+
+    invoke-static {v1, p1, p0}, Lcom/samsung/android/sepunion/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    :cond_23
+    return-void
+.end method
+
+.method public final onCoverSwitchStateChanged(Lcom/samsung/android/cover/CoverState;)V
+    .registers 5
+
+    iget-object v0, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->token:Landroid/os/IBinder;
+
+    const-string v1, "CoverManager_StateNotifier"
+
+    if-nez v0, :cond_d
+
+    const-string/jumbo p0, "onCoverSwitchStateChanged : token is null"
+
+    invoke-static {v1, p0}, Lcom/samsung/android/sepunion/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+
+    :cond_d
+    iget p0, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->type:I
+
+    const/4 v2, 0x1
+
+    if-ne p0, v2, :cond_22
+
+    :try_start_12
+    invoke-static {v0}, Lcom/samsung/android/cover/ICoverManagerCallback$Stub;->asInterface(Landroid/os/IBinder;)Lcom/samsung/android/cover/ICoverManagerCallback;
+
+    move-result-object p0
+
+    if-eqz p0, :cond_22
+
+    invoke-interface {p0, p1}, Lcom/samsung/android/cover/ICoverManagerCallback;->coverCallback(Lcom/samsung/android/cover/CoverState;)V
+    :try_end_1b
+    .catch Landroid/os/RemoteException; {:try_start_12 .. :try_end_1b} :catch_1c
+
+    return-void
+
+    :catch_1c
+    move-exception p0
+
+    const-string p1, "Failed onCoverStateChanged coverCallback"
+
+    invoke-static {v1, p1, p0}, Lcom/samsung/android/sepunion/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    :cond_22
+    return-void
+.end method
+
+.method public final onCoverSwitchStateChanged(Z)V
+    .registers 4
+
+    iget-object v0, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->token:Landroid/os/IBinder;
+
+    const-string v1, "CoverManager_StateNotifier"
+
+    if-nez v0, :cond_d
+
+    const-string/jumbo p0, "onCoverSwitchStateChanged : token is null"
+
+    invoke-static {v1, p0}, Lcom/samsung/android/sepunion/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+
+    :cond_d
+    iget p0, p0, Lcom/android/server/sepunion/cover/StateNotifier$CoverStateListenerInfo;->type:I
+
+    and-int/lit8 p0, p0, 0x2
+
+    if-eqz p0, :cond_23
+
+    :try_start_13
+    invoke-static {v0}, Lcom/samsung/android/cover/ICoverStateListenerCallback$Stub;->asInterface(Landroid/os/IBinder;)Lcom/samsung/android/cover/ICoverStateListenerCallback;
+
+    move-result-object p0
+
+    if-eqz p0, :cond_23
+
+    invoke-interface {p0, p1}, Lcom/samsung/android/cover/ICoverStateListenerCallback;->onCoverSwitchStateChanged(Z)V
+    :try_end_1c
+    .catch Landroid/os/RemoteException; {:try_start_13 .. :try_end_1c} :catch_1d
+
+    return-void
+
+    :catch_1d
+    move-exception p0
+
+    const-string p1, "Failed onCoverSwitchStateChanged callback"
+
+    invoke-static {v1, p1, p0}, Lcom/samsung/android/sepunion/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    :cond_23
+    return-void
+.end method

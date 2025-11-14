@@ -1,0 +1,645 @@
+.class public final Lcom/android/server/sepunion/cover/CoverManagerUtils;
+.super Ljava/lang/Object;
+.source "qb/101018360 7b7946797bfd479541f742ead1798f62b8a16d6041b65e4a51e8631f09d3d327"
+
+
+# static fields
+.field public static final isSupportWirelessCharge:Z
+
+.field public static sCoverBusBooster:Lcom/samsung/android/os/SemDvfsManager;
+
+.field public static sCoverCoreNumLockHelper:Lcom/samsung/android/os/SemDvfsManager;
+
+.field public static sCoverCpuBooster:Lcom/samsung/android/os/SemDvfsManager;
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .registers 5
+
+    const-string v0, "/sys/class/power_supply/wireless/present"
+
+    const-string v1, "0"
+
+    invoke-static {v0, v1}, Lcom/android/server/sepunion/cover/CoverManagerUtils;->getValueFromSysFS(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v2, "CoverManager_CoverManagerUtils"
+
+    const/4 v3, 0x0
+
+    if-nez v0, :cond_13
+
+    const-string v0, "Feature for Wireless Charge is NOT existed"
+
+    invoke-static {v2, v0}, Lcom/samsung/android/sepunion/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_2f
+
+    :cond_13
+    invoke-virtual {v0}, Ljava/lang/String;->trim()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v1, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_24
+
+    const-string/jumbo v0, "Wireless Charge is NOT Supported"
+
+    invoke-static {v2, v0}, Lcom/samsung/android/sepunion/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_2f
+
+    :cond_24
+    const-string/jumbo v1, "Wireless Charge is Supported: Type "
+
+    invoke-virtual {v1, v0}, Ljava/lang/String;->concat(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v2, v0}, Lcom/samsung/android/sepunion/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    const/4 v3, 0x1
+
+    :goto_2f
+    sput-boolean v3, Lcom/android/server/sepunion/cover/CoverManagerUtils;->isSupportWirelessCharge:Z
+
+    return-void
+.end method
+
+.method public static fileWriteInt(I)V
+    .registers 5
+
+    const-string v0, "/sys/class/power_supply/battery/led_cover"
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    const-string/jumbo v2, "fileWriteInt to /sys/class/power_supply/battery/led_cover, "
+
+    invoke-direct {v1, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v1, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    const-string v2, "CoverManager_CoverManagerUtils"
+
+    invoke-static {v2, v1}, Lcom/samsung/android/sepunion/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    if-eqz p0, :cond_2d
+
+    const/4 v1, 0x1
+
+    if-eq p0, v1, :cond_2d
+
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v1, "Invalid value : "
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p0
+
+    invoke-static {v2, p0}, Lcom/samsung/android/sepunion/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+
+    :cond_2d
+    const/4 v1, 0x0
+
+    :try_start_2e
+    new-instance v2, Ljava/io/FileOutputStream;
+
+    new-instance v3, Ljava/io/File;
+
+    invoke-direct {v3, v0}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+
+    invoke-direct {v2, v3}, Ljava/io/FileOutputStream;-><init>(Ljava/io/File;)V
+    :try_end_38
+    .catch Ljava/io/FileNotFoundException; {:try_start_2e .. :try_end_38} :catch_4c
+    .catch Ljava/io/IOException; {:try_start_2e .. :try_end_38} :catch_4a
+
+    :try_start_38
+    invoke-static {p0}, Ljava/lang/Integer;->toString(I)Ljava/lang/String;
+
+    move-result-object p0
+
+    invoke-virtual {p0}, Ljava/lang/String;->getBytes()[B
+
+    move-result-object p0
+
+    invoke-virtual {v2, p0}, Ljava/io/FileOutputStream;->write([B)V
+
+    invoke-virtual {v2}, Ljava/io/FileOutputStream;->close()V
+    :try_end_46
+    .catch Ljava/io/IOException; {:try_start_38 .. :try_end_46} :catch_47
+
+    return-void
+
+    :catch_47
+    move-exception p0
+
+    move-object v1, v2
+
+    goto :goto_51
+
+    :catch_4a
+    move-exception p0
+
+    goto :goto_51
+
+    :catch_4c
+    move-exception p0
+
+    :try_start_4d
+    invoke-virtual {p0}, Ljava/io/FileNotFoundException;->printStackTrace()V
+    :try_end_50
+    .catch Ljava/io/IOException; {:try_start_4d .. :try_end_50} :catch_4a
+
+    goto :goto_57
+
+    :goto_51
+    invoke-virtual {p0}, Ljava/io/IOException;->printStackTrace()V
+
+    :try_start_54
+    invoke-virtual {v1}, Ljava/io/FileOutputStream;->close()V
+    :try_end_57
+    .catch Ljava/lang/Exception; {:try_start_54 .. :try_end_57} :catch_58
+
+    :goto_57
+    return-void
+
+    :catch_58
+    move-exception p0
+
+    invoke-virtual {p0}, Ljava/lang/Exception;->printStackTrace()V
+
+    return-void
+.end method
+
+.method public static getValueFromSysFS(ILjava/lang/String;)I
+    .registers 6
+
+    invoke-static {p1}, Lcom/android/server/sepunion/cover/CoverManagerUtils;->isFileExists(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3e
+
+    const/4 v0, 0x0
+
+    :try_start_7
+    new-instance v1, Ljava/io/FileReader;
+
+    invoke-direct {v1, p1}, Ljava/io/FileReader;-><init>(Ljava/lang/String;)V
+    :try_end_c
+    .catch Ljava/io/IOException; {:try_start_7 .. :try_end_c} :catch_3b
+    .catch Ljava/lang/NumberFormatException; {:try_start_7 .. :try_end_c} :catch_35
+    .catchall {:try_start_7 .. :try_end_c} :catchall_2e
+
+    const/16 p1, 0xf
+
+    :try_start_e
+    new-array p1, p1, [C
+
+    invoke-virtual {v1, p1}, Ljava/io/FileReader;->read([C)I
+
+    move-result v0
+
+    if-lez v0, :cond_2a
+
+    new-instance v2, Ljava/lang/String;
+
+    add-int/lit8 v0, v0, -0x1
+
+    const/4 v3, 0x0
+
+    invoke-direct {v2, p1, v3, v0}, Ljava/lang/String;-><init>([CII)V
+
+    invoke-static {v2}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
+
+    move-result p0
+    :try_end_22
+    .catch Ljava/io/IOException; {:try_start_e .. :try_end_22} :catch_28
+    .catch Ljava/lang/NumberFormatException; {:try_start_e .. :try_end_22} :catch_26
+    .catchall {:try_start_e .. :try_end_22} :catchall_23
+
+    goto :goto_2a
+
+    :catchall_23
+    move-exception p0
+
+    move-object v0, v1
+
+    goto :goto_2f
+
+    :catch_26
+    move-object v0, v1
+
+    goto :goto_35
+
+    :catch_28
+    move-object v0, v1
+
+    goto :goto_3b
+
+    :cond_2a
+    :goto_2a
+    :try_start_2a
+    invoke-virtual {v1}, Ljava/io/FileReader;->close()V
+    :try_end_2d
+    .catch Ljava/io/IOException; {:try_start_2a .. :try_end_2d} :catch_3e
+
+    goto :goto_3e
+
+    :catchall_2e
+    move-exception p0
+
+    :goto_2f
+    if-eqz v0, :cond_34
+
+    :try_start_31
+    invoke-virtual {v0}, Ljava/io/FileReader;->close()V
+    :try_end_34
+    .catch Ljava/io/IOException; {:try_start_31 .. :try_end_34} :catch_34
+
+    :catch_34
+    :cond_34
+    throw p0
+
+    :catch_35
+    :goto_35
+    if-eqz v0, :cond_3e
+
+    :goto_37
+    :try_start_37
+    invoke-virtual {v0}, Ljava/io/FileReader;->close()V
+    :try_end_3a
+    .catch Ljava/io/IOException; {:try_start_37 .. :try_end_3a} :catch_3e
+
+    goto :goto_3e
+
+    :catch_3b
+    :goto_3b
+    if-eqz v0, :cond_3e
+
+    goto :goto_37
+
+    :catch_3e
+    :cond_3e
+    :goto_3e
+    return p0
+.end method
+
+.method public static getValueFromSysFS(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    .registers 6
+
+    invoke-static {p0}, Lcom/android/server/sepunion/cover/CoverManagerUtils;->isFileExists(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_3b
+
+    const/4 v0, 0x0
+
+    :try_start_7
+    new-instance v1, Ljava/io/FileReader;
+
+    invoke-direct {v1, p0}, Ljava/io/FileReader;-><init>(Ljava/lang/String;)V
+    :try_end_c
+    .catch Ljava/io/IOException; {:try_start_7 .. :try_end_c} :catch_38
+    .catch Ljava/lang/NumberFormatException; {:try_start_7 .. :try_end_c} :catch_32
+    .catchall {:try_start_7 .. :try_end_c} :catchall_2b
+
+    const/16 p0, 0xf
+
+    :try_start_e
+    new-array p0, p0, [C
+
+    invoke-virtual {v1, p0}, Ljava/io/FileReader;->read([C)I
+
+    move-result v0
+
+    if-lez v0, :cond_27
+
+    new-instance v2, Ljava/lang/String;
+
+    add-int/lit8 v0, v0, -0x1
+
+    const/4 v3, 0x0
+
+    invoke-direct {v2, p0, v3, v0}, Ljava/lang/String;-><init>([CII)V
+    :try_end_1e
+    .catch Ljava/io/IOException; {:try_start_e .. :try_end_1e} :catch_25
+    .catch Ljava/lang/NumberFormatException; {:try_start_e .. :try_end_1e} :catch_23
+    .catchall {:try_start_e .. :try_end_1e} :catchall_20
+
+    move-object p1, v2
+
+    goto :goto_27
+
+    :catchall_20
+    move-exception p0
+
+    move-object v0, v1
+
+    goto :goto_2c
+
+    :catch_23
+    move-object v0, v1
+
+    goto :goto_32
+
+    :catch_25
+    move-object v0, v1
+
+    goto :goto_38
+
+    :cond_27
+    :goto_27
+    :try_start_27
+    invoke-virtual {v1}, Ljava/io/FileReader;->close()V
+    :try_end_2a
+    .catch Ljava/io/IOException; {:try_start_27 .. :try_end_2a} :catch_3b
+
+    goto :goto_3b
+
+    :catchall_2b
+    move-exception p0
+
+    :goto_2c
+    if-eqz v0, :cond_31
+
+    :try_start_2e
+    invoke-virtual {v0}, Ljava/io/FileReader;->close()V
+    :try_end_31
+    .catch Ljava/io/IOException; {:try_start_2e .. :try_end_31} :catch_31
+
+    :catch_31
+    :cond_31
+    throw p0
+
+    :catch_32
+    :goto_32
+    if-eqz v0, :cond_3b
+
+    :goto_34
+    :try_start_34
+    invoke-virtual {v0}, Ljava/io/FileReader;->close()V
+    :try_end_37
+    .catch Ljava/io/IOException; {:try_start_34 .. :try_end_37} :catch_3b
+
+    goto :goto_3b
+
+    :catch_38
+    :goto_38
+    if-eqz v0, :cond_3b
+
+    goto :goto_34
+
+    :catch_3b
+    :cond_3b
+    :goto_3b
+    return-object p1
+.end method
+
+.method public static isBackCover(Lcom/samsung/android/cover/CoverState;)Z
+    .registers 2
+
+    invoke-virtual {p0}, Lcom/samsung/android/cover/CoverState;->getType()I
+
+    move-result p0
+
+    const/16 v0, 0x9
+
+    if-eq p0, v0, :cond_1b
+
+    const/16 v0, 0xa
+
+    if-eq p0, v0, :cond_1b
+
+    const/16 v0, 0xe
+
+    if-eq p0, v0, :cond_1b
+
+    const/16 v0, 0xd
+
+    if-eq p0, v0, :cond_1b
+
+    const/16 v0, 0xc
+
+    if-ne p0, v0, :cond_19
+
+    goto :goto_1b
+
+    :cond_19
+    const/4 p0, 0x0
+
+    return p0
+
+    :cond_1b
+    :goto_1b
+    const/4 p0, 0x1
+
+    return p0
+.end method
+
+.method public static isFileExists(Ljava/lang/String;)Z
+    .registers 1
+
+    invoke-static {p0}, Lcom/android/server/BatteryService$$ExternalSyntheticOutline0;->m(Ljava/lang/String;)Z
+
+    move-result p0
+
+    if-eqz p0, :cond_8
+
+    const/4 p0, 0x1
+
+    return p0
+
+    :cond_8
+    const/4 p0, 0x0
+
+    return p0
+.end method
+
+.method public static performCPUBoostCover(Landroid/content/Context;)V
+    .registers 6
+
+    sget-object v0, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverCpuBooster:Lcom/samsung/android/os/SemDvfsManager;
+
+    const/4 v1, 0x0
+
+    if-nez v0, :cond_1e
+
+    const-string v0, "COVER_BOOSTER"
+
+    const/16 v2, 0xc
+
+    invoke-static {p0, v0, v2}, Lcom/samsung/android/os/SemDvfsManager;->createInstance(Landroid/content/Context;Ljava/lang/String;I)Lcom/samsung/android/os/SemDvfsManager;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverCpuBooster:Lcom/samsung/android/os/SemDvfsManager;
+
+    if-eqz v0, :cond_1e
+
+    invoke-virtual {v0}, Lcom/samsung/android/os/SemDvfsManager;->getSupportedFrequency()[I
+
+    move-result-object v0
+
+    if-eqz v0, :cond_1e
+
+    sget-object v2, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverCpuBooster:Lcom/samsung/android/os/SemDvfsManager;
+
+    aget v0, v0, v1
+
+    invoke-virtual {v2, v0}, Lcom/samsung/android/os/SemDvfsManager;->setDvfsValue(I)V
+
+    :cond_1e
+    sget-object v0, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverCpuBooster:Lcom/samsung/android/os/SemDvfsManager;
+
+    const-string v2, "CoverManager_CoverManagerUtils"
+
+    const/16 v3, 0x7d0
+
+    if-eqz v0, :cond_31
+
+    :try_start_26
+    invoke-virtual {v0, v3}, Lcom/samsung/android/os/SemDvfsManager;->acquire(I)V
+    :try_end_29
+    .catch Ljava/lang/Exception; {:try_start_26 .. :try_end_29} :catch_2a
+
+    goto :goto_31
+
+    :catch_2a
+    move-exception v0
+
+    const-string/jumbo v4, "sCoverCpuBooster.acquire is failed"
+
+    invoke-static {v2, v4, v0}, Lcom/samsung/android/sepunion/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    :cond_31
+    :goto_31
+    sget-object v0, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverCoreNumLockHelper:Lcom/samsung/android/os/SemDvfsManager;
+
+    if-nez v0, :cond_54
+
+    const-string v0, "COVER_CORE_BOOSTER"
+
+    const/16 v4, 0xe
+
+    invoke-static {p0, v0, v4}, Lcom/samsung/android/os/SemDvfsManager;->createInstance(Landroid/content/Context;Ljava/lang/String;I)Lcom/samsung/android/os/SemDvfsManager;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverCoreNumLockHelper:Lcom/samsung/android/os/SemDvfsManager;
+
+    if-eqz v0, :cond_54
+
+    invoke-virtual {v0}, Lcom/samsung/android/os/SemDvfsManager;->getSupportedFrequency()[I
+
+    move-result-object v0
+
+    if-eqz v0, :cond_54
+
+    array-length v4, v0
+
+    if-lez v4, :cond_54
+
+    aget v0, v0, v1
+
+    const/4 v4, 0x2
+
+    if-lt v0, v4, :cond_54
+
+    sget-object v4, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverCoreNumLockHelper:Lcom/samsung/android/os/SemDvfsManager;
+
+    invoke-virtual {v4, v0}, Lcom/samsung/android/os/SemDvfsManager;->setDvfsValue(I)V
+
+    :cond_54
+    sget-object v0, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverCoreNumLockHelper:Lcom/samsung/android/os/SemDvfsManager;
+
+    if-eqz v0, :cond_63
+
+    :try_start_58
+    invoke-virtual {v0, v3}, Lcom/samsung/android/os/SemDvfsManager;->acquire(I)V
+    :try_end_5b
+    .catch Ljava/lang/Exception; {:try_start_58 .. :try_end_5b} :catch_5c
+
+    goto :goto_63
+
+    :catch_5c
+    move-exception v0
+
+    const-string/jumbo v4, "sCoverCoreNumLockHelper.acquire is failed"
+
+    invoke-static {v2, v4, v0}, Lcom/samsung/android/sepunion/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    :cond_63
+    :goto_63
+    sget-object v0, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverBusBooster:Lcom/samsung/android/os/SemDvfsManager;
+
+    if-nez v0, :cond_83
+
+    const-string v0, "COVER_BUS_BOOSTER"
+
+    const/16 v4, 0x13
+
+    invoke-static {p0, v0, v4}, Lcom/samsung/android/os/SemDvfsManager;->createInstance(Landroid/content/Context;Ljava/lang/String;I)Lcom/samsung/android/os/SemDvfsManager;
+
+    move-result-object p0
+
+    sput-object p0, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverBusBooster:Lcom/samsung/android/os/SemDvfsManager;
+
+    if-eqz p0, :cond_83
+
+    invoke-virtual {p0}, Lcom/samsung/android/os/SemDvfsManager;->getSupportedFrequency()[I
+
+    move-result-object p0
+
+    if-eqz p0, :cond_83
+
+    array-length v0, p0
+
+    if-lez v0, :cond_83
+
+    sget-object v0, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverBusBooster:Lcom/samsung/android/os/SemDvfsManager;
+
+    aget p0, p0, v1
+
+    invoke-virtual {v0, p0}, Lcom/samsung/android/os/SemDvfsManager;->setDvfsValue(I)V
+
+    :cond_83
+    sget-object p0, Lcom/android/server/sepunion/cover/CoverManagerUtils;->sCoverBusBooster:Lcom/samsung/android/os/SemDvfsManager;
+
+    if-eqz p0, :cond_92
+
+    :try_start_87
+    invoke-virtual {p0, v3}, Lcom/samsung/android/os/SemDvfsManager;->acquire(I)V
+    :try_end_8a
+    .catch Ljava/lang/Exception; {:try_start_87 .. :try_end_8a} :catch_8b
+
+    goto :goto_92
+
+    :catch_8b
+    move-exception p0
+
+    const-string/jumbo v0, "sCoverBusBooster.acquire is failed"
+
+    invoke-static {v2, v0, p0}, Lcom/samsung/android/sepunion/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    :cond_92
+    :goto_92
+    return-void
+.end method
