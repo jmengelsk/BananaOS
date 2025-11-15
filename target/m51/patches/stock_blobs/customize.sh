@@ -197,18 +197,17 @@ echo "/system/lib64/vendor\.qti\.hardware\.trustedui@1\.2\.so u:object_r:system_
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Fixing Google Assistant"
-DELETE_FROM_WORK_DIR "product" "priv-app/HotwordEnrollmentOKGoogleEx4HEXAGON"
-DELETE_FROM_WORK_DIR "product" "priv-app/HotwordEnrollmentXGoogleEx4HEXAGON"
 ADD_TO_WORK_DIR "a73xqxx" "product" "priv-app/HotwordEnrollmentOKGoogleEx3HEXAGON" 0 0 755 "u:object_r:system_file:s0"
 ADD_TO_WORK_DIR "a73xqxx" "product" "priv-app/HotwordEnrollmentXGoogleEx3HEXAGON" 0 0 755 "u:object_r:system_file:s0"
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Removing NFC"
-DELETE_FROM_WORK_DIR "vendor" "etc/permissions/android.hardware.nfc.ese.xml"
-DELETE_FROM_WORK_DIR "vendor" "etc/permissions/android.hardware.nfc.hce.xml"
-DELETE_FROM_WORK_DIR "vendor" "etc/permissions/android.hardware.nfc.hcef.xml"
-DELETE_FROM_WORK_DIR "vendor" "etc/permissions/android.hardware.nfc.uicc.xml"
-DELETE_FROM_WORK_DIR "vendor" "etc/permissions/android.hardware.nfc.xml"
+LOG_STEP_IN "- Adding pa1qxxx nfc blobs"
+ADD_TO_WORK_DIR "pa1qxxx" "system" "system/lib64/libnfc_sec_jni.so"
+ADD_TO_WORK_DIR "pa1qxxx" "system" "system/lib64/libnfc-nci_flags.so"
+ADD_TO_WORK_DIR "pa1qxxx" "system" "system/lib64/libnfc-sec.so"
+ADD_TO_WORK_DIR "pa1qxxx" "system" "system/lib64/libstatslog_nfc.so"
+EVAL "ln -sf \"/system/lib64/libnfc_sec_jni.so\" \"$WORK_DIR/system/system/priv-app/NfcNci/lib/arm64/libnfc_sec_jni.so\""
+SET_METADATA "system" "system/priv-app/NfcNci/lib/arm64/libnfc_sec_jni.so" 0 0 644 "u:object_r:system_file:s0"
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Adding pa1qxxx surfaceflinger"
