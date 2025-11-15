@@ -2,9 +2,7 @@ name: Update prebuilt blobs
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 12 * * *"
-
+  
 jobs:
   update:
     runs-on: ubuntu-24.04
@@ -82,14 +80,19 @@ jobs:
 
       - name: Build dependencies
         run: |
-          source ./buildenv.sh a52sxq
+          source ./buildenv.sh m51
           ./scripts/build_dependencies.sh
 
       - name: Update prebuilt blobs
         run: |
-          source ./buildenv.sh a52sxq
+          source ./buildenv.sh m51
           ./scripts/internal/update_prebuilt_blobs.sh ${{ matrix.path }}
-          echo "PDA_BUILD=$(cat ./${{ matrix.path }}/.current | cut -d "/" -f 1)" >> $GITHUB_ENV
+          if [ -f "./${{ matrix.path }}/.current" ]; then
+            echo "PDA_BUILD=$(cat ./${{ matrix.path }}/.current | cut -d "/" -f 1)" >> $GITHUB_ENV
+          else
+            echo "PDA_BUILD=unknown" >> $GITHUB_ENV
+            echo "Warning: .current file not found in ${{ matrix.path }}" >&2
+          fi
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
