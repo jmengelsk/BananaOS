@@ -2,11 +2,7 @@ name: Build MintOS
 
 on:
   workflow_dispatch:
-  pull_request:
-  push:
-    branches:
-      - 'sixteen'
-
+  
 jobs:
   build:
     runs-on: ubuntu-24.04
