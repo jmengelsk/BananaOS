@@ -210,3 +210,7 @@ DELETE_FROM_WORK_DIR "vendor" "etc/permissions/android.hardware.nfc.hcef.xml"
 DELETE_FROM_WORK_DIR "vendor" "etc/permissions/android.hardware.nfc.uicc.xml"
 DELETE_FROM_WORK_DIR "vendor" "etc/permissions/android.hardware.nfc.xml"
 LOG_STEP_OUT
+
+LOG_STEP_IN "- Adding pa1qxxx surfaceflinger"
+ADD_TO_WORK_DIR "pa1qxxx" "system" "bin/surfaceflinger" 0 2000 755 "u:object_r:surfaceflinger_exec:s0"
+LOG_STEP_OUT
