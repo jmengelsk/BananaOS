@@ -82,9 +82,9 @@ jobs:
           ./scripts/make_rom.sh
 
       - name: Upload to GoFile
-        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/paradigm'
         run: |
           ZIP_FILE=$(find out -maxdepth 1 -type f -name "*.zip" | head -n 1)
           RESPONSE=$(curl -s -F "file=@$ZIP_FILE" -F "token=${{ secrets.GOFILE_TOKEN }}" -F "folderId=${{ secrets.GOFILE_FOLDER_ID }}" "https://upload-eu-par.gofile.io/uploadFile")
-          echo "Download link:"
+          echo "Uploaded successfully! Download link:"
           echo "$RESPONSE" | jq -r '.data.downloadPage'
+          echo "WARNING! THESE BUILDS MAY NOT BOOTABLE, ONLY FLASH FOR TESTING PURPOSES ONLY IF THE DEVELOPER TOLD YOU."
