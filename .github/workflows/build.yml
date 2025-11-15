@@ -65,7 +65,7 @@ jobs:
       - name: Download stcok firmwares
         run: |
           source ./buildenv.sh ${{ matrix.target }}
-          ./scripts/download_fw.sh
+          ./scripts/download_fw_2.sh
 
       - name: Extract stock firmware
         run: |
