@@ -208,7 +208,9 @@ ADD_TO_WORK_DIR "pa1qxxx" "system" "system/lib64/libnfc-sec.so"
 ADD_TO_WORK_DIR "pa1qxxx" "system" "system/lib64/libstatslog_nfc.so"
 mkdir -p "$WORK_DIR/system/system/priv-app/NfcNci/lib/arm64"
 ln -sf "/system/lib64/libnfc_sec_jni.so" "$WORK_DIR/system/system/priv-app/NfcNci/lib/arm64/libnfc_sec_jni.so"
-SET_METADATA "system" "system/priv-app/NfcNci/lib/arm64/libnfc_sec_jni.so" 0 0 644 "u:object_r:system_file:s0"
+SET_METADATA "system" "system/priv-app/NfcNci/lib" 0 0 755 "u:object_r:system_file:s0"
+SET_METADATA "system" "system/priv-app/NfcNci/lib/arm64" 0 0 755 "u:object_r:system_file:s0"
+SET_METADATA "system" "system/priv-app/NfcNci/lib/arm64/libnfc_sec_jni.so" 0 0 644 "u:object_r:system_lib:s0"
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Adding pa1qxxx surfaceflinger"
