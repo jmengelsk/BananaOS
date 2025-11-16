@@ -33,6 +33,8 @@ jobs:
             path: "prebuilts/samsung/gts9fexx"
           - module: "Galaxy S25 (pa1qxxx)"
             path: "prebuilts/samsung/pa1qxxx"
+          - module: "Galaxy S25 Plus (pa2qxxx)"
+            path: "prebuilts/samsung/pa2qxxx"
           - module: "Galaxy S22 (r0sxxx)"
             path: "prebuilts/samsung/r0sxxx"
 
