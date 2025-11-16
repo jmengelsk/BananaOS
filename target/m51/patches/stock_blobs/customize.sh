@@ -212,7 +212,3 @@ SET_METADATA "system" "system/priv-app/NfcNci/lib" 0 0 755 "u:object_r:system_fi
 SET_METADATA "system" "system/priv-app/NfcNci/lib/arm64" 0 0 755 "u:object_r:system_file:s0"
 SET_METADATA "system" "system/priv-app/NfcNci/lib/arm64/libnfc_sec_jni.so" 0 0 644 "u:object_r:system_lib:s0"
 LOG_STEP_OUT
-
-LOG_STEP_IN "- Adding pa1qxxx surfaceflinger"
-ADD_TO_WORK_DIR "pa1qxxx" "system" "bin/surfaceflinger" 0 2000 755 "u:object_r:surfaceflinger_exec:s0"
-LOG_STEP_OUT
