@@ -6,3 +6,4 @@
 /system/priv-app/NfcNci u:object_r:system_file:s0
 /system/priv-app/NfcNci/lib u:object_r:system_file:s0
 /system/priv-app/NfcNci/lib/arm64 u:object_r:system_file:s0
+/system/priv-app/NfcNci/lib/arm64/libnfc_sec_jni.so u:object_r:system_lib:s0
