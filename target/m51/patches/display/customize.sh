@@ -34,6 +34,6 @@ ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/vendor.display.config@2.0.so" 0 0 644 
 ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/vendor.qti.hardware.display.composer@3.0.so" 0 0 644 "u:object_r:vendor_configs_file:s0"
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Adding pa2qxxx surfaceflinger"
-ADD_TO_WORK_DIR "pa2qxxx" "system" "bin/surfaceflinger" 0 2000 755 "u:object_r:surfaceflinger_exec:s0"
+LOG_STEP_IN "- Adding a36xqnaxx surfaceflinger"
+ADD_TO_WORK_DIR "a36xqnaxx" "system" "bin/surfaceflinger" 0 2000 755 "u:object_r:surfaceflinger_exec:s0"
 LOG_STEP_OUT
