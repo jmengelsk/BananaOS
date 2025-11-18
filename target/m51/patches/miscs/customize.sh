@@ -5,6 +5,6 @@ sed -i "/# Removed by /d" "$WORK_DIR/product/etc/build.prop" \
     && sed -i "$(sed -n "/provisioning.hostname/=" "$WORK_DIR/product/etc/build.prop" | sed "2p;d")d" "$WORK_DIR/product/etc/build.prop"
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Adding surce firmware odm props"
+LOG_STEP_IN "- Adding source firmware odm props"
 ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "odm" "etc/build.prop"
 LOG_STEP_OUT
