@@ -114,7 +114,7 @@ EVAL "cp -r \"$WORK_DIR/system/system/build.prop\" \"$TARGET_FIRMWARE_DEST/syste
 EVAL "cp -r \"$MODPATH/tree/boot/boot.img\" \
  \"$WORK_DIR/kernel/boot.img\""
 EVAL "rm -rf \"$MODPATH/tree\""
-DOWNLOAD_FILE "https://raw.githubusercontent.com/jmengelsk/M51-FIRMWARE/refs/heads/main/vbmeta.img" \
+DOWNLOAD_FILE "https://raw.githubusercontent.com/mehedihjoy0/M51-FIRMWARE/refs/heads/main/vbmeta.img" \
  "$TARGET_FIRMWARE_DEST/avb/vbmeta.img"
 LOG_STEP_OUT 
 
