@@ -71,6 +71,13 @@ system/etc/permissions/privapp-permissions-com.samsung.android.app.updatecenter.
 system/priv-app/AppUpdateCenter
 "
 
+# Bixby
+SYSTEM_DEBLOAT+="
+system/priv-app/Bixby
+system/app/BixbyWakeup
+"
+
+
 # BCService
 SYSTEM_DEBLOAT+="
 system/etc/permissions/privapp-permissions-com.sec.bcservice.xml
@@ -88,9 +95,9 @@ ADD_TO_WORK_DIR "pa2qxxx" "system" \
     0 0 644 "u:object_r:system_file:s0"
 
 # Gemini shortcut
-PRODUCT_DEBLOAT+="
-app/BardShell
-"
+#PRODUCT_DEBLOAT+="
+#app/BardShell
+#"
 
 # Gmail
 PRODUCT_DEBLOAT+="
@@ -98,24 +105,24 @@ app/Gmail2
 "
 
 # Google Assistant shortcut
-PRODUCT_DEBLOAT+="
-app/AssistantShell
-"
+#PRODUCT_DEBLOAT+="
+#app/AssistantShell
+#"
 
 # Google Chrome
-PRODUCT_DEBLOAT+="
-app/Chrome
-"
+#PRODUCT_DEBLOAT+="
+#app/Chrome
+#"
 
 # Google Duo
-PRODUCT_DEBLOAT+="
-app/DuoStub
-"
+#PRODUCT_DEBLOAT+="
+#app/DuoStub
+#"
 
 # Google Maps
-PRODUCT_DEBLOAT+="
-app/Maps
-"
+#PRODUCT_DEBLOAT+="
+#app/Maps
+#"
 
 # Google PAI (Play Autoinstall)
 SYSTEM_DEBLOAT+="
@@ -147,17 +154,17 @@ system/priv-app/LedCoverService
 
 # Link to Windows
 # Replace full apk with stub apk to save space
-SYSTEM_DEBLOAT+="
-system/priv-app/YourPhone_P1_5
-"
+#SYSTEM_DEBLOAT+="
+#system/priv-app/YourPhone_P1_5
+#"
 
 ADD_TO_WORK_DIR "gta9pxxx" "system" "system/priv-app/YourPhone_Stub/YourPhone_Stub.apk" 0 0 644 "u:object_r:system_file:s0"
 
 # Live Transcribe
-SYSTEM_DEBLOAT+="
-system/app/LiveTranscribe
-system/etc/sysconfig/feature-a11y-preload.xml
-"
+#SYSTEM_DEBLOAT+="
+#system/app/LiveTranscribe
+#system/etc/sysconfig/feature-a11y-preload.xml
+#"
 
 # Meta
 SYSTEM_DEBLOAT+="
@@ -206,14 +213,14 @@ system/priv-app/AvatarEmojiSticker
 "
 
 # Samsung Calendar
-SYSTEM_DEBLOAT+="
-system/app/SamsungCalendar
-"
+#SYSTEM_DEBLOAT+="
+#system/app/SamsungCalendar
+#"
 
 # Samsung Clock
-SYSTEM_DEBLOAT+="
-system/app/ClockPackage
-"
+#SYSTEM_DEBLOAT+="
+#system/app/ClockPackage
+#"
 
 # Samsung Free
 SYSTEM_DEBLOAT+="
@@ -221,10 +228,10 @@ system/app/MinusOnePage
 "
 
 # Samsung Language Core
-SYSTEM_DEBLOAT+="
-system/etc/permissions/signature-permissions-com.samsung.android.offline.languagemodel.xml
-system/priv-app/OfflineLanguageModel_stub
-"
+#SYSTEM_DEBLOAT+="
+#system/etc/permissions/signature-permissions-com.samsung.android.offline.languagemodel.xml
+#system/priv-app/OfflineLanguageModel_stub
+#"
 
 # Google Messages
 PRODUCT_DEBLOAT+="
@@ -247,9 +254,9 @@ system/priv-app/SamsungPass
 "
 
 # Samsung Reminder
-SYSTEM_DEBLOAT+="
-system/app/SmartReminder
-"
+#SYSTEM_DEBLOAT+="
+#system/app/SmartReminder
+#"
 
 # Samsung Visit In
 SYSTEM_DEBLOAT+="
@@ -281,24 +288,24 @@ framework/org.carconnectivity.android.digitalkey.secureelement.jar
 "
 
 # Search engine selector
-PRODUCT_DEBLOAT+="
-overlay/GmsConfigOverlaySearchSelector.apk
-priv-app/SearchSelector
-"
+#PRODUCT_DEBLOAT+="
+#overlay/GmsConfigOverlaySearchSelector.apk
+#priv-app/SearchSelector
+#"
 
 # SettingsHelper
-SYSTEM_DEBLOAT+="
-system/etc/permissions/privapp-permissions-com.samsung.android.settingshelper.xml
-system/etc/sysconfig/settingshelper.xml
-system/priv-app/SHClient
-"
+#SYSTEM_DEBLOAT+="
+#system/etc/permissions/privapp-permissions-com.samsung.android.settingshelper.xml
+#system/etc/sysconfig/settingshelper.xml
+#system/priv-app/SHClient
+#"
 
 # Smart Touch Call
-SYSTEM_DEBLOAT+="
-system/etc/default-permissions/default-permissions-com.samsung.android.visualars.xml
-system/etc/permissions/privapp-permissions-com.samsung.android.visualars.xml
-system/priv-app/SmartTouchCall
-"
+#SYSTEM_DEBLOAT+="
+#system/etc/default-permissions/default-permissions-com.samsung.android.visualars.xml
+#system/etc/permissions/privapp-permissions-com.samsung.android.visualars.xml
+#system/priv-app/SmartTouchCall
+#"
 
 # Smart Tutor
 SYSTEM_DEBLOAT+="
@@ -320,15 +327,15 @@ system/priv-app/SVCAgent
 "
 
 # SVoiceIME
-SYSTEM_DEBLOAT+="
-system/priv-app/SVoiceIME
-"
+#SYSTEM_DEBLOAT+="
+#system/priv-app/SVoiceIME
+#"
 
 # Voice Access
-SYSTEM_DEBLOAT+="
-system/app/VoiceAccess
-system/etc/sysconfig/feature-a11y-preload-voacc.xml
-"
+#SYSTEM_DEBLOAT+="
+#system/app/VoiceAccess
+#system/etc/sysconfig/feature-a11y-preload-voacc.xml
+#"
 
 # YouTube
 PRODUCT_DEBLOAT+="
