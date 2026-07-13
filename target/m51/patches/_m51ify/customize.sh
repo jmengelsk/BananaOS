@@ -1,5 +1,6 @@
 LOG "- Patching a52q firmware with m51 device tree"
 
+
 LOG_STEP_IN "- Cleaning up a52q-specific proprietary blobs"
 
 LOG_STEP_IN "- Removing a52q init script, qdcm calib and lux mapping"
