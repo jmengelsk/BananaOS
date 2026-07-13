@@ -100,7 +100,7 @@ EVAL "sed -i 's|atoll|sm6150|g' \"$WORK_DIR/vendor/etc/vramdiskd.xml\" \"$WORK_D
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Injecting m51-specific blobs"
-EVAL "git clone \"https://github.com/jmengelsk/M51-Device-Tree\" \"$MODPATH/tree\""
+EVAL "git clone \"https://github.com/mehedihjoy0/M51-Device-Tree\" \"$MODPATH/tree\""
 ADD_TO_WORK_DIR "$MODPATH/tree" "system" "."
 ADD_TO_WORK_DIR "$MODPATH/tree" "vendor" "."
 EVAL "cp -r \"$WORK_DIR/vendor/etc/media_profiles_V1_0.xml\" \"$WORK_DIR/odm/etc\""
@@ -114,7 +114,7 @@ EVAL "cp -r \"$WORK_DIR/system/system/build.prop\" \"$TARGET_FIRMWARE_DEST/syste
 EVAL "cp -r \"$MODPATH/tree/boot/boot.img\" \
  \"$WORK_DIR/kernel/boot.img\""
 EVAL "rm -rf \"$MODPATH/tree\""
-DOWNLOAD_FILE "https://raw.githubusercontent.com/jmengelsk/M51-FIRMWARE/refs/heads/main/vbmeta.img" \
+DOWNLOAD_FILE "https://raw.githubusercontent.com/mehedihjoy0/M51-FIRMWARE/refs/heads/main/vbmeta.img" \
  "$TARGET_FIRMWARE_DEST/avb/vbmeta.img"
 LOG_STEP_OUT 
 
