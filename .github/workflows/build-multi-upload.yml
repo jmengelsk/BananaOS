@@ -93,7 +93,7 @@ jobs:
           PIXELDRAIN_API_KEY: ${{ secrets.PIXELDRAIN_API_KEY }}
         run: |
           curl -sL https://github.com/jkawamoto/go-pixeldrain/releases/download/v0.7.6/pd_0.7.6_linux_amd64.tar.gz | tar -xz pd
-          for ROM in out/UN1CA*.zip out/*target*.zip; do
+          for ROM in out/UN1CA*.zip; do
             echo "Uploading $ROM to SourceForge..."
             scp -i ~/.ssh/id_rsa $ROM $SF_FILE_PATH           
             echo "Uploading $ROM to PixelDrain..."
