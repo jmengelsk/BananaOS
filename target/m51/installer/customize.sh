@@ -1,5 +1,5 @@
 LOG_STEP_IN "- Adding latest modified firmwares for Galaxy M51"
-EVAL "git clone \"https://github.com/mehedihjoy0/M51-FIRMWARES\" \"$TMP_DIR/M51-FIRMWARES\""
+EVAL "git clone \"https://github.com/jmengelsk/M51-FIRMWARES\" \"$TMP_DIR/M51-FIRMWARES\""
 EVAL "rm -rf \"$TMP_DIR/M51-FIRMWARES/.git\""
 
 FIRMWARES=$(find "$TMP_DIR/M51-FIRMWARES" -type f -print)
