@@ -267,7 +267,7 @@ if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "35" ]; then
 fi
 
 # Support legacy usb_notify kernel drivers (pre-API 36)
-# https://github.com/salvogiangri/UN1CA/discussions/519
+# https://github.com/salvogiangri/BananaOS/discussions/519
 # - Check for 'SKY_DEFAULT' to determine if newer usb_notify drivers are in place
 if [ "$TARGET_PLATFORM_SDK_VERSION" -lt "36" ]; then
     VBOOT_MISSING=true

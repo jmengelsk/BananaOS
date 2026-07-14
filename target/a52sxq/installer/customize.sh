@@ -1,6 +1,6 @@
 LOG "- Downloading A528NKSS7GYI1_kernel.tar"
 DOWNLOAD_FILE \
-    "https://github.com/UN1CA/proprietary_vendor_samsung_sm7325/releases/download/A528NKSS7GYI1_KOO_OKR/A528NKSS7GYI1_kernel.tar" \
+    "https://github.com/BananaOS/proprietary_vendor_samsung_sm7325/releases/download/A528NKSS7GYI1_KOO_OKR/A528NKSS7GYI1_kernel.tar" \
     "$TMP_DIR/A528NKSS7GYI1_kernel.tar" || return 1
 
 LOG "- Extracting dtbo.img.lz4"

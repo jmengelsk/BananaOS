@@ -3,14 +3,14 @@ GET_URL()
 {
     _CHECK_NON_EMPTY_PARAM "ASSET" "$1" || return 1
 
-    local KERNEL_URL="https://api.github.com/repos/UN1CA/kernel_samsung_s5e8825/releases/latest"
+    local KERNEL_URL="https://api.github.com/repos/BananaOS/kernel_samsung_s5e8825/releases/latest"
 
     curl -s "$KERNEL_URL" | jq -r --arg i "$1" '.assets[] | select(.name | test($i)) | .browser_download_url' | head -n 1
 }
 # ]
 
-KERNEL_ARCHIVE_URL="$(GET_URL "^UN1CA_Kernel-.*-a53x\.tar$")"
-DTBO_ARCHIVE_URL="$(GET_URL "^UN1CA_DTBO-.*-a53x\.tar$")"
+KERNEL_ARCHIVE_URL="$(GET_URL "^BananaOS_Kernel-.*-a53x\.tar$")"
+DTBO_ARCHIVE_URL="$(GET_URL "^BananaOS_DTBO-.*-a53x\.tar$")"
 
 if [ -d "$TMP_DIR" ]; then
     EVAL "rm -rf \"$TMP_DIR\""

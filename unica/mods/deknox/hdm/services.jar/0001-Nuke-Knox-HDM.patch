@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Mon, 22 Sep 2025 13:23:15 +0200
 Subject: [PATCH] Nuke Knox HDM
 
-UN1CA: this patch is not complete! Please check unica/mods/deknox/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/mods/deknox/customize.sh for more info.
 ---
  .../ISecureKeyGeneration$Stub$Proxy.smali     |   20 -
  .../ISecureKeyGeneration$Stub.smali           |   10 -

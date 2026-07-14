@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sun, 31 Aug 2025 15:42:41 +0200
 Subject: [PATCH] Allow custom CONNECTION_PERSONALIZATION value
 
-UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../android/server/wifi/SemWifiInjector.smali | 68 ++++++++++---------
  1 file changed, 35 insertions(+), 33 deletions(-)

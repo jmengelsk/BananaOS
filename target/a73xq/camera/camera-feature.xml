@@ -1,9 +1,9 @@
 <?xml version= "1.0" encoding= "UTF-8"?>
 <resources>
 
-    <!-- UN1CA'S CAMERA-FEATURE.XML -->
+    <!-- BananaOS'S CAMERA-FEATURE.XML -->
 
-    <!-- Starting from UN1CA 3.0.0, this XML is included as a mod for the Samsung Galaxy A73 5G.
+    <!-- Starting from BananaOS 3.0.0, this XML is included as a mod for the Samsung Galaxy A73 5G.
     You can use this XML as base for your own device's camera mods, but be sure to read all the comments to make working with your device easier.
     There are modes and features not listed here, so we recommend obtaining the XML file of the latest flagship phone and comparing the features yourself.
     Additionally, in each corresponding section, features that are not used/not compatible with A73 will be commented out, so you can uncomment them depending on your needs.

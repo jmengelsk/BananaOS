@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Mon, 13 Oct 2025 14:55:01 +0200
 Subject: [PATCH] Enable dynamic resolution control
 
-UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../coroutines/JobSupport$Finishing.smali     |    2 +-
  .../android/settings/DisplaySettings$3.smali  |   24 +

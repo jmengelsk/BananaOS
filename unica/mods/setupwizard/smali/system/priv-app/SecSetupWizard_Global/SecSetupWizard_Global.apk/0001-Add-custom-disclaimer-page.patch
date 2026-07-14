@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sat, 1 Nov 2025 13:49:38 +0100
 Subject: [PATCH] Add custom disclaimer page
 
-UN1CA: this patch is not complete! Please check unica/mods/setupwizard/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/mods/setupwizard/customize.sh for more info.
 ---
  res/values/public.xml                         |   2 +
  smali/S2/f.smali                              |   2 +-

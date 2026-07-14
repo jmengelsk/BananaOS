@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sat, 29 Nov 2025 17:58:13 +0100
 Subject: [PATCH] Enable MOBILEAP_DUALAP support
 
-UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  ...emWifiShellCommand$SqeCommandHandler.smali |    2 +-
  .../wifi/ap/SemSoftApConfiguration.smali      | 1290 +++++++++--------

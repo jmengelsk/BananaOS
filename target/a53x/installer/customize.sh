@@ -1,4 +1,4 @@
-REPOSITORY="https://github.com/UN1CA/proprietary_vendor_samsung_a53x/releases/download"
+REPOSITORY="https://github.com/BananaOS/proprietary_vendor_samsung_a53x/releases/download"
 TARS=(
     # a53xzc (chn_open)
     "A5360ZCSHFYH1_CHC_CHC/BL_A5360ZCSHFYH1_A5360ZCSHFYH1_MQB99877512_REV00_user_low_ship_MULTI_CERT.tar.md5"
@@ -92,8 +92,8 @@ while IFS= read -r f; do
     EVAL "printf \"\x03\" | dd of=\"$f\" bs=1 seek=123 count=1 conv=notrunc" || return 1
 done < <(find "$TMP_DIR" -type f -name "vbmeta.img")
 
-DTBO_ARCHIVE_URL="$(curl -s "https://api.github.com/repos/UN1CA/kernel_samsung_s5e8825/releases/latest" | \
-    jq -r --arg i "^UN1CA_DTBO-.*-a53x_jpn\.tar$" '.assets[] | select(.name | test($i)) | .browser_download_url' \
+DTBO_ARCHIVE_URL="$(curl -s "https://api.github.com/repos/BananaOS/kernel_samsung_s5e8825/releases/latest" | \
+    jq -r --arg i "^BananaOS_DTBO-.*-a53x_jpn\.tar$" '.assets[] | select(.name | test($i)) | .browser_download_url' \
     | head -n 1)"
 DTBO_ARCHIVE="$(basename "$DTBO_ARCHIVE_URL")"
 

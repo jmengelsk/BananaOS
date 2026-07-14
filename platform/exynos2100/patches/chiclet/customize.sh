@@ -1,4 +1,4 @@
-KERNEL_API_URL="https://api.github.com/repos/UN1CA/kernel_samsung_exynos2100/releases/latest"
+KERNEL_API_URL="https://api.github.com/repos/BananaOS/kernel_samsung_exynos2100/releases/latest"
 
 LATEST_TAG="$(
     curl -s "$KERNEL_API_URL" \
@@ -6,7 +6,7 @@ LATEST_TAG="$(
     | cut -d '"' -f4
 )"
 
-KERNEL_DL_BASE="https://github.com/UN1CA/kernel_samsung_exynos2100/releases/download/$LATEST_TAG"
+KERNEL_DL_BASE="https://github.com/BananaOS/kernel_samsung_exynos2100/releases/download/$LATEST_TAG"
 
 LOG_STEP_IN "- Downloading vanilla kernel variant"
 if [[ -d "$TMP_DIR" ]]; then

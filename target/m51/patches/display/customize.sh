@@ -1,4 +1,4 @@
-# https://github.com/pascua28/UN1CA/tree/sixteen/target/a71/patches/display/vendor/etc/qdcm_calib_data_ss_dsi_panel_S6E3FA9_AMB667UM06_FHD.xml
+# https://github.com/pascua28/BananaOS/tree/sixteen/target/a71/patches/display/vendor/etc/qdcm_calib_data_ss_dsi_panel_S6E3FA9_AMB667UM06_FHD.xml
 
 LOG_STEP_IN "- Patching qdcm_calib xmls"
 find "$WORK_DIR/vendor/etc" -name "qdcm_calib*.xml" -type f | while read -r QDCM

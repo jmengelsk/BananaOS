@@ -1,4 +1,4 @@
-# https://github.com/pascua28/UN1CA/tree/sixteen/target/a71/patches/display/customize.sh
+# https://github.com/pascua28/BananaOS/tree/sixteen/target/a71/patches/display/customize.sh
 
 LOG_STEP_IN "- Removing legacy display composer"
 DELETE_FROM_WORK_DIR "vendor" "bin/hw/android.hardware.graphics.composer@2.4-service"

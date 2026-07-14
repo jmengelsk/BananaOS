@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Mon, 27 Oct 2025 10:31:28 +0100
 Subject: [PATCH] Disable virtual vibration support
 
-UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../server/audio/AudioDeviceBroker.smali      | 123 +++---
  smali/com/android/server/audio/BtHelper.smali |   4 -
