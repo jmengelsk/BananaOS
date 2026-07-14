@@ -2,16 +2,16 @@
   <img loading="lazy" src="readme-res/banner.png"/>
 </h1>
 <p align="center">
-  <a href="https://github.com/salvogiangri/BananaOS/blob/sixteen/LICENSE"><img loading="lazy" src="https://img.shields.io/github/license/salvogiangri/BananaOS?style=for-the-badge&logo=github"/></a>
-  <a href="https://github.com/salvogiangri/BananaOS/commits/sixteen"><img loading="lazy" src="https://img.shields.io/github/last-commit/salvogiangri/BananaOS/sixteen?style=for-the-badge"/></a>
-  <a href="https://github.com/salvogiangri/BananaOS/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/salvogiangri/BananaOS?style=for-the-badge"/></a>
-  <a href="https://github.com/salvogiangri/BananaOS/actions/workflows/build.yml"><img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/salvogiangri/BananaOS/build.yml?style=for-the-badge"/></a>
+  <a href="https://github.com/jmengelsk/BananaOS/blob/sixteen/LICENSE"><img loading="lazy" src="https://img.shields.io/github/license/jmengelsk/BananaOS?style=for-the-badge&logo=github"/></a>
+  <a href="https://github.com/jmengelsk/BananaOS/commits/sixteen"><img loading="lazy" src="https://img.shields.io/github/last-commit/jmengelsk/BananaOS/sixteen?style=for-the-badge"/></a>
+  <a href="https://github.com/jmengelsk/BananaOS/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/jmengelsk/BananaOS?style=for-the-badge"/></a>
+  <a href="https://github.com/jmengelsk/BananaOS/actions/workflows/build.yml"><img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/jmengelsk/BananaOS/build.yml?style=for-the-badge"/></a>
   <a href="https://crowdin.com/project/BananaOS"><img loading="lazy" src="https://img.shields.io/badge/Crowdin-263238?style=for-the-badge&logo=crowdin"/></a>
 </p>
 <p align="center">BananaOS <i>(/ˈu.ni.ka/)</i> is a work-in-progress custom firmware for Samsung Galaxy devices.</p>
 
 <p align="center">
-  <a href="https://github.com/salvogiangri/BananaOS/discussions">🚀 Discussions</a>
+  <a href="https://github.com/jmengelsk/BananaOS/discussions">🚀 Discussions</a>
   •
   <a href="https://t.me/unicarom">💬 Telegram</a>
 </p>
@@ -61,7 +61,7 @@ Any form of contribution, suggestions, bug report or feature request for the pro
 - Outdoor mode support
 - Auto PIN confirm with 4 digits
 - [BluetoothLibraryPatcher](https://github.com/3arthur6/BluetoothLibraryPatcher) integrated
-- [KnoxPatch](https://github.com/salvogiangri/KnoxPatch) integrated
+- [KnoxPatch](https://github.com/jmengelsk/KnoxPatch) integrated
 - Extra CSC features enabled (Call recording, Hiya, Network speed in status bar, AltZLife)
 
 \* DeX via HDMI not available for devices without USB-C DP support
@@ -93,7 +93,7 @@ This project is licensed under the terms of the [GNU General Public License v3.0
 - [platform_build](https://android.googlesource.com/platform/build/) (ext4_utils, f2fs_utils, signapk), licensed under the [Apache License 2.0](https://source.android.com/docs/setup/about/licenses)
 
 # Contributors
-<a href="https://github.com/salvogiangri/BananaOS/graphs/contributors"><img loading="lazy" src="https://contrib.rocks/image?repo=salvogiangri/BananaOS"/></a>
+<a href="https://github.com/jmengelsk/BananaOS/graphs/contributors"><img loading="lazy" src="https://contrib.rocks/image?repo=jmengelsk/BananaOS"/></a>
 
 # Credits
 A special thanks goes to the following for their invaluable contributions in no particular order:
@@ -108,4 +108,4 @@ A special thanks goes to the following for their invaluable contributions in no 
 - *All the BananaOS project forks, contributors, testers and users ❤️*
 
 # Stargazers over time
-[![Stargazers over time](https://starchart.cc/salvogiangri/BananaOS.svg)](https://starchart.cc/salvogiangri/BananaOS)
+[![Stargazers over time](https://starchart.cc/jmengelsk/BananaOS.svg)](https://starchart.cc/jmengelsk/BananaOS)
