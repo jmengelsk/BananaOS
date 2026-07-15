@@ -53,11 +53,11 @@ MODULES_COUNT=0
 
 while read -r i; do
     PRINT_MODULE_INFO "$i"
-done <<< "$(find "$SRC_DIR/BananaOS/patches" -mindepth 1 -maxdepth 1 -type d)"
+done <<< "$(find "$SRC_DIR/unica/patches" -mindepth 1 -maxdepth 1 -type d)"
 
 while read -r i; do
     PRINT_MODULE_INFO "$i"
-done <<< "$(find "$SRC_DIR/BananaOS/mods" -mindepth 1 -maxdepth 1 -type d)"
+done <<< "$(find "$SRC_DIR/unica/mods" -mindepth 1 -maxdepth 1 -type d)"
 
 while read -r i; do
     PRINT_MODULE_INFO "$i"

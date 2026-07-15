@@ -17,7 +17,7 @@ TARGET_FIRMWARE_PATH="$(cut -d "/" -f 1 -s <<< "$TARGET_FIRMWARE")_$(cut -d "/" 
 
 GET_WORK_DIR_HASH()
 {
-    find "$SRC_DIR/BananaOS" "$SRC_DIR/target/$TARGET_CODENAME" -type f -print0 | \
+    find "$SRC_DIR/unica" "$SRC_DIR/target/$TARGET_CODENAME" -type f -print0 | \
         sort -z | xargs -0 sha1sum | sha1sum | cut -d " " -f 1
 }
 
@@ -120,15 +120,15 @@ if $BUILD_ROM; then
         "$SRC_DIR/scripts/internal/apply_modules.sh" "$SRC_DIR/target/$TARGET_CODENAME/patches" || exit 1
         LOG_STEP_OUT
     fi
-    if [ -d "$SRC_DIR/BananaOS/patches" ]; then
+    if [ -d "$SRC_DIR/unica/patches" ]; then
         LOG_STEP_IN true "Applying ROM patches"
-        "$SRC_DIR/scripts/internal/apply_modules.sh" "$SRC_DIR/BananaOS/patches" || exit 1
+        "$SRC_DIR/scripts/internal/apply_modules.sh" "$SRC_DIR/unica/patches" || exit 1
         LOG_STEP_OUT
     fi
 
-    if [ -d "$SRC_DIR/BananaOS/mods" ]; then
+    if [ -d "$SRC_DIR/unica/mods" ]; then
         LOG_STEP_IN true "Applying ROM mods"
-        "$SRC_DIR/scripts/internal/apply_modules.sh" "$SRC_DIR/BananaOS/mods" || exit 1
+        "$SRC_DIR/scripts/internal/apply_modules.sh" "$SRC_DIR/unica/mods" || exit 1
         LOG_STEP_OUT
     fi
 
