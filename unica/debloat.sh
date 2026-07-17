@@ -283,9 +283,9 @@ system/priv-app/PaymentFramework
 system/priv-app/SamsungCarKeyFw
 "
 #SYSTEM_EXT_DEBLOAT+="
-framework/org.carconnectivity.android.digitalkey.rangingintent.jar
-framework/org.carconnectivity.android.digitalkey.secureelement.jar
-"
+#framework/org.carconnectivity.android.digitalkey.rangingintent.jar
+#framework/org.carconnectivity.android.digitalkey.secureelement.jar
+#"
 
 # Search engine selector
 #PRODUCT_DEBLOAT+="
