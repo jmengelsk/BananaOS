@@ -2,7 +2,7 @@ name: Build BananaOS nightly
 
 on:
   schedule:
-    - cron: '0 1 * * *': runs at 1am UTC
+    - cron: '5 1 * * *'
 
 jobs:
   build:
