@@ -239,19 +239,19 @@ priv-app/Messages
 "
 
 # Samsung Pass
-#SYSTEM_DEBLOAT+="
-#system/app/SamsungPassAutofill_v1
-#system/etc/init/samsung_pass_authenticator_service.rc
-#system/etc/permissions/authfw.xml
-#system/etc/permissions/privapp-permissions-com.samsung.android.authfw.xml
-#system/etc/permissions/privapp-permissions-com.samsung.android.samsungpass.xml
-#system/etc/permissions/signature-permissions-com.samsung.android.samsungpass.xml
-#system/etc/permissions/signature-permissions-com.samsung.android.samsungpassautofill.xml
-#system/etc/sysconfig/samsungauthframework.xml
-#system/etc/sysconfig/samsungpassapp.xml
-#system/priv-app/AuthFramework
-#system/priv-app/SamsungPass
-#"
+SYSTEM_DEBLOAT+="
+system/app/SamsungPassAutofill_v1
+system/etc/init/samsung_pass_authenticator_service.rc
+system/etc/permissions/authfw.xml
+system/etc/permissions/privapp-permissions-com.samsung.android.authfw.xml
+system/etc/permissions/privapp-permissions-com.samsung.android.samsungpass.xml
+system/etc/permissions/signature-permissions-com.samsung.android.samsungpass.xml
+system/etc/permissions/signature-permissions-com.samsung.android.samsungpassautofill.xml
+system/etc/sysconfig/samsungauthframework.xml
+system/etc/sysconfig/samsungpassapp.xml
+system/priv-app/AuthFramework
+system/priv-app/SamsungPass
+"
 
 # Samsung Reminder
 #SYSTEM_DEBLOAT+="
