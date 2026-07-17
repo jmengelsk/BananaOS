@@ -177,10 +177,10 @@ system/priv-app/FBServices
 "
 
 # Microsoft OneDrive
-SYSTEM_DEBLOAT+="
-system/etc/permissions/privapp-permissions-com.microsoft.skydrive.xml
-system/priv-app/OneDrive_Samsung_v3
-"
+#SYSTEM_DEBLOAT+="
+#system/etc/permissions/privapp-permissions-com.microsoft.skydrive.xml
+#system/priv-app/OneDrive_Samsung_v3
+#"
 
 # My Galaxy
 SYSTEM_DEBLOAT+="
@@ -203,14 +203,14 @@ system/priv-app/SOAgent76
 SET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_CONTEXTSERVICE_ENABLE_SURVEY_MODE" --delete
 
 # Samsung AR Emoji
-SYSTEM_DEBLOAT+="
-system/etc/default-permissions/default-permissions-com.sec.android.mimage.avatarstickers.xml
-system/etc/permissions/privapp-permissions-com.samsung.android.aremojieditor.xml
-system/etc/permissions/privapp-permissions-com.sec.android.mimage.avatarstickers.xml
-system/etc/permissions/signature-permissions-com.sec.android.mimage.avatarstickers.xml
-system/priv-app/AREmojiEditor
-system/priv-app/AvatarEmojiSticker
-"
+#SYSTEM_DEBLOAT+="
+#system/etc/default-permissions/default-permissions-com.sec.android.mimage.avatarstickers.xml
+#system/etc/permissions/privapp-permissions-com.samsung.android.aremojieditor.xml
+#system/etc/permissions/privapp-permissions-com.sec.android.mimage.avatarstickers.xml
+#system/etc/permissions/signature-permissions-com.sec.android.mimage.avatarstickers.xml
+#system/priv-app/AREmojiEditor
+#system/priv-app/AvatarEmojiSticker
+#"
 
 # Samsung Calendar
 #SYSTEM_DEBLOAT+="
@@ -239,19 +239,19 @@ priv-app/Messages
 "
 
 # Samsung Pass
-SYSTEM_DEBLOAT+="
-system/app/SamsungPassAutofill_v1
-system/etc/init/samsung_pass_authenticator_service.rc
-system/etc/permissions/authfw.xml
-system/etc/permissions/privapp-permissions-com.samsung.android.authfw.xml
-system/etc/permissions/privapp-permissions-com.samsung.android.samsungpass.xml
-system/etc/permissions/signature-permissions-com.samsung.android.samsungpass.xml
-system/etc/permissions/signature-permissions-com.samsung.android.samsungpassautofill.xml
-system/etc/sysconfig/samsungauthframework.xml
-system/etc/sysconfig/samsungpassapp.xml
-system/priv-app/AuthFramework
-system/priv-app/SamsungPass
-"
+#SYSTEM_DEBLOAT+="
+#system/app/SamsungPassAutofill_v1
+#system/etc/init/samsung_pass_authenticator_service.rc
+#system/etc/permissions/authfw.xml
+#system/etc/permissions/privapp-permissions-com.samsung.android.authfw.xml
+#system/etc/permissions/privapp-permissions-com.samsung.android.samsungpass.xml
+#system/etc/permissions/signature-permissions-com.samsung.android.samsungpass.xml
+#system/etc/permissions/signature-permissions-com.samsung.android.samsungpassautofill.xml
+#system/etc/sysconfig/samsungauthframework.xml
+#system/etc/sysconfig/samsungpassapp.xml
+#system/priv-app/AuthFramework
+#system/priv-app/SamsungPass
+#"
 
 # Samsung Reminder
 #SYSTEM_DEBLOAT+="
@@ -266,26 +266,26 @@ system/priv-app/IpsGeofence
 "
 
 # Samsung Wallet
-SYSTEM_DEBLOAT+="
-system/etc/init/digitalkey_init_ble_tss2.rc
-system/etc/permissions/org.carconnectivity.android.digitalkey.rangingintent.xml
-system/etc/permissions/org.carconnectivity.android.digitalkey.secureelement.xml
-system/etc/permissions/privapp-permissions-com.samsung.android.carkey.xml
-system/etc/permissions/privapp-permissions-com.samsung.android.dkey.xml
-system/etc/permissions/privapp-permissions-com.samsung.android.spayfw.xml
-system/etc/permissions/signature-permissions-com.samsung.android.spay.xml
-system/etc/permissions/signature-permissions-com.samsung.android.spayfw.xml
-system/etc/sysconfig/digitalkey.xml
-system/etc/sysconfig/preinstalled-packages-com.samsung.android.dkey.xml
-system/etc/sysconfig/preinstalled-packages-com.samsung.android.spayfw.xml
-system/priv-app/DigitalKey
-system/priv-app/PaymentFramework
-system/priv-app/SamsungCarKeyFw
-"
-SYSTEM_EXT_DEBLOAT+="
-framework/org.carconnectivity.android.digitalkey.rangingintent.jar
-framework/org.carconnectivity.android.digitalkey.secureelement.jar
-"
+#SYSTEM_DEBLOAT+="
+#system/etc/init/digitalkey_init_ble_tss2.rc
+#system/etc/permissions/org.carconnectivity.android.digitalkey.rangingintent.xml
+#system/etc/permissions/org.carconnectivity.android.digitalkey.secureelement.xml
+#system/etc/permissions/privapp-permissions-com.samsung.android.carkey.xml
+#system/etc/permissions/privapp-permissions-com.samsung.android.dkey.xml
+#system/etc/permissions/privapp-permissions-com.samsung.android.spayfw.xml
+#system/etc/permissions/signature-permissions-com.samsung.android.spay.xml
+#system/etc/permissions/signature-permissions-com.samsung.android.spayfw.xml
+#system/etc/sysconfig/digitalkey.xml
+#system/etc/sysconfig/preinstalled-packages-com.samsung.android.dkey.xml
+#system/etc/sysconfig/preinstalled-packages-com.samsung.android.spayfw.xml
+#system/priv-app/DigitalKey
+#system/priv-app/PaymentFramework
+#system/priv-app/SamsungCarKeyFw
+#"
+#SYSTEM_EXT_DEBLOAT+="
+#framework/org.carconnectivity.android.digitalkey.rangingintent.jar
+#framework/org.carconnectivity.android.digitalkey.secureelement.jar
+#"
 
 # Search engine selector
 #PRODUCT_DEBLOAT+="
