@@ -1,4 +1,4 @@
-name: Build BananaOS nightly
+name: Build BananaOS testing
 
 on:
   push:
