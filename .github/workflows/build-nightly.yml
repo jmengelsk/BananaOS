@@ -3,7 +3,7 @@ name: Build BananaOS nightly
 on:
   schedule:
     - cron: '5 1 * * *'
-
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-24.04
