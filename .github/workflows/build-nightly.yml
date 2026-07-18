@@ -1,8 +1,9 @@
-name: Build Multi Upload
+name: Build BananaOS nightly
 
 on:
+  schedule:
+    - cron: '30 1 * * *'
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -16,6 +17,7 @@ jobs:
       - name: Checking out repo
         uses: actions/checkout@v7
         with:
+          ref: bananaos
           submodules: 'recursive'
         
       - name: Integrating SSH Keys f. SF
@@ -87,15 +89,11 @@ jobs:
           source ./buildenv.sh m51
           ./scripts/make_rom.sh --build-rom-zip
 
-      - name: Uploading  ROM to SourceForge and PixelDrain
+      - name: Uploading  Build to SourceForge
         env:
-          SF_FILE_PATH: ${{ secrets.SF_FILE_PATH }}
-          PIXELDRAIN_API_KEY: ${{ secrets.PIXELDRAIN_API_KEY }}
+          SF_NIGHTLY_FILE: ${{ secrets.SF_NIGHTLY_FILE }}
         run: |
-          curl -sL https://github.com/jkawamoto/go-pixeldrain/releases/download/v0.7.6/pd_0.7.6_linux_amd64.tar.gz | tar -xz pd
           for ROM in out/Banana*.zip; do
             echo "Uploading $ROM to SourceForge..."
-            scp -i ~/.ssh/id_rsa $ROM $SF_FILE_PATH           
-            echo "Uploading $ROM to PixelDrain..."
-            ./pd --api-key "$PIXELDRAIN_API_KEY" upload "$ROM" | sed 's|api/file|u|g'
+            scp -i ~/.ssh/id_rsa $ROM $SF_NIGHTLY_FILE           
           done
