@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sun, 31 Aug 2025 16:20:43 +0200
 Subject: [PATCH] Enable MOBILEAP_WIFISHARING_LITE support
 
-BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../server/wifi/ap/SemWifiApChipInfo.smali    | 33 ++++++++++++-------
  1 file changed, 22 insertions(+), 11 deletions(-)

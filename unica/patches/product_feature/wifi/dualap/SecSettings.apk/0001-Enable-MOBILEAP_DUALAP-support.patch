@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sat, 29 Nov 2025 18:01:15 +0100
 Subject: [PATCH] Enable MOBILEAP_DUALAP support
 
-BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../com/android/settings/Utils.smali          |  50 ++-
  ...EditSettings$SaveButtonClickListener.smali |  90 ++---

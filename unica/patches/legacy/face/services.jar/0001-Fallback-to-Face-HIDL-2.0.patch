@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Thu, 16 Oct 2025 23:01:37 +0200
 Subject: [PATCH] Fallback to Face HIDL 2.0
 
-BananaOS: this patch is not complete! Please check unica/patches/legacy/customize.sh for more info.
+UN1CA: this patch is not complete! Please check unica/patches/legacy/customize.sh for more info.
 ---
  .../face/FaceService$FaceServiceWrapper.smali |   4 +-
  .../face/aidl/AidlResponseHandler.smali       |   4 +-

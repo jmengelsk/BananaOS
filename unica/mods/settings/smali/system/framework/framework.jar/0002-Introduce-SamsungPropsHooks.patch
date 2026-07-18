@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Fri, 24 Oct 2025 11:59:09 +0200
 Subject: [PATCH] Introduce SamsungPropsHooks
 
-BananaOS: this patch is not complete! Please check unica/mods/settings/customize.sh for more info.
+UN1CA: this patch is not complete! Please check unica/mods/settings/customize.sh for more info.
 ---
  .../android/os/SemSystemProperties.smali      |  11 +-
  .../io/mesalabs/unica/SamsungPropsHooks.smali | 559 ++++++++++++++++++

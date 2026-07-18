@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Fri, 3 Oct 2025 16:22:12 +0200
 Subject: [PATCH] Bypass ICD verification
 
-BananaOS: unica/mods/deknox needs to be applied for this patch to work!
+UN1CA: unica/mods/deknox needs to be applied for this patch to work!
 ---
  .../DevicePolicyManagerService.smali          | 18 +--------------
  .../server/knox/dar/DarManagerService.smali   |  2 +-
