@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sun, 31 Aug 2025 16:07:47 +0200
 Subject: [PATCH] Enable MOBILEAP_OWE support
 
-BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  ...emWifiShellCommand$SqeCommandHandler.smali |  2 +-
  .../server/wifi/ap/SemWifiApConfigStore.smali | 63 ++++++-------------

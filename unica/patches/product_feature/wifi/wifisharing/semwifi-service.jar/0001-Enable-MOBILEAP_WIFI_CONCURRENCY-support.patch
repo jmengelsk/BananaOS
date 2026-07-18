@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sun, 31 Aug 2025 16:18:33 +0200
 Subject: [PATCH] Enable MOBILEAP_WIFI_CONCURRENCY support
 
-BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../com/samsung/android/server/wifi/ap/SemWifiApChipInfo.smali  | 2 ++
  1 file changed, 2 insertions(+)

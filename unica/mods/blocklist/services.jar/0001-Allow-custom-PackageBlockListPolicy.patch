@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Mon, 6 Oct 2025 14:35:37 +0200
 Subject: [PATCH] Allow custom PackageBlockListPolicy
 
-BananaOS: this patch is not complete! Please check unica/mods/blocklist/customize.sh for more info.
+UN1CA: this patch is not complete! Please check unica/mods/blocklist/customize.sh for more info.
 ---
  .../server/pm/InstallPackageHelper.smali      | 14 ++--
  .../android/server/pm/ScanPackageUtils.smali  | 10 +--

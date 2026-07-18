@@ -1,4 +1,4 @@
-# BananaOS SELinux entries removal list
+# UN1CA SELinux entries removal list
 # - Append new type entries to the ENTRIES list
 # - Add the EXACT type entry, DO NOT just add a common pattern (eg. "fabriccrypto", "fabriccrypto_exec" and NOT just "fabriccrypto")
 # - DO NOT add the API version at the end of the entry (eg. "fabriccrypto" and NOT "fabriccrypto_30_0")

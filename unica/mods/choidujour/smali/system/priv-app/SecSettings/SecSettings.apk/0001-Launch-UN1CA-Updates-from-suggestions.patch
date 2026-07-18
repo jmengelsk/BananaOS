@@ -1,7 +1,7 @@
 From 0bb77a4b171d668af1b0b8f069a20883ef852e9d Mon Sep 17 00:00:00 2001
 From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Fri, 14 Nov 2025 01:10:03 +0100
-Subject: [PATCH] Launch BananaOS Updates from suggestions
+Subject: [PATCH] Launch UN1CA Updates from suggestions
 
 ---
  .../Settings$FOTASuggestionActivity.smali     | 31 +++++++++++++------

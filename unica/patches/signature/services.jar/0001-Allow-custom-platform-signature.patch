@@ -5,7 +5,7 @@ Subject: [PATCH] Allow custom platform signature
 
 Based off: https://github.com/EverestOS-AOSP/frameworks_base/commit/9d302efb52770dfb85e19c51ad31f781c7844ca3
 
-BananaOS: this patch is not complete! Please check unica/patches/signature/customize.sh for more info.
+UN1CA: this patch is not complete! Please check unica/patches/signature/customize.sh for more info.
 ---
  .../server/pm/InstallPackageHelper.smali      | 78 ++++++++++++++++++-
  .../pm/PackageManagerServiceUtils.smali       | 10 +++

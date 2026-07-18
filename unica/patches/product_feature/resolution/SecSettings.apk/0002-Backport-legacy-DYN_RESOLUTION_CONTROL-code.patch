@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sat, 16 May 2026 17:39:37 +0200
 Subject: [PATCH] Backport legacy DYN_RESOLUTION_CONTROL code
 
-BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../android/settings/DisplaySettings$4.smali  | 863 ++++++++----------
  .../android/settings/DisplaySettings.smali    |  50 +-

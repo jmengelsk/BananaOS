@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Mon, 6 Oct 2025 00:49:32 +0200
 Subject: [PATCH] Introduce KnoxPatchHooks
 
-BananaOS: this patch is not complete! Please check unica/mods/knoxpatch/customize.sh for more info.
+UN1CA: this patch is not complete! Please check unica/mods/knoxpatch/customize.sh for more info.
 ---
  .../android/os/SystemProperties.smali         |  22 +-
  .../io/mesalabs/unica/KnoxPatchHooks.smali    | 269 ++++++++++++++++++

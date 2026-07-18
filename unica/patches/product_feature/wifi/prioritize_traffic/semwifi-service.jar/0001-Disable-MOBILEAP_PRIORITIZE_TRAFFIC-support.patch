@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sun, 31 Aug 2025 15:32:19 +0200
 Subject: [PATCH] Disable MOBILEAP_PRIORITIZE_TRAFFIC support
 
-BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../server/wifi/SemWifiManagerProxy.smali     |   2 +-
  .../wifi/ap/SemSettingsSoftResetHandler.smali |  62 +++----
