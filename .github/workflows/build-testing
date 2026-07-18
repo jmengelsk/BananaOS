@@ -1,4 +1,4 @@
-name: Build BananaOS testing
+name: Build Test Version
 
 on:
   push:
