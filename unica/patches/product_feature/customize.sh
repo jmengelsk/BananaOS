@@ -118,8 +118,8 @@ else
 fi
 
 # SEC_PRODUCT_FEATURE_AUDIO_SUPPORT_VIRTUAL_VIBRATION_SOUND
-if $SOURCE_AUDIO_SUPPORT_VIRTUAL_VIBRATION_SOUND; then
-    if ! $TARGET_AUDIO_SUPPORT_VIRTUAL_VIBRATION_SOUND; then
+if $SOURCE_AUDIO_SUPPORT_VIRTUAL_VIBRATION; then
+    if ! $TARGET_AUDIO_SUPPORT_VIRTUAL_VIBRATION; then
         APPLY_PATCH "system" "system/framework/framework.jar" \
             "$MODPATH/audio/virtual_vib/framework.jar/0001-Disable-virtual-vibration-support.patch"
         APPLY_PATCH "system" "system/framework/services.jar" \
@@ -137,9 +137,9 @@ if $SOURCE_AUDIO_SUPPORT_VIRTUAL_VIBRATION_SOUND; then
             "$MODPATH/audio/virtual_vib/SettingsProvider.apk/0001-Disable-virtual-vibration-support.patch"
     fi
 else
-    if $TARGET_AUDIO_SUPPORT_VIRTUAL_VIBRATION_SOUND; then
+    if $TARGET_AUDIO_SUPPORT_VIRTUAL_VIBRATION; then
         # TODO handle this condition
-        LOG_MISSING_PATCHES "SOURCE_AUDIO_SUPPORT_VIRTUAL_VIBRATION_SOUND" "TARGET_AUDIO_SUPPORT_VIRTUAL_VIBRATION_SOUND"
+        LOG_MISSING_PATCHES "SOURCE_AUDIO_SUPPORT_VIRTUAL_VIBRATION" "TARGET_AUDIO_SUPPORT_VIRTUAL_VIBRATION"
     fi
 fi
 
@@ -911,19 +911,6 @@ elif $SOURCE_WLAN_SUPPORT_MBO && ! $TARGET_WLAN_SUPPORT_MBO; then
         "smali/com/samsung/android/server/wifi/SemFrameworkFacade.smali" "return" \
         "isMBOSupported()Z" \
         "false"
-fi
-
-# SEC_PRODUCT_FEATURE_WLAN_SUPPORT_MIMO
-if ! $SOURCE_WLAN_SUPPORT_MIMO && $TARGET_WLAN_SUPPORT_MIMO; then
-    SMALI_PATCH "system" "system/framework/semwifi-service.jar" \
-        "smali/com/samsung/android/server/wifi/SemWifiServiceImpl.smali" "return" \
-        "getNumOfWifiAnt()I" \
-        "2"
-elif $SOURCE_WLAN_SUPPORT_MIMO && ! $TARGET_WLAN_SUPPORT_MIMO; then
-    SMALI_PATCH "system" "system/framework/semwifi-service.jar" \
-        "smali/com/samsung/android/server/wifi/SemWifiServiceImpl.smali" "return" \
-        "getNumOfWifiAnt()I" \
-        "1"
 fi
 
 # SEC_PRODUCT_FEATURE_WLAN_SUPPORT_MOBILEAP_5G_BASEDON_COUNTRY

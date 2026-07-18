@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sun, 31 Aug 2025 15:41:06 +0200
 Subject: [PATCH] Allow custom CUSTOM_BACKOFF value
 
-UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../server/wifi/SemWifiCoexManager.smali      | 656 +++++++++---------
  1 file changed, 329 insertions(+), 327 deletions(-)

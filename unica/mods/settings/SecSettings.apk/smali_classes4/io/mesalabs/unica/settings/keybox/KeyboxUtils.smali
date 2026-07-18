@@ -1178,7 +1178,7 @@
 
     const-string v4, "User-Agent"
 
-    const-string v6, "UN1CA Settings"
+    const-string v6, "BananaOS Settings"
 
     invoke-virtual {p0, v4, v6}, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
 

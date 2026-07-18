@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Mon, 13 Oct 2025 14:39:35 +0200
 Subject: [PATCH] Add side fingerprint sensor support
 
-UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../BiometricsDisclaimerActivity.smali        |  85 +-
  .../BiometricsRadioButtonPreference.smali     | 164 +---
