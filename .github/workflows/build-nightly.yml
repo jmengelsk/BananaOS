@@ -15,8 +15,9 @@ jobs:
 
     steps:
       - name: Checking out repo
-        uses: actions/checkout@bananaos
+        uses: actions/checkout@v7
         with:
+          ref: bananaos
           submodules: 'recursive'
         
       - name: Integrating SSH Keys f. SF
