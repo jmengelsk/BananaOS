@@ -52,7 +52,7 @@
 
     new-instance v1, Ljava/lang/StringBuilder;
 
-    const-string v2, "Valid UN1CA fragment: "
+    const-string v2, "Valid BananaOS fragment: "
 
     invoke-direct {v1, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 

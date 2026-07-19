@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Mon, 6 Oct 2025 15:14:36 +0200
 Subject: [PATCH] Introduce PlayIntegrityHooks
 
-UN1CA: this patch is not complete! Please check unica/mods/pif/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/mods/pif/customize.sh for more info.
 ---
  .../keystore2/AndroidKeyStoreSpi.smali        |    2 +
  ...grityHooks$$ExternalSyntheticLambda0.smali |   30 +

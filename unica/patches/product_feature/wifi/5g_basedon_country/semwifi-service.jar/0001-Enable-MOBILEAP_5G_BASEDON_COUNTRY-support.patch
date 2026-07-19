@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sat, 1 Nov 2025 21:34:14 +0100
 Subject: [PATCH] Enable MOBILEAP_5G_BASEDON_COUNTRY support
 
-UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../server/wifi/ap/SemWifiApServiceImpl.smali | 23 ++++++++++++-------
  1 file changed, 15 insertions(+), 8 deletions(-)

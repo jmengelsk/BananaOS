@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sun, 12 Oct 2025 16:27:45 +0200
 Subject: [PATCH] Disable APE_SERVICE support
 
-UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../server/wifi/SemQboxController.smali       |  49 +---
  .../android/server/wifi/SemWifiInjector.smali | 264 +++++-------------

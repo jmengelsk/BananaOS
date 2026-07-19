@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Sun, 31 Aug 2025 12:35:57 +0200
 Subject: [PATCH] Allow custom booster thresholds values
 
-UN1CA: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/patches/product_feature/customize.sh for more info.
 ---
  .../server/wifi/SemFrameworkFacade.smali      | 32 ++++++++++---------
  1 file changed, 17 insertions(+), 15 deletions(-)

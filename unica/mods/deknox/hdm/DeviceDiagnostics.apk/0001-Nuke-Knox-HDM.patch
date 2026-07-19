@@ -3,7 +3,7 @@ From: Salvo Giangreco <giangrecosalvo9@gmail.com>
 Date: Thu, 30 Oct 2025 09:45:45 +0100
 Subject: [PATCH] Nuke Knox HDM
 
-UN1CA: this patch is not complete! Please check unica/mods/deknox/customize.sh for more info.
+BananaOS: this patch is not complete! Please check unica/mods/deknox/customize.sh for more info.
 ---
  .../samsung/android/knox/hdm/HdmManager.smali | 484 ++----------------
  1 file changed, 54 insertions(+), 430 deletions(-)

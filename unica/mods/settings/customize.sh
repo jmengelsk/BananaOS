@@ -39,7 +39,7 @@ SMALI_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" \
     'ro.product.model' \
     'ro.boot.em.model'
 
-LOG_STEP_IN "- Adding UN1CA Settings"
+LOG_STEP_IN "- Adding BananaOS Settings"
 
 # Dynamically patch SecSettings
 # - Add missing/non-xml files in place
@@ -69,7 +69,7 @@ while IFS= read -r f; do
     fi
 done < <(find "$MODPATH/SecSettings.apk" -type f)
 
-# Add UN1CA Settings SearchIndexDataProvider(s)
+# Add BananaOS Settings SearchIndexDataProvider(s)
 LOG "- Patching \"smali/com/android/settingslib/search/SearchIndexableResourcesBase.smali\" in /system/system/priv-app/SecSettings.apk"
 SMALI_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" \
     "smali/com/android/settingslib/search/SearchIndexableResourcesBase.smali" "replace" \
