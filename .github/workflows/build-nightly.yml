@@ -94,5 +94,5 @@ jobs:
           ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
           for ROM in out/Banana*.zip; do
             echo "Uploading $ROM to SourceForge..."
-            scp -i ~/.ssh/id_rsa $ROM $SF_NIGHTLY_FILE           
+            scp -i ~/.ssh/id_rsa $ROM $SF_M51_NIGHTLY_PATH           
           done
