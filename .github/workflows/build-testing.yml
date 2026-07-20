@@ -86,15 +86,13 @@ jobs:
 
       - name: Uploading  Build to SourceForge
         env:
-          SF_FILE_PATH: ${{ secrets.SF_FILE_PATH }}   
+          SF_TESTING_FILE: ${{ secrets.SF_TESTING_FILE }}
+          SF_FILE_PATH: ${{ secrets.SF_FILE_PATH }}
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SF_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
-        env:
-          SF_TESTING_FILE: ${{ secrets.SF_TESTING_FILE }}
-        run: |
           for ROM in out/Banana*.zip; do
             echo "Uploading $ROM to SourceForge..."
             scp -i ~/.ssh/id_rsa $ROM $SF_TESTING_FILE           
