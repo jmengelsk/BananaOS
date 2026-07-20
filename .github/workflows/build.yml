@@ -83,7 +83,7 @@ jobs:
 
       - name: Uploading  ROM to SourceForge
         env:
-          SF_FILE_PATH: ${{ secrets.SF_FILE_PATH }}
+          SF_M51_PATH: ${{ secrets.SF_M51_PATH }}
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SF_SSH_KEY }}" > ~/.ssh/id_rsa
