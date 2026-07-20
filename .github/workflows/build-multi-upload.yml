@@ -83,7 +83,7 @@ jobs:
 
       - name: Uploading  ROM to SourceForge and PixelDrain
         env:
-          SF_FILE_PATH: ${{ secrets.SF_FILE_PATH }}
+          SF_M51_PATH: ${{ secrets.SF_M51_PATH }}
           PIXELDRAIN_API_KEY: ${{ secrets.PIXELDRAIN_API_KEY }}
         run: |
           mkdir -p ~/.ssh
