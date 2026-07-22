@@ -228,7 +228,7 @@ PATCH_KERNEL()
 # Main execution flow
 # ============================================================================
 
-DOWNLOAD_KERNEL
+#DOWNLOAD_KERNEL
 EXTRACT_KERNEL
 PATCH_KERNEL
 
