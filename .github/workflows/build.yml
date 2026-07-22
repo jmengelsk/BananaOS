@@ -83,6 +83,7 @@ jobs:
       - name: Build ROM
         run: |
           source ./buildenv.sh m51
+          export ROM_IS_OFFICIAL="true"
           ./scripts/make_rom.sh --build-rom-zip
 
       - name: Uploading  ROM to SourceForge
@@ -92,8 +93,8 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SF_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts        
+          ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
           for ROM in out/Banana*.zip; do
             echo "Uploading $ROM to SourceForge..."
-            scp -i ~/.ssh/id_rsa $ROM $SF_M51_PATH           
+            scp -i ~/.ssh/id_rsa $ROM $SF_M51_PATH
           done
