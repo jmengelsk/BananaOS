@@ -66,6 +66,7 @@ EXTRACT_KERNEL()
     LOG "- Extracting LostPrime-Kernel zip"
     KERNEL_ZIP="$SRC_DIR/prebuilts/samsung/m51/kernel/LostPrime-m51-ksu.zip"
     EVAL "rm -rf \"$TMP_DIR\""
+    EVAL "mkdir -p \"$TMP_DIR/out/kernel_extracted\""
     EVAL "unzip -oq \"$KERNEL_ZIP\" -d \"$TMP_DIR/out/kernel_extracted\"" || {
         ABORT "Failed to extract LostPrime-Kernel zip"
         return 1
