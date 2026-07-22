@@ -13,7 +13,7 @@ for split_firmware in $FIRMWARE; do
     fi
 done
 
-EVAL "mv \"$SRC_DIR/prebuilts/samsung/m51/firmware/\"* \"$TMP_DIR\""
-EVAL "rm -rf \"$SRC_DIR/prebuilts/samsung/m51/firmware\""
+EVAL "cp \"$SRC_DIR/prebuilts/samsung/m51/firmware/\"* \"$TMP_DIR\""
+#EVAL "rm -rf \"$SRC_DIR/prebuilts/samsung/m51/firmware\""
 LOG_STEP_OUT
 
