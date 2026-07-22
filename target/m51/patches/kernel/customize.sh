@@ -33,27 +33,27 @@ DETECT_KERNEL_FORMAT() {
 # Description: Downloads the latest LostPrime-Kernel zip from GitHub releases
 #              and prepares the temporary extraction directory
 # ----------------------------------------------------------------------------
-DOWNLOAD_KERNEL()
-{
+#DOWNLOAD_KERNEL()
+#{
     # Clean up any existing temporary directory and create fresh extraction structure
-    EVAL "rm -rf \"$TMP_DIR\""
-    EVAL "mkdir -p \"$TMP_DIR/out/kernel_extracted\""
+#    EVAL "rm -rf \"$TMP_DIR\""
+#    EVAL "mkdir -p \"$TMP_DIR/out/kernel_extracted\""
 
     # Fetch the latest release download URL from GitHub API
-    KERNEL_REPO="https://api.github.com/repos/kurtnettle/android_kernel_samsung_sm7150/releases/latest"
-    KERNEL_URL=$(curl -s ${GITHUB_TOKEN:+-H "Authorization: token $GITHUB_TOKEN"} \
-        "$KERNEL_REPO" | grep -o 'https://[^"]*m51-ksu[^"]*\.zip' | head -n1)
+#    KERNEL_REPO="https://api.github.com/repos/kurtnettle/android_kernel_samsung_sm7150/releases/latest"
+#    KERNEL_URL=$(curl -s ${GITHUB_TOKEN:+-H "Authorization: token $GITHUB_TOKEN"} \
+#        "$KERNEL_REPO" | grep -o 'https://[^"]*m51-ksu[^"]*\.zip' | head -n1)
     
     # Set the local path for the downloaded kernel zip
-    KERNEL_ZIP="$TMP_DIR/LostPrime-Kernel-m51.zip"
+#    KERNEL_ZIP="$TMP_DIR/LostPrime-Kernel-m51.zip"
     
     # Download the kernel zip file
-    LOG "- Downloading LostPrime-Kernel"
-    DOWNLOAD_FILE "$KERNEL_URL" "$KERNEL_ZIP" || {
-        ABORT "Failed to download LostPrime-Kernel zip"
-        return 1
-    }
-}
+#    LOG "- Downloading LostPrime-Kernel"
+#    DOWNLOAD_FILE "$KERNEL_URL" "$KERNEL_ZIP" || {
+#        ABORT "Failed to download LostPrime-Kernel zip"
+#        return 1
+#    }
+#}
 
 # ----------------------------------------------------------------------------
 # Function: EXTRACT_KERNEL
@@ -64,6 +64,8 @@ EXTRACT_KERNEL()
 {
     # Extract the kernel zip to the temporary working directory
     LOG "- Extracting LostPrime-Kernel zip"
+    KERNEL_ZIP="$SRC_DIR/prebuilts/samsung/m51/kernel/LostPrime-m51-ksu.zip"
+    EVAL "rm -rf \"$TMP_DIR\""
     EVAL "unzip -oq \"$KERNEL_ZIP\" -d \"$TMP_DIR/out/kernel_extracted\"" || {
         ABORT "Failed to extract LostPrime-Kernel zip"
         return 1
