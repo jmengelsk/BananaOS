@@ -87,8 +87,7 @@ jobs:
       - name: Building ROM
         run: |
           source ./buildenv.sh m51
-   #       export ROM_IS_OFFICIAL="true"
-          ./scripts/make_rom.sh --build-rom-zip
+   #      ./scripts/make_rom.sh --build-rom-zip
 
       - name: Uploading  Build to SourceForge
         env:
