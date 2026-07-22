@@ -11,6 +11,9 @@ security/aosp_platform.x509.pem.sic
 # VSCode
 .vscode
 
+# JoJo's specials
+go.sh
+
 
 
 #

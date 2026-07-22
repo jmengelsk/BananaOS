@@ -1,6 +1,7 @@
 # Copyright (c) 2025 Salvo Giangreco
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+
 # Device configuration file for Galaxy M51 (m51)
 TARGET_NAME="Galaxy M51"
 TARGET_CODENAME="m51"
