@@ -70,6 +70,8 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/unica_platform.pk8
           echo -n "${{ secrets.PLATFORM_KEY_PEM }}" | base64 --decode > security/unica_platform.x509.pem
+          echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/unica_ota.pk8
+          echo -n "${{ secrets.PLATFORM_KEY_PEM }}" | base64 --decode > security/unica_ota.x509.pem
           echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/aosp_platform.pk8
           echo -n "${{ secrets.PLATFORM_KEY_PEM }}" | base64 --decode > security/aosp_platform.x509.pem
           
