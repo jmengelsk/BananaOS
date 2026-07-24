@@ -3,10 +3,10 @@
 
 
 # Device configuration file for Galaxy M51 (m51)
-TARGET_NAME="Galaxy M51"
-TARGET_CODENAME="m51"
+TARGET_NAME="Galaxy S22"
+TARGET_CODENAME="r0q"
 TARGET_PLATFORM="sm7150"
-TARGET_ASSERT_MODEL=("SM-M515F")
+TARGET_ASSERT_MODEL=("SM-S901E")
 TARGET_FIRMWARE="SM-A525F/EUX/350281371234560" # [ Download a52q firmware, 
 # then patch with m51 device tree ]
 TARGET_EXTRA_FIRMWARES=()
