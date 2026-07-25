@@ -2,7 +2,7 @@ name: Build BananaOS nightly
 
 on:
   schedule:
-    - cron: '30 19 * * *'
+    - cron: '30 20 * * *'
   workflow_dispatch:
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
       - name: Checking out repo
         uses: actions/checkout@v7
         with:
-          ref: bananaos
+          ref: bananaos_3.1.1
           submodules: 'recursive'
 
       - name: Free disk space (1/3)
