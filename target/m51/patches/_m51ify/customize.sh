@@ -50,7 +50,7 @@ find "$WORK_DIR/vendor" -type f -path '*/lib*/camera/*' 2>/dev/null | sort | whi
 done
 LOG_STEP_OUT
 
-LOG_STEP_OUT
+LOG_STEP_OUT 
 
 LOG_STEP_IN "- Overriding a52q properties with m51 values"
 SET_PROP "vendor" "ro.product.first_api_level" "29"
@@ -67,8 +67,6 @@ SET_PROP "vendor" "ro.bootimage.build.fingerprint" "samsung/m51nsxx/m51:11/RP1A.
 SET_PROP "odm" "ro.odm.build.fingerprint" "samsung/r0qxxx/r0q:12/SP1A.210812.016/S901EXXSEGZE3:user/release-keys"
 SET_PROP "system" "ro.system.build.fingerprint" "samsung/r0qxxx/qssi:16/BP2A.250605.031.A3/S901EXXSEGZE3:user/release-keys"
 SET_PROP "vendor" "ro.vendor.build.fingerprint" "samsung/m51nsxx/m51:11/RP1A.200720.012/M515FXXU6DXJ2:user/release-keys"
-
-SET_PROP "system" "ro.system.build.date" "$(date)"
 
 SET_PROP "odm" "ro.product.odm.device" "r0q"
 SET_PROP "vendor" "ro.product.vendor.device" "r0q"
