@@ -20,5 +20,6 @@ fi
 # Append current commit hash to version name
 ROM_VERSION+="-$(git rev-parse --short HEAD 2> /dev/null || echo "null")"
 
+#ROM_CODENAME="BananaOS"
 #ROM_IS_OFFICIAL="true"
 #TARGET_INSTALL_METHOD="odin"
