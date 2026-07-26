@@ -30,7 +30,7 @@ Any form of contribution, suggestions, bug report or feature request for the pro
 ### Core features:
 - Based on the latest stable Galaxy S22 firmware
 - EROFS powered
-- Galaxy S25 wallpapers/sounds included
+- Galaxy S25 sounds included
 - Galaxy AI support
   - Audio eraser
   - Browsing assist
