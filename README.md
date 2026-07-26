@@ -3,7 +3,7 @@
 </h1>
 <p align="center">
   <a href="https://github.com/jmengelsk/BananaOS/blob/sixteen/LICENSE"><img loading="lazy" src="https://img.shields.io/github/license/jmengelsk/BananaOS?style=for-the-badge&logo=github"/></a>
-  <a href="https://github.com/jmengelsk/BananaOS/commits/sixteen"><img loading="lazy" src="https://img.shields.io/github/last-commit/jmengelsk/BananaOS/sixteen?style=for-the-badge"/></a>
+  <a href="https://github.com/jmengelsk/BananaOS/commits/bananaos_3.1.1"><img loading="lazy" src="https://img.shields.io/github/last-commit/jmengelsk/BananaOS/bananaos_3.1.1?style=for-the-badge"/></a>
   <a href="https://github.com/jmengelsk/BananaOS/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/jmengelsk/BananaOS?style=for-the-badge"/></a>
   <a href="https://github.com/jmengelsk/BananaOS/actions/workflows/build.yml"><img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/jmengelsk/BananaOS/build.yml?style=for-the-badge"/></a>
   <a href="https://crowdin.com/project/BananaOS"><img loading="lazy" src="https://img.shields.io/badge/Crowdin-263238?style=for-the-badge&logo=crowdin"/></a>
