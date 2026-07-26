@@ -97,20 +97,22 @@ EVAL "sed -i 's|atoll|sm6150|g' \"$WORK_DIR/vendor/etc/vramdiskd.xml\" \"$WORK_D
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Injecting m51-specific blobs"
-EVAL "git clone \"https://github.com/jmengelsk/M51-Device-Tree\" \"$MODPATH/tree\""
-ADD_TO_WORK_DIR "$MODPATH/tree" "system" "."
-ADD_TO_WORK_DIR "$MODPATH/tree" "vendor" "."
+#EVAL "git clone \"https://github.com/jmengelsk/M51-Device-Tree\" \"$MODPATH/tree\""
+#ADD_TO_WORK_DIR "$MODPATH/tree" "system" "."
+#ADD_TO_WORK_DIR "$MODPATH/tree" "vendor" "."
+ADD_TO_WORK_DIR "$SRC_DIR/prebuilts/samsung/m51/tree" "system" "."
+ADD_TO_WORK_DIR "$SRC_DIR/prebuilts/samsung/m51/tree" "vendor" "."
 EVAL "cp -r \"$WORK_DIR/vendor/etc/media_profiles_V1_0.xml\" \"$WORK_DIR/odm/etc\""
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Performing additional steps before going to the next step"
 TARGET_FIRMWARE_DEST="$FW_DIR/$(cut -d "/" -f 1 -s <<< "$TARGET_FIRMWARE")_$(cut -d "/" -f 2 -s <<< "$TARGET_FIRMWARE")"
 EVAL "cp -r \"$WORK_DIR/vendor/build.prop\" \"$TARGET_FIRMWARE_DEST/vendor\""
-EVAL "cp -r \"$MODPATH/tree/system\" \"$TARGET_FIRMWARE_DEST/system\""
+EVAL "cp -r \"$SRC_DIR/prebuilts/samsung/m51/tree/system\" \"$TARGET_FIRMWARE_DEST/system\""
 EVAL "cp -r \"$WORK_DIR/system/system/build.prop\" \"$TARGET_FIRMWARE_DEST/system/system\""
-EVAL "cp -r \"$MODPATH/tree/boot/boot.img\" \
+EVAL "cp -r \"$SRC_DIR/prebuilts/samsung/m51/tree/boot/boot.img\" \
  \"$WORK_DIR/kernel/boot.img\""
-EVAL "rm -rf \"$MODPATH/tree\""
+#EVAL "rm -rf \"$MODPATH/tree\""
 DOWNLOAD_FILE "https://raw.githubusercontent.com/jmengelsk/M51-FIRMWARES/refs/heads/main/vbmeta.img" \
  "$TARGET_FIRMWARE_DEST/avb/vbmeta.img"
 LOG_STEP_OUT 
