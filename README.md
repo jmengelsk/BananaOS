@@ -72,7 +72,6 @@ Any form of contribution, suggestions, bug report or feature request for the pro
 - One UI Home animations option
 - Vulkan renderer toggle
 - Key attestation spoof ([TrickyStore](https://github.com/5ec1cff/TrickyStore)) options*
-- Play Integrity Fix integrated
 - Ability to hide installed apps ([Hide My Applist](https://github.com/Dr-TSNG/Hide-My-Applist))
 - Ability to hide developer options
 - Allow app downgrade toggle
