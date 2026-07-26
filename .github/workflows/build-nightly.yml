@@ -17,7 +17,7 @@ jobs:
       - name: Checking out repo
         uses: actions/checkout@v7
         with:
-          ref: bananaos_3.1.1
+          ref: bananaos
           submodules: 'recursive'
 
       - name: Free disk space (1/3)
