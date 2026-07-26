@@ -13,7 +13,7 @@
 <p align="center">
   <a href="https://github.com/jmengelsk/BananaOS/discussions">🚀 Discussions</a>
   •
-  <a href="https://t.me/unicarom">💬 Telegram</a>
+  <a href="https://t.me/jojo_ports">💬 Telegram</a>
 </p>
 
 # What is BananaOS?
