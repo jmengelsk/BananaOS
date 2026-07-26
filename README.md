@@ -2,18 +2,18 @@
   <img loading="lazy" src="readme-res/banner.png"/>
 </h1>
 <p align="center">
-  <a href="https://github.com/jmengelsk/BananaOS/blob/sixteen/LICENSE"><img loading="lazy" src="https://img.shields.io/github/license/jmengelsk/BananaOS?style=for-the-badge&logo=github"/></a>
-  <a href="https://github.com/jmengelsk/BananaOS/commits/sixteen"><img loading="lazy" src="https://img.shields.io/github/last-commit/jmengelsk/BananaOS/sixteen?style=for-the-badge"/></a>
+  <a href="https://github.com/jmengelsk/BananaOS/blob/bananaos_3.1.1/LICENSE"><img loading="lazy" src="https://img.shields.io/github/license/jmengelsk/BananaOS?style=for-the-badge&logo=github"/></a>
+  <a href="https://github.com/jmengelsk/BananaOS/commits/bananaos_3.1.1"><img loading="lazy" src="https://img.shields.io/github/last-commit/jmengelsk/BananaOS/bananaos_3.1.1?style=for-the-badge"/></a>
   <a href="https://github.com/jmengelsk/BananaOS/stargazers"><img loading="lazy" src="https://img.shields.io/github/stars/jmengelsk/BananaOS?style=for-the-badge"/></a>
   <a href="https://github.com/jmengelsk/BananaOS/actions/workflows/build.yml"><img loading="lazy" src="https://img.shields.io/github/actions/workflow/status/jmengelsk/BananaOS/build.yml?style=for-the-badge"/></a>
   <a href="https://crowdin.com/project/BananaOS"><img loading="lazy" src="https://img.shields.io/badge/Crowdin-263238?style=for-the-badge&logo=crowdin"/></a>
 </p>
-<p align="center">BananaOS <i>(/ˈu.ni.ka/)</i> is a work-in-progress custom firmware for Samsung Galaxy devices.</p>
+<p align="center">BananaOS is a work-in-progress custom firmware for Samsung Galaxy devices.</p>
 
 <p align="center">
   <a href="https://github.com/jmengelsk/BananaOS/discussions">🚀 Discussions</a>
   •
-  <a href="https://t.me/unicarom">💬 Telegram</a>
+  <a href="https://t.me/jojo_ports">💬 Telegram</a>
 </p>
 
 # What is BananaOS?
@@ -30,7 +30,7 @@ Any form of contribution, suggestions, bug report or feature request for the pro
 ### Core features:
 - Based on the latest stable Galaxy S22 firmware
 - EROFS powered
-- Galaxy S25 wallpapers/sounds included
+- Galaxy S25 sounds included
 - Galaxy AI support
   - Audio eraser
   - Browsing assist
@@ -72,7 +72,6 @@ Any form of contribution, suggestions, bug report or feature request for the pro
 - One UI Home animations option
 - Vulkan renderer toggle
 - Key attestation spoof ([TrickyStore](https://github.com/5ec1cff/TrickyStore)) options*
-- Play Integrity Fix integrated
 - Ability to hide installed apps ([Hide My Applist](https://github.com/Dr-TSNG/Hide-My-Applist))
 - Ability to hide developer options
 - Allow app downgrade toggle
