@@ -60,13 +60,13 @@ SET_PROP "vendor" "ro.product.board" "sm6150"
 SET_PROP "vendor" "ro.hardware.chipname" "SM7150"
 SET_PROP "vendor" "ro.soc.model" "SM7150"
 
-SET_PROP "system" "ro.build.flavor" "m51nsxx-user"
+SET_PROP "system" "ro.build.flavor" "r0qxxx-user"
 SET_PROP "vendor" "ro.netflix.bsp_rev" "Q7250-19133-1"
 
-SET_PROP "vendor" "ro.bootimage.build.fingerprint" "samsung/m51nsxx/m51:11/RP1A.200720.012/M515FXXU6DXJ2:user/release-keys"
+SET_PROP "vendor" "ro.bootimage.build.fingerprint" "samsung/r0qxxx/r0q:12/SP1A.210812.016/S901EXXSEGZE3:user/release-keys"
 SET_PROP "odm" "ro.odm.build.fingerprint" "samsung/r0qxxx/r0q:12/SP1A.210812.016/S901EXXSEGZE3:user/release-keys"
 SET_PROP "system" "ro.system.build.fingerprint" "samsung/r0qxxx/qssi:16/BP2A.250605.031.A3/S901EXXSEGZE3:user/release-keys"
-SET_PROP "vendor" "ro.vendor.build.fingerprint" "samsung/m51nsxx/m51:11/RP1A.200720.012/M515FXXU6DXJ2:user/release-keys"
+SET_PROP "vendor" "ro.vendor.build.fingerprint" "samsung/r0qxxx/r0q:12/SP1A.210812.016/S901EXXSEGZE3:user/release-keys"
 
 SET_PROP "odm" "ro.product.odm.device" "r0q"
 SET_PROP "vendor" "ro.product.vendor.device" "r0q"
@@ -96,10 +96,7 @@ EVAL "sed -i 's|atoll|sm6150|g' \"$WORK_DIR/vendor/etc/vramdiskd.xml\" \"$WORK_D
 \"$WORK_DIR/configs/fs_config-vendor\""
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Injecting m51-specific blobs"
-#EVAL "git clone \"https://github.com/jmengelsk/M51-Device-Tree\" \"$MODPATH/tree\""
-#ADD_TO_WORK_DIR "$MODPATH/tree" "system" "."
-#ADD_TO_WORK_DIR "$MODPATH/tree" "vendor" "."
+LOG_STEP_IN "- Injecting m51 blobs"
 ADD_TO_WORK_DIR "$SRC_DIR/prebuilts/samsung/m51/tree" "system" "."
 ADD_TO_WORK_DIR "$SRC_DIR/prebuilts/samsung/m51/tree" "vendor" "."
 EVAL "cp -r \"$WORK_DIR/vendor/etc/media_profiles_V1_0.xml\" \"$WORK_DIR/odm/etc\""
@@ -110,11 +107,8 @@ TARGET_FIRMWARE_DEST="$FW_DIR/$(cut -d "/" -f 1 -s <<< "$TARGET_FIRMWARE")_$(cut
 EVAL "cp -r \"$WORK_DIR/vendor/build.prop\" \"$TARGET_FIRMWARE_DEST/vendor\""
 EVAL "cp -r \"$SRC_DIR/prebuilts/samsung/m51/tree/system\" \"$TARGET_FIRMWARE_DEST/system\""
 EVAL "cp -r \"$WORK_DIR/system/system/build.prop\" \"$TARGET_FIRMWARE_DEST/system/system\""
-EVAL "cp -r \"$SRC_DIR/prebuilts/samsung/m51/tree/boot/boot.img\" \
- \"$WORK_DIR/kernel/boot.img\""
-#EVAL "rm -rf \"$MODPATH/tree\""
-DOWNLOAD_FILE "https://raw.githubusercontent.com/jmengelsk/M51-FIRMWARES/refs/heads/main/vbmeta.img" \
- "$TARGET_FIRMWARE_DEST/avb/vbmeta.img"
+EVAL "cp -r \"$SRC_DIR/prebuilts/samsung/m51/tree/boot/boot.img\" \"$WORK_DIR/kernel/boot.img\""
+EVAL "cp -r \"$SRC_DIR/prebuilts/samsung/m51/firmware/vbmeta.img" \"$TARGET_FIRMWARE_DEST/avb/vbmeta.img"
 LOG_STEP_OUT 
 
 LOG "- M51IFY has been completed successfully"
