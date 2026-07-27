@@ -1,6 +1,4 @@
 LOG_STEP_IN "- Adding Galaxy M51 Firmware"
-#EVAL "git clone \"https://github.com/jmengelsk/M51-FIRMWARES\" \"$TMP_DIR/M51-FIRMWARES\""
-#EVAL "rm -rf \"$TMP_DIR/M51-FIRMWARES/.git\""
 
 FIRMWARE=$(find "$SRC_DIR/prebuilts/samsung/m51/firmware" -type f -print)
 
