@@ -175,7 +175,7 @@ PRINT_HEADER()
     echo    'ui_print(" ");'
     PRINT_SEPARATOR
     echo -n 'ui_print("'
-    echo -n "BananaOS $ROM_VERSION for $TARGET_NAME"
+    echo -n "BananaOS $ROM_VERSION from $TARGET_NAME"
     echo    '");'
     echo    'ui_print("by JoJo");'
     PRINT_SEPARATOR
@@ -184,9 +184,6 @@ PRINT_HEADER()
     echo    '");'
     echo -n 'ui_print("'
     echo -n "Source: $SOURCE_FINGERPRINT"
-    echo    '");'
-    echo -n 'ui_print("'
-    echo -n "Target: $TARGET_FINGERPRINT"
     echo    '");'
     PRINT_SEPARATOR
 }
