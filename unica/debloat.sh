@@ -129,7 +129,7 @@ system/etc/permissions/privapp-permissions-com.sec.android.cover.ledcover.xml
 system/priv-app/LedCoverService
 "
 
-Link to Windows
+#Link to Windows
 Replace full apk with stub apk to save space
 SYSTEM_DEBLOAT+="
 system/priv-app/YourPhone_P1_5
