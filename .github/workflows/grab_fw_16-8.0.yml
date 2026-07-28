@@ -74,7 +74,7 @@ jobs:
 
       - name: Create odin Tarballs
         run: |
-          tar -cvzf ./out/odin_SM-S901B_EUX_S90BXXSNGZD7.tar.gz ./out/odin/SM-S901B_EUX/
+          tar -cvzf ./out/odin_SM-S901U1_AIO_S901U1UESAGZF3.tar.gz ./out/odin/SM-S901U1_AIO/
 
       - name: Extract firmwares
         run: |
@@ -84,7 +84,7 @@ jobs:
 
       - name: Create fw Tarballs
         run: |
-          tar -cvzf ./out/fw_SM-S901B_EUX_S90BXXSNGZD7 ./out/fw/SM-S901B_EUX/
+          tar -cvzf ./out/fw_SM-S901U1_AIO_S901U1UESAGZF3.tar.gz ./out/fw/SM-S901U1_AIO/
           
 
       - name: Uploading  Tarballs to SourceForge
