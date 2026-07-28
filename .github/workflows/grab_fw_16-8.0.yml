@@ -16,8 +16,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v7
         with:
-          repository: mehedihjoy0/UN1CA-SM7150
-          ref: sixteen
+          repository: jmengelsk/BananaOS
+          ref: bananaos_eux
           submodules: 'recursive'
 
       - name: Integrating SSH Keys f. SF
@@ -74,8 +74,7 @@ jobs:
 
       - name: Create odin Tarballs
         run: |
-          tar -cvzf ./out/odin_SM-SM-S901E_TUR_S901EXXSEGZE3.tar.gz ./out/odin/SM-S901E_TUR/
-          tar -cvzf ./out/odin_SM-A525F_EUX_A525FXXSCFYF1.tar.gz ./out/odin/SM-A525F_EUX/
+          tar -cvzf ./out/odin_SM-S901B_EUX_S90BXXSNGZD7.tar.gz ./out/odin/SM-S901B_EUX/
 
       - name: Extract firmwares
         run: |
@@ -85,8 +84,7 @@ jobs:
 
       - name: Create fw Tarballs
         run: |
-          tar -cvzf ./out/fw_SM-SM-S901E_TUR_S901EXXSEGZE3.tar.gz ./out/fw/SM-S901E_TUR/
-          tar -cvzf ./out/fw_SM-A525F_EUX_A525FXXSCFYF1.tar.gz ./out/fw/SM-A525F_EUX/
+          tar -cvzf ./out/fw_SM-S901B_EUX_S90BXXSNGZD7 ./out/fw/SM-S901B_EUX/
           
 
       - name: Uploading  Tarballs to SourceForge
