@@ -65,7 +65,7 @@ SYSTEM_DEBLOAT+="
 system/app/MAPSAgent
 "
 
-m# AppUpdateCenter
+# AppUpdateCenter
 SYSTEM_DEBLOAT+="
 system/etc/permissions/privapp-permissions-com.samsung.android.app.updatecenter.xml
 system/priv-app/AppUpdateCenter
