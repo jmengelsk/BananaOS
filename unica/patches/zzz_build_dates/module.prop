@@ -1,0 +1,4 @@
+id=build_dates
+name=Build dates
+author=jmengelsk
+description=Changed build dates/utc in .prop files.
