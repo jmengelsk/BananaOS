@@ -64,7 +64,7 @@ EXTRACT_KERNEL()
 {
     # Extract the kernel zip to the temporary working directory
     LOG "- Extracting BananaOS-Kernel zip"
-    KERNEL_ZIP="$SRC_DIR/prebuilts/samsung/m51/kernel/LostPrime-m51-ksu.zip"
+    KERNEL_ZIP="$SRC_DIR/prebuilts/samsung/m51/kernel/BananaOS-Kernel.zip"
     EVAL "rm -rf \"$TMP_DIR\""
     EVAL "mkdir -p \"$TMP_DIR/out/kernel_extracted\""
     EVAL "unzip -oq \"$KERNEL_ZIP\" -d \"$TMP_DIR/out/kernel_extracted\"" || {
