@@ -1,4 +1,4 @@
-LOG_STEP_IN "- Replacing the default kernel with LostPrime-Kernel"
+LOG_STEP_IN "- Replacing the default kernel with BananaOS-Kernel"
 
 # ----------------------------------------------------------------------------
 # Function: DETECT_KERNEL_FORMAT
@@ -30,7 +30,7 @@ DETECT_KERNEL_FORMAT() {
 
 # ----------------------------------------------------------------------------
 # Function: DOWNLOAD_KERNEL
-# Description: Downloads the latest LostPrime-Kernel zip from GitHub releases
+# Description: Downloads the latest BananaOS-Kernel zip from GitHub releases
 #              and prepares the temporary extraction directory
 # ----------------------------------------------------------------------------
 #DOWNLOAD_KERNEL()
@@ -45,12 +45,12 @@ DETECT_KERNEL_FORMAT() {
 #        "$KERNEL_REPO" | grep -o 'https://[^"]*m51-ksu[^"]*\.zip' | head -n1)
     
     # Set the local path for the downloaded kernel zip
-#    KERNEL_ZIP="$TMP_DIR/LostPrime-Kernel-m51.zip"
+#    KERNEL_ZIP="$TMP_DIR/BananaOS-Kernel.zip"
     
     # Download the kernel zip file
-#    LOG "- Downloading LostPrime-Kernel"
+#    LOG "- Downloading BananaOS-Kernel"
 #    DOWNLOAD_FILE "$KERNEL_URL" "$KERNEL_ZIP" || {
-#        ABORT "Failed to download LostPrime-Kernel zip"
+#        ABORT "Failed to download BananaOS-Kernel zip"
 #        return 1
 #    }
 #}
@@ -63,12 +63,12 @@ DETECT_KERNEL_FORMAT() {
 EXTRACT_KERNEL()
 {
     # Extract the kernel zip to the temporary working directory
-    LOG "- Extracting LostPrime-Kernel zip"
+    LOG "- Extracting BananaOS-Kernel zip"
     KERNEL_ZIP="$SRC_DIR/prebuilts/samsung/m51/kernel/LostPrime-m51-ksu.zip"
     EVAL "rm -rf \"$TMP_DIR\""
     EVAL "mkdir -p \"$TMP_DIR/out/kernel_extracted\""
     EVAL "unzip -oq \"$KERNEL_ZIP\" -d \"$TMP_DIR/out/kernel_extracted\"" || {
-        ABORT "Failed to extract LostPrime-Kernel zip"
+        ABORT "Failed to extract BananaOS-Kernel zip"
         return 1
     }
     
@@ -124,7 +124,7 @@ PATCH_KERNEL()
     DTBO_IMG="$TMP_DIR/out/kernel_extracted/dtbo.img"
 
     if [ ! -f "$KERNEL_IMG" ]; then
-        ABORT "Kernel Image not found inside LostPrime-Kernel zip"
+        ABORT "Kernel Image not found inside BananaOS-Kernel zip"
         return 1
     fi
 
