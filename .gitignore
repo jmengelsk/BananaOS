@@ -13,9 +13,8 @@ security/avb
 
 # JoJo's specials
 go.sh
-
-
-
+external/kernel/samsung/sm-m515
+prebuilts/samsung/m51/kernel
 #
 # We don't want to ignore the following even if they are dot-files
 #
