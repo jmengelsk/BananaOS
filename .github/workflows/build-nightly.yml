@@ -53,8 +53,38 @@ jobs:
           echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/aosp_platform.pk8
           echo -n "${{ secrets.PLATFORM_KEY_PEM }}" | base64 --decode > security/aosp_platform.x509.pem
 
+      - name: Install Kernel build tools
+        run: |
+          sudo apt-get install -y \
+            build-essential \
+            git \
+            curl \
+            unzip \
+            wget \
+            zip \
+            zstd
+     
+      - name: Cache clang
+        id: cache-clang
+        uses: actions/cache@v4
+        with:
+          path: llvm-22
+          key: llvm-22.1.4-slim
 
-
+      - name: Download Slim LLVM and Build Kernel
+        if: steps.cache-clang.outputs.cache-hit != 'true'
+        run: |
+          cd ./external/kernel/samsung/sm-m515
+          wget -O llvm.tar.gz https://www.kernel.org/pub/tools/llvm/files/llvm-22.1.4-x86_64.tar.gz          
+          mkdir llvm-22;
+          tar -C llvm-22 --strip-components=1 -xzf llvm.tar.gz
+          rm llvm.tar.gz
+          make mrproper
+          bash build.sh m51 m51nsxx sdmmagpie y
+          cd AnyKernel3
+          zip -r ../BananaOS-Kernel.zip .
+         
+     
       - name: JDK 21 Setup
         uses: actions/setup-java@v5
         with:
