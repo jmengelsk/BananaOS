@@ -66,7 +66,7 @@ jobs:
      
       - name: Cache clang
         id: cache-clang
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: llvm-22
           key: llvm-22.1.4-slim
