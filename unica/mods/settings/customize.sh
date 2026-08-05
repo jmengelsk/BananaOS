@@ -2,6 +2,13 @@ if [ ! "$(GET_PROP "system" "ro.unica.version")" ]; then
     SET_PROP "system" "ro.unica.version" "$ROM_VERSION"
 fi
 
+# Show battery regulatory info in Settings
+# Requires SEM_BATTERY_PROPERTY_IC_AUTHENTICATION_RESULT support
+if [ "$(GET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_BATTERY_SUPPORT_BSOH_SETTINGS")" ]; then
+    SET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_BATTERY_SUPPORT_BSOH_SETTINGS" --delete
+fi
+SET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_SETTINGS_ENABLE_EU_BATTERY_REGULATORY" "TRUE"
+
 SMALI_PATCH "system" "system/framework/framework.jar" \
     "smali/android/app/Instrumentation.smali" "replace" \
     'newApplication(Ljava/lang/Class;Landroid/content/Context;)Landroid/app/Application;' \
@@ -39,7 +46,7 @@ SMALI_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" \
     'ro.product.model' \
     'ro.boot.em.model'
 
-LOG_STEP_IN "- Adding BananaOS Settings"
+LOG_STEP_IN "- Adding UN1CA Settings"
 
 # Dynamically patch SecSettings
 # - Add missing/non-xml files in place
@@ -69,7 +76,7 @@ while IFS= read -r f; do
     fi
 done < <(find "$MODPATH/SecSettings.apk" -type f)
 
-# Add BananaOS Settings SearchIndexableData registrations
+# Add UN1CA Settings SearchIndexableData registrations
 LOG "- Patching \"smali/com/android/settingslib/search/SearchIndexableResourcesMobile.smali\" in /system/system/priv-app/SecSettings.apk"
 SMALI_PATCH "system" "system/priv-app/SecSettings/SecSettings.apk" \
     "smali/com/android/settingslib/search/SearchIndexableResourcesMobile.smali" "replaceall" \
