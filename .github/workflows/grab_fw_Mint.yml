@@ -42,12 +42,6 @@ jobs:
         with:
           retain: 'compiler_cmake'
 
-      - name: Ignore erroring out
-        run: |
-          source ./buildenv.sh m51
-          find "$SRC_DIR/unica" "$SRC_DIR/scripts" -type f -name "*.sh" -exec sed -i "s/exit 1/LOGE \"failed\"/g" {} +
-          find "$SRC_DIR/scripts" -type f -name "*.sh" -exec sed -i "s/return 1/return 0/g" {} +
-          
       - name: Set up build environment
         run: |
           sudo apt update
