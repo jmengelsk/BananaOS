@@ -70,7 +70,6 @@ jobs:
       - name: Download firmwares
         run: |
           source ./buildenv.sh m51
-          ./out/tools/venv/bin/activate
           ./out/tools/venv/bin/samloader -m SM-S916B -r EUX -i 35563097005209 download -v S916BXXS9EZCI/S916BOXM9EZCI/S916BXXS9EZCI/S916BXXS9EZCI -O ./out/odin/SM-S916B_EUX/
           ./out/tools/venv/bin/samloader -m SM-M515F -r BVO -i 353738482076286 download -v M515FXXS6DXE4/M515FOWO6DXE4/M515FXXS6DXE4/M515FXXS6DXE4 -O ./out/odin/SM-M515F_BVO/
 
