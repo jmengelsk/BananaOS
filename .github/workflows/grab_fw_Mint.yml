@@ -1,4 +1,4 @@
-name: grab fw80
+name: grab fw_MintOS
 
 on:
   workflow_dispatch:
