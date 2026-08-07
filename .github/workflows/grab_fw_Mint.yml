@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: jmengelsk/BananaOS
-          ref: MintOS
+          ref: bananaos
           submodules: 'recursive'
 
       - name: Integrating SSH Keys f. SF
