@@ -75,10 +75,11 @@ jobs:
           ./out/tools/venv/bin/samloader -m SM-S916B -r EUX -i 355630970052093 download -v S916BXXS9EZCI/S916BOXM9EZCI/S916BXXS9EZCI/S916BXXS9EZCI -O ./out/odin/SM-S916B_EUX/
           ./out/tools/venv/bin/samloader -m SM-M515F -r BVO -i 353738482076286 download -v M515FXXS6DXE4/M515FOWO6DXE4/M515FXXS6DXE4/M515FXXS6DXE4 -O ./out/odin/SM-M515F_BVO/
 
-      - name: Create odin Tarballs
+      - name: Backing up odin zips
         run: |
-          tar -cvzf ./out/odin_SM-S916B_EUX_S916BXXS9EZCI.tar.gz ./out/odin/SM-S916B_EUX/
-          tar -cvzf ./out/odin_SM-M515F_BVO_M515FXXS6DXE4.tar.gz ./out/odin/SM-M515F_BVO/
+          cp ./out/odin/SM-S916B_EUX/*.zip ../
+          echo "S916BXXSAFZG1/S916BOXMAFZG1/S916BXXSAFZE1" > /out/odin/SM-S916B_EUX/.downloaded
+          cp ./out/odin/SM-M515F_BVO/*.zip ../
 
       - name: Extract firmwares
         run: |
