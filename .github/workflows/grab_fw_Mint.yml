@@ -78,7 +78,7 @@ jobs:
       - name: Backing up odin zips
         run: |
           cp ./out/odin/SM-S916B_EUX/*.zip ../
-          echo "S916BXXSAFZG1/S916BOXMAFZG1/S916BXXSAFZE1" > /out/odin/SM-S916B_EUX/.downloaded
+          echo "S916BXXSAFZG1/S916BOXMAFZG1/S916BXXSAFZE1" > ./out/odin/SM-S916B_EUX/.downloaded
           cp ./out/odin/SM-M515F_BVO/*.zip ../
 
       - name: Extract firmwares
