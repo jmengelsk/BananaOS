@@ -77,7 +77,7 @@ jobs:
 
       - name: Create odin Tarballs
         run: |
-          tar -cvzf ./out/odin_SM-S901U1_AIO_S901U1UESAGZF3.tar.gz ./out/odin/SM-S901U1_AIO/
+          tar -cvzf ./out/odin_SM-S916B_EUX_S916BXXS9EZCI.tar.gz ./out/odin/SM-S916B_EUX/
           tar -cvzf ./out/odin_SM-M515F_BVO_M515FXXS6DXE4.tar.gz ./out/odin/SM-M515F_BVO/
 
       - name: Extract firmwares
