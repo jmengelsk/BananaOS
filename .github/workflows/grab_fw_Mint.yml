@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: jmengelsk/BananaOS
-          ref: bananaos_eux
+          ref: MintOS
           submodules: 'recursive'
 
       - name: Integrating SSH Keys f. SF
@@ -75,6 +75,7 @@ jobs:
       - name: Create odin Tarballs
         run: |
           tar -cvzf ./out/odin_SM-S901U1_AIO_S901U1UESAGZF3.tar.gz ./out/odin/SM-S901U1_AIO/
+          tar -cvzf ./out/odin_SM-M515F_BVO_M515FXXS6DXE4.tar.gz ./out/odin/SM-M515F_BVO/
 
       - name: Extract firmwares
         run: |
@@ -84,8 +85,8 @@ jobs:
 
       - name: Create fw Tarballs
         run: |
-          tar -cvzf ./out/fw_SM-S901U1_AIO_S901U1UESAGZF3.tar.gz ./out/fw/SM-S901U1_AIO/
-          
+          tar -cvzf ./out/fw_SM-S916B_EUX_S916BXXS9EZCI.tar.gz ./out/fw/SM-S916B_EUX/
+          tar -cvzf ./out/fw_SM-M515F_BVO_M515FXXS6DXE4.tar.gz ./out/fw/SM-M515F_BVO/
 
       - name: Uploading  Tarballs to SourceForge
         env:
