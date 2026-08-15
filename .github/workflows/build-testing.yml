@@ -69,6 +69,8 @@ jobs:
             wget \
             zip \
             zstd \
+            libbz2-dev \
+            libbz2-1.0 \
             bzip2
      
       - name: Cache clang
