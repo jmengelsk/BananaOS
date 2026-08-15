@@ -60,8 +60,11 @@ jobs:
             unzip \
             wget \
             zip \
-            zstd
-     
+            zstd \
+            libbz2-dev \
+            libbz2-1.0 \
+            bzip2
+            
       - name: Cache clang
         id: cache-clang
         uses: actions/cache@v6
