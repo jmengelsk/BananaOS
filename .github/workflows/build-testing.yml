@@ -68,7 +68,8 @@ jobs:
             unzip \
             wget \
             zip \
-            zstd
+            zstd \
+            bzip2
      
       - name: Cache clang
         id: cache-clang
