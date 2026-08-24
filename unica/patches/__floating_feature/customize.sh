@@ -1,4 +1,4 @@
-# UN1CA floating_feature patch
+# BananaOS floating_feature patch
 # - Add deprecated features in the $DEPRECATED variable
 # - Add features to ignore in the $BLACKLIST variable
 # - Add default values for missing features in the $FALLBACK variable
