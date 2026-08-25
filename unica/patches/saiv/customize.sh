@@ -17,6 +17,24 @@ if [[ "$(GET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_GALLERY_CONFIG_FACE_C
     fi
 fi
 
+# SEC_PRODUCT_FEATURE_SAIV_CONFIG_MIDAS
+if [ ! -f "$WORK_DIR/vendor/etc/midas/moire_detection/moire_detection.tflite" ]; then
+    ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/midas/moire_detection/moire_detection.tflite" 0 0 644 "u:object_r:vendor_configs_file:s0"
+fi
+if [ ! "$(find "$WORK_DIR/vendor/etc/midas" -maxdepth 1 -type f -name "SRIBMQA_aiFiQA*" 2> /dev/null)" ]; then
+    ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/midas/SRIBMQA_aiFiQA_V100_FP32.tflite" 0 0 644 "u:object_r:vendor_configs_file:s0"
+fi
+if [ ! -f "$WORK_DIR/vendor/etc/midas/SRIBMQA_aiIQA_V100_FP32.tflite" ]; then
+    ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "etc/midas/SRIBMQA_aiIQA_V100_FP32.tflite" 0 0 644 "u:object_r:vendor_configs_file:s0"
+fi
+if [ "$(find "$WORK_DIR/vendor/etc/midas" -maxdepth 1 -type f -name "*UPSCALER_*_LITE*" 2> /dev/null)" ]; then
+    # Ensure AI_UPSCALE LITE models are loaded if available
+    if ! sed -n "/\"midasSR_devices\"/,/]/p" "$WORK_DIR/vendor/etc/midas/midas_config.json" | grep -q "\"$(GET_PROP "ro.product.device")\""; then
+        LOG "- Patching /vendor/etc/midas/midas_config.json"
+        EVAL "sed -i \"/\\\"midasSR_devices\\\"[^[]*\\[/a\\\\    \\\"$(GET_PROP "ro.product.device")\\\",\" \"$WORK_DIR/vendor/etc/midas/midas_config.json\""
+    fi
+fi
+
 # SEC_PRODUCT_FEATURE_GALLERY_CONFIG_IMAGE_TAGGER_VERSION
 SOURCE_GALLERY_CONFIG_IMAGE_TAGGER_VERSION="$(GET_FLOATING_FEATURE_CONFIG "$FW_DIR/$SOURCE_FIRMWARE_PATH/system/system/etc/floating_feature.xml" "SEC_FLOATING_FEATURE_GALLERY_CONFIG_IMAGE_TAGGER_VERSION")"
 TARGET_GALLERY_CONFIG_IMAGE_TAGGER_VERSION="$(GET_FLOATING_FEATURE_CONFIG "$FW_DIR/$TARGET_FIRMWARE_PATH/system/system/etc/floating_feature.xml" "SEC_FLOATING_FEATURE_GALLERY_CONFIG_IMAGE_TAGGER_VERSION")"
@@ -31,6 +49,9 @@ if [[ "$(GET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_GALLERY_CONFIG_IMAGE_
             DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/aig_classifier"
         fi
         ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "saiv/image_understanding/db/aig_classifier" 0 2000 755 "u:object_r:vendor_snap_file:s0"
+        if [ -d "$WORK_DIR/vendor/saiv/image_understanding/db/aig_detector" ]; then
+            DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/aig_detector"
+        fi
         if [ -d "$WORK_DIR/vendor/saiv/image_understanding/db/aig_document_classifier" ]; then
             DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/aig_document_classifier"
         fi
@@ -39,6 +60,9 @@ if [[ "$(GET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_GALLERY_CONFIG_IMAGE_
             DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/aig_document_detector"
         fi
         ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "saiv/image_understanding/db/aig_document_detector" 0 2000 755 "u:object_r:vendor_snap_file:s0"
+        if [ -d "$WORK_DIR/vendor/saiv/image_understanding/db/srr_interaction" ]; then
+            DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/srr_interaction"
+        fi
     fi
 fi
 
@@ -97,6 +121,9 @@ if [ -f "$WORK_DIR/system/system/priv-app/BixbyVisionFramework3.5/BixbyVisionFra
             DELETE_FROM_WORK_DIR "vendor" "etc/saiv/image_understanding/db/slens_classifier"
         fi
         ADD_TO_WORK_DIR "gts11xx" "vendor" "etc/saiv/image_understanding/db/slens_classifier/slens_classifier_cnn.tflite" 0 0 644 "u:object_r:vendor_configs_file:s0"
+        if [ -d "$WORK_DIR/vendor/saiv/image_understanding/db/slens_classifier" ]; then
+            DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/slens_classifier"
+        fi
     fi
     if [ ! -d "$WORK_DIR/vendor/etc/saiv/image_understanding/db/slens_detector" ] || \
             [ "$TARGET_PLATFORM_SDK_VERSION" -lt "$SOURCE_PLATFORM_SDK_VERSION" ]; then
@@ -108,6 +135,9 @@ if [ -f "$WORK_DIR/system/system/priv-app/BixbyVisionFramework3.5/BixbyVisionFra
             DELETE_FROM_WORK_DIR "vendor" "etc/saiv/image_understanding/db/slens_detector"
         fi
         ADD_TO_WORK_DIR "gts11xx" "vendor" "etc/saiv/image_understanding/db/slens_detector/slens_detector_cnn.tflite" 0 0 644 "u:object_r:vendor_configs_file:s0"
+        if [ -d "$WORK_DIR/vendor/saiv/image_understanding/db/slens_detector" ]; then
+            DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/slens_detector"
+        fi
     fi
 else
     if [ -d "$WORK_DIR/system/system/saiv/image_understanding/db/slens_classifier" ]; then
@@ -121,6 +151,12 @@ else
     fi
     if [ -d "$WORK_DIR/vendor/etc/saiv/image_understanding/db/slens_detector" ]; then
         DELETE_FROM_WORK_DIR "vendor" "etc/saiv/image_understanding/db/slens_detector"
+    fi
+    if [ -d "$WORK_DIR/vendor/saiv/image_understanding/db/slens_classifier" ]; then
+        DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/slens_classifier"
+    fi
+    if [ -d "$WORK_DIR/vendor/saiv/image_understanding/db/slens_detector" ]; then
+        DELETE_FROM_WORK_DIR "vendor" "saiv/image_understanding/db/slens_detector"
     fi
 fi
 
