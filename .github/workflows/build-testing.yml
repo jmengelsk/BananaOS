@@ -93,11 +93,11 @@ jobs:
           cd AnyKernel3
           zip -r ../BananaOS-Kernel.zip .
 
-      - name: JDK 21 Setup
+      - name: JDK 17 Setup
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '17'
           cache: 'gradle'
 
       - name: Building dependencies
