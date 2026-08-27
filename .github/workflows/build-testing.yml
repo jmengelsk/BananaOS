@@ -106,9 +106,12 @@ jobs:
           ./scripts/build_dependencies.sh
 
       - name: Downloading required Stock Firmware files
-        run: |
-          source ./buildenv.sh m51
-          ./scripts/download_fw.sh
+        uses: nick-fields/retry@v4
+        with:
+          timeout_minutes: 60
+          max_attempts: 3
+          retry_on: error
+          command: ./scripts/download_fw.sh
 
       - name: Extracting downloaded Stock Firmware files
         run: |
