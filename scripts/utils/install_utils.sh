@@ -4,7 +4,9 @@
 # [
 source "$SRC_DIR/scripts/utils/build_utils.sh" || return 1
 
+# shellcheck disable=SC2034
 KERNEL_BINS="dt dtbo init_boot vendor_boot"
+# shellcheck disable=SC2034
 PARTITIONS_LIST="system vendor product system_ext odm vendor_dlkm odm_dlkm system_dlkm"
 
 _GET_PARTITION_SIZE()
@@ -175,15 +177,18 @@ PRINT_HEADER()
     echo    'ui_print(" ");'
     PRINT_SEPARATOR
     echo -n 'ui_print("'
-    echo -n "BananaOS $ROM_VERSION from $TARGET_NAME"
+    echo -n "BananaOS $ROM_VERSION for $TARGET_NAME"
     echo    '");'
-    echo    'ui_print("by JoJo");'
+    echo    'ui_print("Coded by salvo_giangri @XDAforums");'
     PRINT_SEPARATOR
     echo -n 'ui_print("'
     echo -n "One UI version: $ONEUI_VERSION"
     echo    '");'
     echo -n 'ui_print("'
     echo -n "Source: $SOURCE_FINGERPRINT"
+    echo    '");'
+    echo -n 'ui_print("'
+    echo -n "Target: $TARGET_FINGERPRINT"
     echo    '");'
     PRINT_SEPARATOR
 }

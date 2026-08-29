@@ -244,7 +244,7 @@ STORE_KERNEL_IMAGE_METADATA()
             EVAL "unpack_bootimg --boot_img \"$FW_DIR/${MODEL}_${CSC}/kernel/$f\" --out \"$TMP_DIR\""
             exit 1
         fi
-        rm -rf "$TMP_DIR/"*
+        rm -rf "${TMP_DIR:?}/"*
 
         while IFS= read -r l; do
             if [[ "$l" == *"command line args"* ]]; then
@@ -348,8 +348,6 @@ PREPARE_SCRIPT "$@"
 
 for i in "${FIRMWARES[@]}"; do
     PARSE_FIRMWARE_STRING "$i" || exit 1
-
-#    LATEST_FIRMWARE="S711U1UES7EZD2/S711U1OYM7EZD2/S711U1UES7EZD2"
 
     LATEST_FIRMWARE="$(GET_LATEST_FIRMWARE "$MODEL" "$CSC")"
     if [ ! "$LATEST_FIRMWARE" ]; then
