@@ -41,7 +41,7 @@ jobs:
           DEBIAN_FRONTEND=noninteractive sudo apt install -yq \
             attr ccache clang ffmpeg libbrotli-dev libbz2-dev \
             libgtest-dev libprotobuf-dev libunwind-dev libpcre2-dev \
-            libzstd-dev linux-modules-extra-$(uname -r) lld protobuf-compiler webp
+            libzstd-dev linux-modules-extra-$(uname -r) lld protobuf-compiler webp shellcheck
           sudo modprobe erofs f2fs
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -66,11 +66,31 @@ jobs:
             libbz2-1.0 \
             bzip2
 
-      - name: Set up JDK 17
+      - name: Cache clang
+        id: cache-clang
+        uses: actions/cache@v6
+        with:
+          path: llvm-22
+          key: llvm-22.1.4-slim
+
+      - name: Download Slim LLVM and Build Kernel
+        if: steps.cache-clang.outputs.cache-hit != 'true'
+        run: |
+          cd ./external/kernel/samsung/sm-m515
+          wget -O llvm.tar.gz https://www.kernel.org/pub/tools/llvm/files/llvm-22.1.4-x86_64.tar.gz          
+          mkdir llvm-22;
+          tar -C llvm-22 --strip-components=1 -xzf llvm.tar.gz
+          rm llvm.tar.gz
+          make mrproper
+          bash build.sh m51 m51nsxx sdmmagpie y
+          cd AnyKernel3
+          zip -r ../BananaOS-Kernel.zip .
+
+      - name: Set up JDK 21
         uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
           cache: 'gradle'
 
       - name: Generate build config
