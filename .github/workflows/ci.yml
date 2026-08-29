@@ -2,14 +2,6 @@ name: CI
 
 on:
   workflow_dispatch:
-  pull_request:
-  push:
-    branches:
-      - 'sixteen'
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   shellcheck:
@@ -28,36 +20,16 @@ jobs:
           done < <(find platform scripts target unica -name "*.sh" -not -name "*ssi.sh" -not -name "config.sh" -not -name "sff.sh")
           exit $CODE
 
-  generate-matrix:
-    name: Generate matrix
-    needs: shellcheck
-    runs-on: ubuntu-24.04
-
-    outputs:
-      matrix: ${{ steps.generate-matrix.outputs.matrix }}
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v7
-
-      - name: Generate CI matrix
-        id: generate-matrix
-        run: |
-          matrix="$(find target -mindepth 1 -maxdepth 1 -type d -printf '%f\n' \
-            | sort | jq -R -s -c 'split("\n") | map(select(length > 0))')"
-          echo "$matrix"
-          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
-
   build:
     name: Build
-    needs: [shellcheck, generate-matrix]
+    needs: shellcheck
     runs-on: ubuntu-24.04
 
     strategy:
       fail-fast: false
       matrix:
-        target: ${{ fromJSON(needs.generate-matrix.outputs.matrix) }}
-
+        build_type: [encrypted, decrypted]
+        target: [m51]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v7
@@ -92,6 +64,24 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/unica_platform.pk8
           echo -n "${{ secrets.PLATFORM_KEY_PEM }}" | base64 --decode > security/unica_platform.x509.pem
+          echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/unica_ota.pk8
+          echo -n "${{ secrets.PLATFORM_KEY_PEM }}" | base64 --decode > security/unica_ota.x509.pem
+          echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/aosp_platform.pk8
+          echo -n "${{ secrets.PLATFORM_KEY_PEM }}" | base64 --decode > security/aosp_platform.x509.pem
+
+      - name: Install Kernel build tools
+        run: |
+          sudo apt-get install -y \
+            build-essential \
+            git \
+            curl \
+            unzip \
+            wget \
+            zip \
+            zstd \
+            libbz2-dev \
+            libbz2-1.0 \
+            bzip2
 
       - name: Set up JDK 17
         uses: actions/setup-java@v6
@@ -102,7 +92,7 @@ jobs:
 
       - name: Generate build config
         run: |
-          source ./buildenv.sh ${{ matrix.target }}
+          source ./buildenv.sh m51
           {
             echo "DEBUG=$DEBUG"
             echo "SRC_DIR=$SRC_DIR"
@@ -131,5 +121,26 @@ jobs:
       - name: Extract stock firmwares
         run: ./scripts/extract_fw.sh
 
+      - name: Configure encryption state
+        if: matrix.build_type == 'encrypted'
+        run: |
+          source ./buildenv.sh m51
+          touch target/m51/patches/dfe/disable
+          sed -i 's|decrypted|encrypted|g' scripts/build_flashable_zip.sh
+
       - name: Build ROM
-        run: ./scripts/make_rom.sh
+        run: ./scripts/make_rom.sh --build-rom-zip
+
+
+      - name: Uploading  ROM to SourceForge
+        env:
+          SF_M51_PATH: ${{ secrets.SF_M51_PATH }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SF_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
+          for ROM in out/Banana*.zip; do
+            echo "Uploading $ROM to SourceForge..."
+            scp -i ~/.ssh/id_rsa $ROM $SF_M51_PATH
+          done
