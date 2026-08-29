@@ -13,6 +13,7 @@ security/avb
 
 # JoJo's specials
 go.sh
+mv-tag
 #external/kernel/samsung/sm-m515
 #prebuilts/samsung/m51/kernel
 #
