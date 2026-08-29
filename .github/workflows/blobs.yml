@@ -2,6 +2,12 @@ name: Update prebuilt blobs
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * *"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   update:
@@ -11,6 +17,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - module: "Galaxy A53 5G (a53xtfn)"
+            device: "a53xtfn"
+            firmware: "SM-S536DL/TFA/352574701234567"
           - module: "Galaxy A73 5G (a73xqxx)"
             device: "a73xqxx"
             firmware: "SM-A736B/XME/352828291234563"
@@ -23,6 +32,9 @@ jobs:
           - module: "Galaxy Z Flip4 (b4qxxx)"
             device: "b4qxxx"
             firmware: "SM-F721B/BTE/350525851234569"
+          - module: "Galaxy Tab A9+ 5G (gta9pxxx)"
+            device: "gta9pxxx"
+            firmware: "SM-X216B/EUX/352862571234563"
           - module: "Galaxy S21 FE 5G (Snapdragon) (r9qxxx)"
             device: "r9qxxx"
             firmware: "SM-G990B/EUX/353718681234563"
@@ -52,52 +64,34 @@ jobs:
         with:
           retain: 'compiler_cmake'
 
-      - name: Configuring build environment
+      - name: Set up build environment
         run: |
           sudo apt update
           DEBIAN_FRONTEND=noninteractive sudo apt install -yq \
-            7zip attr ccache clang ffmpeg \
-            libbrotli-dev libgtest-dev libprotobuf-dev libunwind-dev libpcre2-dev \
+            attr ccache clang ffmpeg libbrotli-dev libbz2-dev \
+            libgtest-dev libprotobuf-dev libunwind-dev libpcre2-dev \
             libzstd-dev linux-modules-extra-$(uname -r) lld protobuf-compiler webp
           sudo modprobe erofs f2fs
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/unica_platform.pk8
           echo -n "${{ secrets.PLATFORM_KEY_PEM }}" | base64 --decode > security/unica_platform.x509.pem
-          echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/unica_ota.pk8
-          echo -n "${{ secrets.PLATFORM_KEY_PEM }}" | base64 --decode > security/unica_ota.x509.pem          echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/unica_platform.pk8
-          echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/aosp_platform.pk8
-          echo -n "${{ secrets.PLATFORM_KEY_PEM }}" | base64 --decode > security/aosp_platform.x509.pem
 
-      - name: Install build tools
-        run: |
-          sudo apt-get install -y \
-            build-essential \
-            git \
-            curl \
-            unzip \
-            wget \
-            zip \
-            zstd \
-            libbz2-dev \
-            libbz2-1.0 \
-            bzip2
-      
-      - name: Set up JDK 21
-        uses: actions/setup-java@v5
+      - name: Set up JDK 17
+        uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '17'
           cache: 'gradle'
 
       - name: Build dependencies
         run: |
-          source ./buildenv.sh m51
+          source ./buildenv.sh a52sxq
           ./scripts/build_dependencies.sh
 
       - name: Update prebuilt blobs
         run: |
-          source ./buildenv.sh m51
+          source ./buildenv.sh a52sxq
           ./scripts/internal/update_prebuilt_blobs.sh "${{ matrix.device }}" "${{ matrix.firmware }}"
           echo "PDA_BUILD=$(cat "./prebuilts/samsung/${{ matrix.device }}/.current" | cut -d "/" -f "1")" >> "$GITHUB_ENV"
 
