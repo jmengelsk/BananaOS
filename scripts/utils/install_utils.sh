@@ -177,7 +177,7 @@ PRINT_HEADER()
     echo    'ui_print(" ");'
     PRINT_SEPARATOR
     echo -n 'ui_print("'
-    echo -n "BananaOS $ROM_VERSION for $TARGET_NAME"
+    echo -n "BananaOS $ROM_VERSION for M51"
     echo    '");'
     PRINT_SEPARATOR
     echo -n 'ui_print("'
