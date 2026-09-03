@@ -1,4 +1,4 @@
-REPOSITORY="https://github.com/BananaOS/proprietary_vendor_samsung_exynos2100/releases/download"
+REPOSITORY="https://github.com/UN1CA/proprietary_vendor_samsung_exynos2100/releases/download"
 TARS=(
     # o1sxxx (eur_open)
     "G991BXXSJHZC2_XEO_OXM/BL_G991BXXSJHZC2_G991BXXSJHZC2_MQB107294787_REV01_user_low_ship_MULTI_CERT.tar.md5"

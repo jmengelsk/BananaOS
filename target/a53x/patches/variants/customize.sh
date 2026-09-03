@@ -50,7 +50,7 @@ for f in "${TEEGRIS_ZIPS[@]}"; do
     FILE_NAME="$(basename "$f")"
 
     LOG "- Downloading $FILE_NAME"
-    DOWNLOAD_FILE "https://github.com/BananaOS/proprietary_vendor_samsung_a53x/releases/download/$f" "$TMP_DIR/$FILE_NAME"
+    DOWNLOAD_FILE "https://github.com/UN1CA/proprietary_vendor_samsung_a53x/releases/download/$f" "$TMP_DIR/$FILE_NAME"
 
     MODEL="$(cut -c1-5 <<< "$FILE_NAME")"
     if [[ "$MODEL" != "SCG15" ]]; then
