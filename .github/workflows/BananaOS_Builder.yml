@@ -1,4 +1,4 @@
-name: BananaOS_Builder
+name: BananaOS Builder
 
 on:
   workflow_dispatch:
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: jmengelsk/BananaOS_new
-          token: ${{ secrets.JOJO_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           ref: mooning3
           submodules: 'recursive'
 
