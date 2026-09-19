@@ -18,7 +18,7 @@ jobs:
         target: [a52q, a52sxq, a53x, a71, a73xq, b0q, g0q, m52xq, o1s, p3s, r0q, r8q, r9s, t2s]
 
     steps:
-      - name: Checkout repo
+      - name: Checkout Repo
         uses: actions/checkout@v7
         with:
           repository: jmengelsk/BananaOS_new
@@ -42,7 +42,7 @@ jobs:
         with:
           retain: 'compiler_cmake'
 
-      - name: Set up build environment
+      - name: Setup Build Environment
         run: |
           sudo apt update
           DEBIAN_FRONTEND=noninteractive sudo apt install -yq \
@@ -58,24 +58,24 @@ jobs:
           echo -n "${{ secrets.OTA_KEY_PEM }}" | base64 --decode > security/unica_ota.x509.pem
 
           
-      - name: Set up JDK 21
+      - name: Setup JDK 21
         uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
           java-version: '21'
           cache: 'gradle'
 
-      - name: Build dependencies
+      - name: Building Dependencies
         run: |
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/build_dependencies.sh
 
-      - name: Download stock firmwares
+      - name: Downloading Stock Firmware(s)
         run: |
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/download_fw.sh
 
-      - name: Extract stock firmwares
+      - name: Extracting Stock Firmware(s)
         run: |
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/extract_fw.sh
