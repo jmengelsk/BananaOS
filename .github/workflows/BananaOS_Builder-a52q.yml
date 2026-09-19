@@ -118,16 +118,15 @@ jobs:
       - name: Build ROM
         run: ./scripts/make_rom.sh --build-rom-zip
 
-
       - name: Uploading  ROM to SourceForge
-        env:
-          SF_BANANA_PATH: ${{ secrets.SF_BANANA_PATH }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SF_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
-          for ROM in out/Banana*.zip; do
-            echo "Uploading $ROM to SourceForge..."
-            scp -i ~/.ssh/id_rsa $ROM $SF_BANANA_PATH
-          done
+        uses: appleboy/scp-action@master
+        with:
+          host: frs.sourceforge.net
+          # SourceForge format: username,projectname
+          username: "jengelsk,joeroms"
+          key: ${{ secrets.SF_SSH_KEY }}
+          port: 22
+          # Local path to your files
+          source: "out/Banana*"
+          # Destination folder path on SourceForge
+          target: "/home/frs/project/joeroms/ports/BananaOS/3.2.0/Samsung/"
