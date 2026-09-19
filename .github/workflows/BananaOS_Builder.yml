@@ -94,8 +94,8 @@ jobs:
           max_attempts: 3
           retry_on: error
           run: |
-            source ./buildenv.sh ${{ matrix.target }}
-           ./scripts/download_fw.sh
+           source ./buildenv.sh ${{ matrix.target }}
+           ./scripts/download.sh
            
       - name: Extracting Stock Firmware(s)
         run: |
