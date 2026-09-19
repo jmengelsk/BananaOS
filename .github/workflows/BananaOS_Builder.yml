@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: jmengelsk/BananaOS_new
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ GH_JOJO_TOKEN }}
           ref: mooning3
           submodules: 'recursive'
 
