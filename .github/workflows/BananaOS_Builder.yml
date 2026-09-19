@@ -80,7 +80,20 @@ jobs:
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/extract_fw.sh
 
-      - name: Build ROM
+      - name: Building ROM
         run: |
           source ./buildenv.sh ${{ matrix.target }}
-          ./scripts/make_rom.sh
+          ./scripts/make_rom.sh -z
+
+      - name: Uploading  ROM to SourceForge
+        uses: appleboy/scp-action@master
+        with:
+          host: frs.sourceforge.net
+          # SourceForge format: username,projectname
+          username: "jengelsk,joeroms"
+          key: ${{ secrets.SF_SSH_KEY }}
+          port: 22
+          # Local path to your files
+          source: "out/Banana*.zip"
+          # Destination folder path on SourceForge
+          target: "/home/frs/project/joeroms/ports/BananaOS/3.2.0/Samsung/"
