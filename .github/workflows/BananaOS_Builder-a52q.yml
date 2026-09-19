@@ -19,7 +19,7 @@ jobs:
             sshellcheck -e SC1090,SC1091,SC2016,SC2086,SC2034 -s bash "$f" || CODE=1
           done < <(find platform scripts target unica -name "*.sh" -not -name "*ssi.sh" -not -name "config.sh" -not -name "sff.sh")
           exit $CODE
-  
+
   build:
     name: Build
     needs: shellcheck
@@ -70,7 +70,6 @@ jobs:
           echo -n "${{ secrets.OTA_KEY_PK8 }}" | base64 --decode > security/unica_ota.pk8
           echo -n "${{ secrets.OTA_KEY_PEM }}" | base64 --decode > security/unica_ota.x509.pem
 
-          
       - name: Set up JDK 21
         uses: actions/setup-java@v6
         with:
