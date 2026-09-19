@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         target: [a52q, a52sxq, a53x, a71, a73xq, b0q, g0q, m52xq, o1s, p3s, r0q, r8q, r9s, t2s]
-
+        build_type: [decrypted]
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v7
