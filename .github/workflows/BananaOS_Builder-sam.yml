@@ -1,4 +1,4 @@
-name: BananaOS Builder
+name: BananaOS Builder for Samsung
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  bananaos-samsung:
     runs-on: ubuntu-24.04
 
     strategy:
@@ -57,7 +57,6 @@ jobs:
           echo -n "${{ secrets.OTA_KEY_PK8 }}" | base64 --decode > security/unica_ota.pk8
           echo -n "${{ secrets.OTA_KEY_PEM }}" | base64 --decode > security/unica_ota.x509.pem
 
-          
       - name: Setup JDK 21
         uses: actions/setup-java@v6
         with:
@@ -94,12 +93,12 @@ jobs:
           max_attempts: 3
           retry_on: error
           command: ./scripts/download_fw.sh
-           
+
       - name: Extracting Stock Firmware(s)
         run: |
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/extract_fw.sh
-          
+
       - name: Building ROM
         run: |
           source ./buildenv.sh ${{ matrix.target }}
@@ -115,5 +114,5 @@ jobs:
           ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
           for ROM in out/Banana*.zip; do
             echo "Uploading $ROM to SourceForge..."
-            scp -i ~/.ssh/id_rsa $ROM $SF_BANANA_PATH
+            scp -i ~/.ssh/id_rsa $ROM $SF_BANANA_PATH/ports/BananaOS/3.2.0/Samsung/
           done
