@@ -91,7 +91,9 @@ jobs:
           timeout_minutes: 60
           max_attempts: 3
           retry_on: error
-          source ./buildenv.sh ${{ matrix.target }}
+          run: |
+            source ./buildenv.sh ${{ matrix.target }}
+            
       - name: Building Dependencies
         run: |
           source ./buildenv.sh ${{ matrix.target }}
@@ -101,12 +103,6 @@ jobs:
         run: |
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/extract_fw.sh
-
-      - name: Configure encryption state
-        if: matrix.build_type == 'encrypted'
-        run: |
-          source ./buildenv.sh ${{ matrix.target }}
-          sed -i 's|decrypted|encrypted|g' scripts/build_flashable_zip.sh
           
       - name: Building ROM
         run: |
