@@ -93,9 +93,7 @@ jobs:
           timeout_minutes: 60
           max_attempts: 3
           retry_on: error
-          run: |
-           source ./buildenv.sh ${{ matrix.target }}
-           ./scripts/download.sh
+          command: ./scripts/download_fw.sh
            
       - name: Extracting Stock Firmware(s)
         run: |
