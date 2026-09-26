@@ -170,12 +170,12 @@
       "incremental": 0
     },
     {
-      "datetime": 1790388320,
+      "datetime": 1790405039,
       "device": "r8q",
       "filename": "BananaOS_3.2.0_r8q.zip",
-      "id": "f8b72a458ae39ee77a8c34ef93795f07f93ec15f74af1a436c167e0683051fb6",
+      "id": "b2435ea14ed796facc191843b4445f4f82d9120178b5e9595185bc9d3e3c2b3b",
       "patch": "2026-08-05",
-      "size": 6180347196,
+      "size": 6180276134,
       "urls": [
         "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_r8q.zip/download"
       ],
