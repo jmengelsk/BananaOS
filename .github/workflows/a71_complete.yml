@@ -1,0 +1,44 @@
+name: Update OTA Config (a71)
+on:
+  workflow_run:
+    workflows: ["Galaxy A71 (a71)"]
+    types:
+      - completed
+    branches:
+      - ota
+      
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Update OTA Configuration
+    runs-on: ubuntu-24.04
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v7
+        with:
+          repository: jmengelsk/BananaOS
+          token: ${{ secrets.GH_JOJO_TOKEN }}
+          ref: ota
+          submodules: 'recursive'
+          
+      - name: Setting up Environment
+        run: |
+          git config --global user.name "BananaOS[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Update OTA Configuration
+        env:
+          SF_BANANA_PATH: ${{ secrets.SF_BANANA_PATH }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SF_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
+          ./scripts/update_ota_config.sh
+   
