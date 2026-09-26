@@ -118,12 +118,12 @@
       "incremental": 0
     },
     {
-      "datetime": 1790383301,
+      "datetime": 1790426077,
       "device": "m52xq",
       "filename": "BananaOS_3.2.0_m52xq.zip",
-      "id": "d153c89fc5ffe3377f8c36ce5322206bcd5c5fdc89eb0685df6158fede106499",
+      "id": "302bf4d50c17b3b88609f5ab1ff80221f092da964977e668e8052985f1ecb9e7",
       "patch": "2026-08-05",
-      "size": 6022750142,
+      "size": 6022802313,
       "urls": [
         "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_m52xq.zip/download"
       ],
