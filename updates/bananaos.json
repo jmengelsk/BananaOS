@@ -53,12 +53,12 @@
       "incremental": 0
     },
     {
-      "datetime": 1790383766,
+      "datetime": 1790425853,
       "device": "a72q",
       "filename": "BananaOS_3.2.0_a72q.zip",
-      "id": "ffc557813e45e6cd27be586459fc3b2c538d873cf33baa2d7927031b7b78edb8",
+      "id": "2779355752cfa72f63b7785950de29d1bcf01274cea6d420fc483447b9d3f1d9",
       "patch": "2026-08-05",
-      "size": 5846448296,
+      "size": 5846393766,
       "urls": [
         "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_a72q.zip/download"
       ],
