@@ -1,0 +1,212 @@
+{
+  "response": [
+    {
+      "datetime": 1790354232,
+      "device": "a52q",
+      "filename": "BananaOS_3.2.0_a52q.zip",
+      "id": "8efb0f7efbc8a69b67712ea5736131db48b109619b6ac3d771bdb70a68e998fe",
+      "patch": "2026-08-05",
+      "size": 5860395169,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_a52q.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354323,
+      "device": "a52sxq",
+      "filename": "BananaOS_3.2.0_a52sxq.zip",
+      "id": "c9a09602f198ff1e923224bf0bf586468804232d1ffc5a2240284f337f252729",
+      "patch": "2026-08-05",
+      "size": 6064158129,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_a52sxq.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790362845,
+      "device": "a53x",
+      "filename": "BananaOS_3.2.0_a53x.zip",
+      "id": "",
+      "patch": "2026-08-05",
+      "size": ,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_a53x.zip/download"
+      ],
+      "version": "3.2.0+-a6b8f7",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354204,
+      "device": "a71",
+      "filename": "BananaOS_3.2.0_a71.zip",
+      "id": "b887788c935cfa25b54498e884f01259cc482a7ec4d0ce676e524898284336af",
+      "patch": "2026-08-05",
+      "size": 5790879255,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_a71.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790355220,
+      "device": "a72q",
+      "filename": "BananaOS_3.2.0_a72q.zip",
+      "id": "d74ae23a9118a2b6adab4ef8efb2c688659ec5b72cf8a399dbd9f6f7c7c94fa1",
+      "patch": "2026-08-05",
+      "size": 5846224246,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_a72q.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354209,
+      "device": "a73xq",
+      "filename": "BananaOS_3.2.0_a73xq.zip",
+      "id": "494bd4473895ca65c38ac0ee0e37423ce33f49c44d73ab3b4db153a370f554ff",
+      "patch": "2026-08-05",
+      "size": 6257825726,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_a73xq.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354160,
+      "device": "b0q",
+      "filename": "BananaOS_3.2.0_b0q.zip",
+      "id": "a4f18903b34576568722a36b29f5e03dfc479f82455bfccce7c84f1dcb858ee0",
+      "patch": "2026-08-05",
+      "size": 6735823410,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_b0q.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354169,
+      "device": "g0q",
+      "filename": "BananaOS_3.2.0_g0q.zip",
+      "id": "1e9a34117d2108b5a8e1b1e26a34c75d7a0aa5cadcd76b7188c844ca6186a53b",
+      "patch": "2026-08-05",
+      "size": 6763049476,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_g0q.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790363604,
+      "device": "m51",
+      "filename": "BananaOS_3.2.0_m51.zip",
+      "id": "84be7f8e6e5be0f73c91bb1b564c574a98915568f9cc3094d7cd8ea842a696c4",
+      "patch": "2026-08-05",
+      "size": 5909464966,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_m51.zip/download"
+      ],
+      "version": "3.2.0+-a6b8f7",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354213,
+      "device": "m52xq",
+      "filename": "BananaOS_3.2.0_m52xq.zip",
+      "id": "546192b868f14443864228d57f523b641e60e89c3fd73430cefab71659df44da",
+      "patch": "2026-08-05",
+      "size": 6022817556,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_m52xq.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354136,
+      "device": "o1s",
+      "filename": "BananaOS_3.2.0_o1s.zip",
+      "id": "5d483dd82965b6c4bed8bfb0c75fa266a7600f4120f0fd36d475333a6ba94d92",
+      "patch": "2026-08-05",
+      "size": 6158794280,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_o1s.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354215,
+      "device": "p3s",
+      "filename": "BananaOS_3.2.0_p3s.zip",
+      "id": "6543b31e993830d51077a680dc8c270dc2ede627104f91bb9c152cd5358adbf9",
+      "patch": "2026-08-05",
+      "size": 6197976784,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_p3s.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354170,
+      "device": "r0q",
+      "filename": "BananaOS_3.2.0_r0q.zip",
+      "id": "41335b91ef54cadcd01a3f6337d5a67e11fdb2ac7297296f459be187544ebd52",
+      "patch": "2026-08-05",
+      "size": 6763738214,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_r0q.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354283,
+      "device": "r8q",
+      "filename": "BananaOS_3.2.0_r8q.zip",
+      "id": "60f02b4000bc10ac416c242078ab358488b78fbc3346625ffb813a20d738b342",
+      "patch": "2026-08-05",
+      "size": 6180404878,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_r8q.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354268,
+      "device": "r9s",
+      "filename": "BananaOS_3.2.0_r9s.zip",
+      "id": "48c8a5741d0890e9f2c927498a20b5c369b3fea27761049e8fd643b1fe05fa42",
+      "patch": "2026-08-05",
+      "size": 6044565864,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_r9s.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    },
+    {
+      "datetime": 1790354419,
+      "device": "t2s",
+      "filename": "BananaOS_3.2.0_t2s.zip",
+      "id": "86da0f072d4eec69d581a77561fdc0950c42f7c2c72a86421980a9a01417d858",
+      "patch": "2026-08-05",
+      "size": 6166222975,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/3.2.x/BananaOS_3.2.0_t2s.zip/download"
+      ],
+      "version": "3.2.0-6f035b9",
+      "incremental": 0
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+name: Debian Builder
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  LANG: "en_US.UTF-8"
+  LC_ALL: "en_US.UTF-8"
+  LANGUAGE: "en_US.UTF-8"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: BananaOS
+    runs-on: ubuntu-latest
+    container:
+      image: debian:trixie-slim
+
+    strategy:
+      fail-fast: false
+      matrix:
+        build_type: [decrypted]
+        target: [a53x]
+#        target: [a52q, a52sxq, a71, a72q, a73xq, b0q, g0q, m51, m52xq, o1s, p3s, r0q, r8q, r9s, t2s]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setting up Build Environment
+        run: |
+          apt update
+          apt install sudo -yq
+          sudo apt update
+          DEBIAN_FRONTEND=noninteractive sudo apt install -yq liblz4-1 liblz4-dev \
+            attr ccache clang ffmpeg libbrotli-dev libbz2-dev pkg-config\
+            libgtest-dev libprotobuf-dev libunwind-dev libpcre2-dev locales \
+            libzstd-dev lld protobuf-compiler webp shellcheck gnupg \
+            git python3 python3-pip cmake make clang curl unzip zip brotli \
+            openjdk-21-jdk lz4 libssl-dev libusb-1.0-0-dev zlib1g-dev libbz2-dev
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          sudo echo 'C.UTF-8 UTF-8' > /etc/locale.gen
+          sudo locale-gen
+          mkdir security
+          echo -n "${{ secrets.PLATFORM_KEY_PK8 }}" | base64 --decode > security/unica_platform.pk8
+          echo -n "${{ secrets.PLATFORM_KEY_PEM }}" | base64 --decode > security/unica_platform.x509.pem
+          echo -n "${{ secrets.OTA_KEY_PK8 }}" | base64 --decode > security/unica_ota.pk8
+          echo -n "${{ secrets.OTA_KEY_PEM }}" | base64 --decode > security/unica_ota.x509.pem
+
+      - name: Checkout repo
+        uses: actions/checkout@v7
+        with:
+          repository: jmengelsk/BananaOS_backend
+          token: ${{ secrets.GH_JOJO_TOKEN }}
+          ref: mooning3
+          submodules: 'recursive'
+
+      - name: Installing packages for Kernel compiling 
+        if: matrix.target == 'm51'
+        run: |
+          sudo apt-get install -y \
+            build-essential \
+            git \
+            curl \
+            unzip \
+            wget \
+            zip \
+            zstd \
+            libbz2-dev \
+            libbz2-1.0 \
+            bzip2
+
+      - name: Cache clang
+        id: cache-clang
+        uses: actions/cache@v6
+        with:
+          path: llvm-22
+          key: llvm-22.1.4-slim
+
+      - name: Downloading Google LLVM and compiing M51 Kernel
+        if: matrix.target == 'm51'
+        run: |
+          cd ./external/kernel/samsung/sm-m515
+          wget -O llvm.tar.gz https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/mirror-goog-main-llvm-toolchain-source/clang-r596125.tar.gz
+          mkdir llvm-22; cd llvm-22
+          tar -xf ../llvm.tar.gz
+          rm ../llvm.tar.gz
+          cd ..
+          bash build.sh m51 m51nsxx sdmmagpie y
+          cd AnyKernel3
+          zip -r ../BananaOS-Kernel.zip .
+
+      - name: Setting up JDK 21
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'gradle'
+
+      - name: Generating  Build Config for  ${{ matrix.target }}
+        run: |
+          source ./buildenv.sh ${{ matrix.target }}
+          {
+            echo "DEBUG=$DEBUG"
+            echo "SRC_DIR=$SRC_DIR"
+            echo "OUT_DIR=$OUT_DIR"
+            echo "ODIN_DIR=$ODIN_DIR"
+            echo "FW_DIR=$FW_DIR"
+            echo "TOOLS_DIR=$TOOLS_DIR"
+            echo "APKTOOL_DIR=$APKTOOL_DIR"
+            echo "WORK_DIR=$WORK_DIR"
+            echo "TMP_DIR=$TMP_DIR"
+          } >> "$GITHUB_ENV"
+          sed -e "/Automatically/d" -e "s/\"//g" "$OUT_DIR/config.sh" >> "$GITHUB_ENV"
+          echo "$TOOLS_DIR/bin" >> "$GITHUB_PATH"
+
+      - name: Building Dependencies
+        run: |
+          echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
+          locale-gen en_US.UTF
+          ./scripts/build_dependencies.sh
+
+      - name: Downloading Stock Firmware(s)
+        uses: nick-fields/retry@v4
+        with:
+          timeout_minutes: 60
+          max_attempts: 3
+          retry_on: error
+          command: ./scripts/download_fw.sh
+
+      - name: Extracting Stock Firmware(s)
+        run: ./scripts/extract_fw.sh
+
+      - name: Configuring Encryption State
+        if: matrix.build_type == 'encrypted'
+        run: |
+          source ./buildenv.sh ${{ matrix.target }}
+          touch unica/patches/dfe/disable
+          sed -i 's|decrypted|encrypted|g' scripts/build_flashable_zip.sh
+
+      - name: Building ${{ matrix.target }} ROM
+        run: ./scripts/make_rom.sh -z
+
+
+      - name: Uploading ${{ matrix.target }} ROM to SourceForge
+        env:
+          SF_BANANA_PATH: ${{ secrets.SF_BANANA_PATH }}
+        run: |
+          ./scripts/gen_json.sh
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SF_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
+          for ROM in out/Banana*.zip; do
+            echo "Uploading $ROM to SourceForge..."
+            scp -i ~/.ssh/id_rsa ./out/$TARGET_CODENAME.json $SF_BANANA_PATH/Samsung/3.2.x/json/
+            scp -i ~/.ssh/id_rsa $ROM $SF_BANANA_PATH/Samsung/3.2.x/
+          done
+          
+#      - name: Trigger OTA Config Update
+#        uses: yakubique/trigger-github-workflow@v1
+#        with:
+#          repository: jmengelsk/BananaOS
+#          workflow: update_ota_config.yml

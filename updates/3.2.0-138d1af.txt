@@ -1,0 +1,5 @@
+BananaOS 3.2.0 for Samsung Galaxy
+
+What's new
+- Added built-in OTA update support
+- Future ROM updates can now be checked through BananaOS Updates.
