@@ -1,0 +1,25 @@
+name: Retry Galaxy A52 (a52q)
+
+on:
+  workflow_run:
+    workflows: ["Galaxy A52 (a52q)"]
+    types:
+      - completed
+
+permissions:
+  actions: write
+
+jobs:
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - name: Trigger Rerun
+        env:
+          GH_TOKEN: ${{ secrets.GH_JOJO_TOKEN }}
+        run: |
+          if [ "${{ github.event.workflow_run.run_attempt }}" -lt 3 ]; then
+            gh run rerun ${{ github.event.workflow_run.id }} --failed
+          else
+            echo "Maximum retry attempts reached. Skipping."
+          fi

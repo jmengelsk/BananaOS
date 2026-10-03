@@ -1,0 +1,13 @@
+BananaOS 3.2.1 for Samsung Galaxy
+
+What's new
+- Added built-in OTA update support
+- Future ROM updates can now be checked through BananaOS Updates.
+
+- Merged latest patches from UN1CA sources
+
+
+Special note to the 
+"Godfather(s) of M51 Porting"
+- There is a difference between
+  "copying" and "modding+improving"
