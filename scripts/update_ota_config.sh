@@ -7,7 +7,7 @@ mkdir -p $out_dir/work
 
 echo Downloading chunks from SourceForge
 scp -i ~/.ssh/id_rsa\
-  jengelsk@frs.sourceforge.net:/home/pfs/project/bananaos/Samsung/3.2.x/json/* $out_dir/src
+  jengelsk@frs.sourceforge.net:/home/pfs/project/bananaos/Samsung/3.2.x/test/json/* $out_dir/src
 
 targets=("a05s" "a14" "a52q" "a52sxq" "a71" "a72q" "a73xq"\
  "b0q" "g0q" "m51" "m52xq" "o1s" "p3s" "r8q" "r0q"\
@@ -25,9 +25,9 @@ for target in "${targets[@]}"; do
 done
 
 echo "- creating final bananaos.json"
-cat $upd_dir/header.json > $out_dir/bananaos.json
-cat $out_dir/work/*.json >> $out_dir/bananaos.json
-cat $upd_dir/footer.json >> $out_dir/bananaos.json
+cat $upd_dir/header.json > $out_dir/bananaos-test.json
+cat $out_dir/work/*.json >> $out_dir/bananaos-test.json
+cat $upd_dir/footer.json >> $out_dir/bananaos-test.json
 sed -z 's/\(.*\),/\1/' $out_dir/bananaos.json > $upd_dir/bananaos.json
 
 echo "- Creating release_info.txt"
