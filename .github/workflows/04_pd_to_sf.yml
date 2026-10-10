@@ -1,0 +1,48 @@
+name: 04 Transfer PD to SF (base)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Transfer
+    runs-on: ubuntu-24.04
+
+    strategy:
+      fail-fast: false
+      matrix:
+        file_id: [sur5ww3C ]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v7
+        with:
+          repository: jmengelsk/BananaOS
+          token: ${{ secrets.GH_JOJO_TOKEN }}
+          ref: ota
+          submodules: 'recursive'
+          
+      - name: Setting up Environment 
+        run: |
+          git config --global user.name "BananaOS[bot]"
+          git config --global user.email "41898282+BananaOS[bot]@users.noreply.github.com"
+
+      - name: Downloading from PixelDrain
+        run: |
+          mkdir -p ./out
+          cd ./out
+          curl -sL https://github.com/jkawamoto/go-pixeldrain/releases/download/v0.7.6/pd_0.7.6_linux_amd64.tar.gz | tar -xz pd
+          echo "Downloading from PixelDrain..."
+          ./pd download https://pixeldrain.com/u/${{matrix.file_id}} 
+
+      - name: Uploading to SF
+        env:
+          SF_BANANA_PATH: ${{ secrets.SF_BANANA_PATH }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SF_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
+          for FILE in ./out/*.zip; do
+            scp $FILE  ${{ secrets.SF_BANANA_PATH }}/Samsung/3.2.x/base/
+          done
+

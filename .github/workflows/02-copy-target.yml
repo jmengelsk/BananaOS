@@ -1,0 +1,38 @@
+name: 02 Copy target.base to test 
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    name: Mirror
+    runs-on: ubuntu-latest
+    timeout-minutes: 480
+
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [a05s, a14, a52q, a52sxq, a53x, a71, a72q, a73xq, b0q, g0q, m51, m52xq, o1s, p3s, r0q, r8q, r9s, t2s]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initializing SF SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SF_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
+
+      - name: copying ${{ matrix.target }} base.zip
+        env:
+          SF_BANANA_PATH: ${{ secrets.SF_BANANA_PATH }}
+          TARGET_CODENAME: ${{ matrix.target }}
+        id: sf_download
+        uses: nick-fields/retry@v4
+        with:
+          timeout_minutes: 480
+          max_attempts: 3
+          retry_on: error
+          command: ./scripts/copy-target.sh
+

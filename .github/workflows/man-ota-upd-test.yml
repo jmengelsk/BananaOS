@@ -1,0 +1,34 @@
+name: 01-Update OTA Config (Test)
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Update OTA Configuration
+    runs-on: ubuntu-24.04
+
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v7
+        with:
+          repository: jmengelsk/BananaOS
+          token: ${{ secrets.GH_JOJO_TOKEN }}
+          ref: ota
+          submodules: 'recursive'
+
+      - name: Update OTA Configuration
+        env:
+          SF_BANANA_PATH: ${{ secrets.SF_BANANA_PATH }}
+          TRIGGER_SRC: "Manual Run:"
+        run: |
+          git config --global user.name "BananaOS[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"        
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SF_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan frs.sourceforge.net >> ~/.ssh/known_hosts
+          ./scripts/update_ota_config.sh
+   
