@@ -1,0 +1,30 @@
+{
+  "response": [
+    {
+      "datetime": 1794937823,
+      "device": "m51",
+      "filename": "BananaOS_6.6.6_m51-inc.zip",
+      "id": "98251c46faa2fbc27b462f14e61a4f92b40559cf01c2f027aec0b818bcc432c9",
+      "patch": "2026-10-05",
+      "size": 269808816,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/6.x/inc/BananaOS_6.6.6_m51-inc.zip/download"
+      ],
+      "version": "6.6.6-a4f137d",
+      "incremental": 1794923307
+    },
+    {
+      "datetime": 1794937823,
+      "device": "m51",
+      "filename": "BananaOS_6.6.6_m51-full.zip",
+      "id": "a669f17482c7d9be3527194b7f59a148d5cba00704bd18b83d1c4176cf76e302",
+      "patch": "2026-10-05",
+      "size": 6192455348,
+      "urls": [
+        "https://sourceforge.net/projects/bananaos/files/Samsung/6.x/full/BananaOS_6.6.6_m51-full.zip/download"
+      ],
+      "version": "6.6.6-a4f137d",
+      "incremental": 0
+    }
+  ]
+}
